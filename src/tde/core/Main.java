@@ -1,4 +1,4 @@
-package tde;
+package tde.core;
 
 public class Main {
 
