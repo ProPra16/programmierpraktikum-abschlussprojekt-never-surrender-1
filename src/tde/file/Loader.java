@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Loader {
-    public String[] readFromFile(Path filePath){
+    public static String[] readFromFile(Path filePath){
         Charset charset = Charset.forName("US-ASCII");
         List<String> lines = new ArrayList<>();
         try(BufferedReader reader = Files.newBufferedReader(filePath, charset)){

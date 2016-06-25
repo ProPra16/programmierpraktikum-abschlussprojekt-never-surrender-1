@@ -19,8 +19,8 @@ public class TestDrivenEnviroment extends Application {
     	primaryStage.setScene(new Scene(root));
     	primaryStage.show();
     }
-    
-	public static void init(String[] args){
+
+	static void init(String[] args){
 		launch(args);
 	}
 }
