@@ -1,12 +1,17 @@
 package tde.file;
 
-import java.nio.file.Path;
+import java.net.URI;
+import java.nio.file.*;
 
 public class FileHandler {
-    private Path rootDirectory;
+    private Path workspace;
+    private Loader loader;
+    private Saver saver;
 
-    public FileHandler(Path rootDirectory){
-        this.rootDirectory = rootDirectory;
+    public FileHandler(Path workspace){
+        this.workspace = workspace;
+        loader = new Loader();
+        saver = new Saver();
     }
 
     public void addFile(String fileName){
@@ -18,10 +23,10 @@ public class FileHandler {
     }
 
     public void write(String fileName, String[] lines){
-
+        saver.saveToFile(lines, Paths.get(URI.create(workspace.toString() + fileName)));
     }
 
     public String[] read(String fileName){
-        return new String[0];
+        return loader.readFromFile(Paths.get(URI.create(workspace.toString() + fileName)));
     }
 }
