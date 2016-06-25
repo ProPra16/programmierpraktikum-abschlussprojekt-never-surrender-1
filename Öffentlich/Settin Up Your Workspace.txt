@@ -1,0 +1,22 @@
+Hallo an Alle,
+
+hier die Punkte, wie man mit der Arbeit beginnen kann:
+
+Git herunterladen.
+
+Es ist von Vorteil in Eclipse das Plugin EGit einzubetten, am besten macht
+man das über folgende Website:
+
+http://www.eclipse.org/egit/
+
+Wie genau die Einbettung funktioniert wird dort auch gut erklärt.
+
+Danach öffnet man in Eclipse einen neuen Workspace (z.B. Projekt 7) und geht mit einem Rechtsklick
+auf Import. Dort klickt man sich durch und gibt alles relevante an. Achtet bitte darauf, dass ihr 
+HTTPS benutzt und nicht SSH.
+
+Nach dem Import müsstet ihr einen Folder mit Namen programmierpraktikum-abschl.... sehen.
+Dieser enthält nun einen Ordner src in dem man die Programmieraufgabe beginnen kann.
+Falls dieser Ordner nicht als Java Source Ordner erkannt wird, bitte ich um Rückmeldung!
+
+Erich
