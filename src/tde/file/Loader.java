@@ -7,8 +7,17 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Loader {
-    public String[] readFromFile(Path filePath){
+/**
+ * Eine Klasse zum Lesen von Dateien
+ */
+
+class Loader {
+    /**
+     * Ließt Text von einern Datei
+     * @param filePath Dateipfad
+     * @return Die Zeilen als String[]
+     */
+    String[] readFromFile(Path filePath){
         Charset charset = Charset.forName("US-ASCII");
         List<String> lines = new ArrayList<>();
         try(BufferedReader reader = Files.newBufferedReader(filePath, charset)){
