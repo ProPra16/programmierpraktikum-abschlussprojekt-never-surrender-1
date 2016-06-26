@@ -1,5 +1,7 @@
 package tde.file;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.net.URI;
 import java.nio.file.*;
 
@@ -27,7 +29,7 @@ public class FileHandler {
      * @param fileName Dateiname und Pfad ab dem Workspace. Format: "/Ordner/Unterordner/.../Dateiname.Endung"
      */
     public void addFile(String fileName){
-
+        throw new NotImplementedException();
     }
 
     /**
@@ -35,7 +37,7 @@ public class FileHandler {
      * @param fileName Dateiname und Pfad ab dem Workspace. Format: "/Ordner/Unterordner/.../Dateiname.Endung"
      */
     public void deleteFile(String fileName){
-
+        throw new NotImplementedException();
     }
 
     /**
