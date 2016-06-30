@@ -12,6 +12,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -62,17 +63,17 @@ public class GUI extends Application {
 		left.setAlignment(Pos.TOP_LEFT);
 		pane.setLeft(left);
 		/*************************/
-		TextField text1 = new TextField();					//2 Textfelder werden erschaffen. Vielleicht spacing machen um klare Grenzen aufzuzeigen?
-		text1.setPrefSize(380, 410);
-		TextField text2 = new TextField();
-		text2.setPrefSize(380, 410);
+		TextArea text1 = new TextArea();					//2 Textfelder werden erschaffen. Vielleicht spacing machen um klare Grenzen aufzuzeigen?
+		text1.setMinSize(380, 400);
+		TextArea text2 = new TextArea();
+		text2.setMinSize(380, 400);
 		
 		center.getChildren().addAll(text1, text2);
 		center.setAlignment(Pos.TOP_CENTER);
 		pane.setCenter(center);
 		
 		stage.setTitle("TDDT");
-		stage.setFocused(true);								//Maybe setCenter oder so
+		stage.setMaximized(true);							//Maybe setCenter oder so
 		stage.setHeight(500);
 		stage.setWidth(700);
 		stage.setScene(scene);
