@@ -54,7 +54,7 @@ public class GUI extends Application {
 		right.setAlignment(Pos.BASELINE_RIGHT);
 		pane.setRight(right);
 		/*************************/
-		TreeItem<String> root1 = new TreeItem<String>("C:\\");	//2 Explorer werden erschaffen. Leider wird nichst angeziegt -> muss geändert werden
+		TreeItem<String> root1 = new TreeItem<String>("C:\\");	//2 Explorer werden erschaffen. Leider wird nichst angeziegt -> muss ge?ndert werden
 		treeView1 = new TreeView<String>(root1);
 		TreeItem<String> root2 = new TreeItem<String>("C:\\");
 		treeView2= new TreeView<String>(root2);
