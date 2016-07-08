@@ -17,7 +17,11 @@ public class fxmlParser {
 
     public String dataToCode(Path filePath) {
         try {
-             File file = new File("exercises.txt");
+            //File file = new File("exercises.txt");
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse( new File("exercises.txt"));
+            document.getDocumentElement().normalize();
 
         }
         catch (Exception e) {
