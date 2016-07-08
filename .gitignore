@@ -1,4 +1,4 @@
 
 .idea/
-programmierpraktikum-abschlussprojekt-never-surrender-1.iml
-out/
+.gradle
+.project
