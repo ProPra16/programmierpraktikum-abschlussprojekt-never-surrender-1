@@ -31,8 +31,12 @@ public class XMLParser {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse( new File("exercises.txt"));
             document.getDocumentElement().normalize();
-            NodeList nList = document.getElementsByTagName("exercise");
-            //nun hat man
+            NodeList nodeList = document.getElementsByTagName("exercise");
+            //nun hat man eine NodeList mit der man die einzelnen Elemente von dieser jeweils über Befehle ansprechen kann
+            int nodeListLength = nodeList.getLength();
+            //gibt die Anzahl (n) der einzelnen Nodes in der nodeList(0,1,2,...,n-1) an
+            //Node node = nList.item(n);
+            //Der Befehl um die einzelnen exercises anzusprechen
         }
         catch (Exception e) {
             e.printStackTrace();
