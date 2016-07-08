@@ -9,7 +9,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
-public class fxmlParser {
+public class XMLParser {
 
     public void codeToData(String code, String location, String name) {
 
@@ -17,6 +17,7 @@ public class fxmlParser {
 
     public String dataToCode(Path filePath) {
         try {
+            //später Options file über workspace implementieren
             //File file = new File("exercises.txt");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
