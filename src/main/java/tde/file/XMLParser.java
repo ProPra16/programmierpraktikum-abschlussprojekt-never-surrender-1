@@ -10,11 +10,19 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 public class XMLParser {
-
+    /**
+     * Ließt geschriebenen Code und parst zu xml in ein File
+     * @param
+     * @return nüx
+     */
     public void codeToData(String code, String location, String name) {
 
     }
-
+    /**
+     * Parst Text von xml aus einer File zu Quellcode
+     * @param filePath Dateipfad
+     * @return Die Zeilen als String[]
+     */
     public String dataToCode(Path filePath) {
         try {
             //später Options file über workspace implementieren
@@ -23,7 +31,8 @@ public class XMLParser {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse( new File("exercises.txt"));
             document.getDocumentElement().normalize();
-
+            NodeList nList = document.getElementsByTagName("exercise");
+            //nun hat man
         }
         catch (Exception e) {
             e.printStackTrace();
