@@ -20,7 +20,7 @@ public class MainWindowController {
 	}
 	
 	@FXML protected void checkTest(ActionEvent event) {
-		test.setDisable(true);
-		code.setDisable(false);
+		code.setDisable(true);
+		test.setDisable(false);
 	}
 }
