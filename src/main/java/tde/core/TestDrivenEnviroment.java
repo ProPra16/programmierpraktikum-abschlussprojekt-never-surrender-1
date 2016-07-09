@@ -17,15 +17,15 @@ import javafx.stage.Stage;
  */
 
 public class TestDrivenEnviroment extends Application {
-	static boolean path = false;
-	static Stage work = new Stage();
-	static Stage main = new Stage();
+	private boolean path = false;
+	private Stage work = new Stage();
+	private Stage main = new Stage();
 
-	public static void init(String[] args){
+	static void init(String[] args){
 		launch(args);
 	}
 
-	public static void load(boolean accept) {
+	public void load(boolean accept) {
 		path = accept;
 		work.close();
 		main.show();
