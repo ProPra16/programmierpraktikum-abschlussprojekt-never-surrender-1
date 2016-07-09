@@ -11,16 +11,16 @@ import javafx.scene.web.HTMLEditor;
  */
 
 public class MainWindowController {
-	@FXML HTMLEditor text1;
-	@FXML HTMLEditor text2;
+	@FXML HTMLEditor test;
+	@FXML HTMLEditor code;
 	
 	@FXML protected void testCode(ActionEvent event) {
-		text1.setDisable(true);
-		text2.setDisable(false);
+		test.setDisable(true);
+		code.setDisable(false);
 	}
 	
 	@FXML protected void checkTest(ActionEvent event) {
-		text2.setDisable(true);
-		text1.setDisable(false);
+		test.setDisable(true);
+		code.setDisable(false);
 	}
 }
