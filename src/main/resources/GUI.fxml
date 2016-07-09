@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="830.0" prefWidth="1577.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="830.0" prefWidth="1577.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -26,7 +26,7 @@
       </MenuBar>
    </top>
    <center>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="806.0" prefWidth="1577.0" BorderPane.alignment="TOP_LEFT">
+      <GridPane BorderPane.alignment="TOP_LEFT">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="214.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="1392.0" minWidth="10.0" prefWidth="1329.0" />
@@ -41,8 +41,8 @@
             <TextArea fx:id="text2" prefHeight="200.0" prefWidth="710.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TreeView fx:id="tree1" prefHeight="200.0" prefWidth="200.0" />
             <TreeView fx:id="tree2" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" />
-            <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button text="Test bestätigen" GridPane.columnIndex="2" />
+            <Button text="Testen" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>
