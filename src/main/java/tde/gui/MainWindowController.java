@@ -10,6 +10,6 @@ import javafx.fxml.FXML;
 public class MainWindowController {
 	@FXML protected void handleLoadButtonAction(ActionEvent event) {
 		boolean accept = true;
-		GUI.load(accept);
+		TestDrivenEnviroment.load(accept);
 	}
 }
