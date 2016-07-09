@@ -17,18 +17,8 @@ import javafx.stage.Stage;
  */
 
 public class TestDrivenEnviroment extends Application {
-	private boolean path = false;
-	private Stage work = new Stage();
-	private Stage main = new Stage();
-
 	static void init(String[] args){
 		launch(args);
-	}
-
-	public void load(boolean accept) {
-		path = accept;
-		work.close();
-		main.show();
 	}
 
 	@Override
