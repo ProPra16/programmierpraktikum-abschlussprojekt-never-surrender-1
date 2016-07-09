@@ -42,8 +42,8 @@
             <HTMLEditor fx:id="code" prefHeight="200.0" prefWidth="710.0" GridPane.columnIndex="1" GridPane.rowIndex="1" disable="true"/>
             <TreeView fx:id="testTree" prefHeight="200.0" prefWidth="200.0" />
             <TreeView fx:id="codeTree" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <Button text="Test bestätigen" GridPane.columnIndex="2" onAction="#checkTest"/>
-            <Button text="Testen" GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#testCode"/>
+            <Button fx:id="testButton" text="Test bestätigen" GridPane.columnIndex="2" onAction="#checkTest"/>
+            <Button fx:id="codeButton" text="Testen" GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#testCode"/>
          </children>
       </GridPane>
    </center>
