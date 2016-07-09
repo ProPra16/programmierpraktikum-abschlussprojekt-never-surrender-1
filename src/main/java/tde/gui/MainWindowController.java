@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
-import tde.core.TestDrivenEnviroment;
 
 /**
  * Controller für die eigentliche Benutzeroberfläche
