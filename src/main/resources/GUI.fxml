@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane prefHeight="830.0" prefWidth="1577.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.web.HTMLEditor?>
+<BorderPane prefHeight="830.0" prefWidth="1577.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tde.gui.MainWindowController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -37,12 +38,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextArea fx:id="text1" prefHeight="200.0" prefWidth="710.0" GridPane.columnIndex="1" />
-            <TextArea fx:id="text2" prefHeight="200.0" prefWidth="710.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TreeView fx:id="tree1" prefHeight="200.0" prefWidth="200.0" />
-            <TreeView fx:id="tree2" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <Button text="Test bestätigen" GridPane.columnIndex="2" />
-            <Button text="Testen" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <HTMLEditor fx:id="test" prefHeight="200.0" prefWidth="710.0" GridPane.columnIndex="1" />
+            <HTMLEditor fx:id="code" prefHeight="200.0" prefWidth="710.0" GridPane.columnIndex="1" GridPane.rowIndex="1" disable="true"/>
+            <TreeView fx:id="testTree" prefHeight="200.0" prefWidth="200.0" />
+            <TreeView fx:id="codeTree" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <Button text="Test bestätigen" GridPane.columnIndex="2" onAction="#checkTest"/>
+            <Button text="Testen" GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#testCode"/>
          </children>
       </GridPane>
    </center>
