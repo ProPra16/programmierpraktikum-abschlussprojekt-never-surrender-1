@@ -33,27 +33,30 @@ public class TestDrivenEnviroment extends Application {
 
 	@Override
     public void start(Stage stage) {
-		BorderPane page;
-		Pane pane;
 		Scene scene;
 
+		//TODO wenn options.tde mit workspace nicht vorhanden
+		if(true){
+			try{
+				Parent workspace = FXMLLoader.load(getClass().getResource("../gui/Workspace.fxml"));
+				scene = new Scene(workspace);
+				stage.setScene(scene);
+				stage.setTitle("Workspace eingeben");
+				stage.showAndWait();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 		try {
-			page = (BorderPane) FXMLLoader.load(getClass().getResource("../gui/GUI.fxml"));
-			scene = new Scene(page);
-			main.setScene(scene);
-			main.setTitle("TDDT");
-			main.setMaximized(true);
-			main.hide();
-
-			pane = FXMLLoader.load(getClass().getResource("../gui/Workspace.fxml"));
-			scene = new Scene(pane);
-			work.setScene(scene);
-			work.setTitle("Workspace");
-			work.show();
-
+			Parent mainWindow = FXMLLoader.load(getClass().getResource("../gui/GUI.fxml"));
+			scene = new Scene(mainWindow);
+			stage.setScene(scene);
+			stage.setTitle("TDE");
+			stage.setMaximized(true);
+			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
     }
 }
