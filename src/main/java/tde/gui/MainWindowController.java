@@ -10,7 +10,6 @@ import tde.core.TestDrivenEnviroment;
 
 public class MainWindowController {
 	@FXML protected void handleLoadButtonAction(ActionEvent event) {
-		boolean accept = true;
-		//TestDrivenEnviroment.load(accept);
+
 	}
 }
