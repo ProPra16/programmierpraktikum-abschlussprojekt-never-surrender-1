@@ -6,9 +6,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -28,18 +25,18 @@ public class TestDrivenEnviroment extends Application {
 		//TODO wenn options.tde mit workspace nicht vorhanden
 		if(true){
 			try{
-				Parent workspace = FXMLLoader.load(getClass().getResource("../gui/Workspace.fxml"));
+				Parent workspace = FXMLLoader.load(getClass().getResource("/Workspace.fxml"));
 				scene = new Scene(workspace);
 				stage.setScene(scene);
 				stage.setTitle("Workspace eingeben");
-				stage.showAndWait();
+				stage.show();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 
 		try {
-			Parent mainWindow = FXMLLoader.load(getClass().getResource("../gui/GUI.fxml"));
+			Parent mainWindow = FXMLLoader.load(getClass().getResource("/GUI.fxml"));
 			scene = new Scene(mainWindow);
 			stage.setScene(scene);
 			stage.setTitle("TDE");
