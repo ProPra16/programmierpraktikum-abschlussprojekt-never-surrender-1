@@ -15,12 +15,12 @@ public class MainWindowController {
 	@FXML HTMLEditor code;
 	
 	@FXML protected void testCode(ActionEvent event) {
-		test.setDisable(true);
-		code.setDisable(false);
+		test.setDisable(false);
+		code.setDisable(true);
 	}
 	
 	@FXML protected void checkTest(ActionEvent event) {
-		code.setDisable(true);
-		test.setDisable(false);
+		code.setDisable(false);
+		test.setDisable(true);
 	}
 }
