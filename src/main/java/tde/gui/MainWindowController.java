@@ -2,6 +2,7 @@ package tde.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import tde.core.TestDrivenEnviroment;
 
 /**
  * Controller für die eigentliche Benutzeroberfläche
@@ -10,6 +11,6 @@ import javafx.fxml.FXML;
 public class MainWindowController {
 	@FXML protected void handleLoadButtonAction(ActionEvent event) {
 		boolean accept = true;
-		TestDrivenEnviroment.load(accept);
+		//TestDrivenEnviroment.load(accept);
 	}
 }
