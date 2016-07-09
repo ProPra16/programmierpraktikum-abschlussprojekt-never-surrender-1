@@ -24,15 +24,15 @@ public class TestDrivenEnviroment extends Application {
 
 		//TODO wenn options.tde mit workspace nicht vorhanden
 		if(true){
-			try{
+			/*try{
 				Parent workspace = FXMLLoader.load(getClass().getResource("/Workspace.fxml"));
 				scene = new Scene(workspace);
 				stage.setScene(scene);
-				stage.setTitle("Workspace eingeben");
+				stage.setTitle("Workspace eingeben");  			//Wird später gelöscht noch nicht jetzt aber
 				stage.show();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 		}
 
 		try {
