@@ -21,7 +21,7 @@ public class Test {
 	
 	/**
 	 * 
-	 * @return gibt ein CompilationUnit Array mit allen mit allen Tests und Classen zurück
+	 * @return gibt ein CompilationUnit Array mit allen mit allen Tests und Classen zurueck
 	 */
 	public static CompilationUnit[] init(){
 		
@@ -30,7 +30,7 @@ public class Test {
 		
 		int n = files.length;
 		String s;
-		int zähler = 0;
+		int zaehler = 0;
 	
 		CompilationUnit[] code = new CompilationUnit[n];
 		CompilationUnit[] test = new CompilationUnit[n];
@@ -57,7 +57,7 @@ public class Test {
 		
 		for(int i = 0; i < n; i++){
 			try {
-				doc = dBuilder.parse(files[i]);//läde die xml-Dateien
+				doc = dBuilder.parse(files[i]);//lade die xml-Dateien
 			} catch (SAXException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -68,7 +68,7 @@ public class Test {
 			
 			doc.getDocumentElement().normalize();
 			
-			testlist = doc.getElementsByTagName("code");//sucht nach Stichwörtern
+			testlist = doc.getElementsByTagName("code");//sucht nach Stichwoertern
 			codelist = doc.getElementsByTagName("test");
 			
 			for(int temp = 0; temp < codelist.getLength(); temp++){
@@ -81,13 +81,13 @@ public class Test {
 				if (codeNode.getNodeType() == Node.ELEMENT_NODE) {
 					
 					el = (Element) codeNode;
-					s = el.getTextContent();//erstellt einen String der alles aus code enthält 
+					s = el.getTextContent();//erstellt einen String der alles aus code enthaelt 
 					
 				}
 
 				if(el.getAttribute("id") != null){// id soll class Name sein
 					code[i] = new CompilationUnit(el.getAttribute("id"), s, false);//wenn die Klasse existiert wird mit ihr eine CompilationUnit erstellt
-					zähler++;
+					zaehler++;
 				}
 			}
 			
@@ -101,30 +101,30 @@ public class Test {
 				if (testNode.getNodeType() == Node.ELEMENT_NODE) {
 
 					el = (Element) testNode;
-					s = el.getTextContent();//erstellt einen String der alles aus test enthält 
+					s = el.getTextContent();//erstellt einen String der alles aus test enthaelt 
 					
 				}
 				
 				if(el.getAttribute("id") != null){
 					test[i] = new CompilationUnit(el.getAttribute("id"), s, true);//wenn der Test existiert wird mit ihr eine CompilationUnit erstellt
-					zähler++;
+					zaehler++;
 				}
 					
 			}
 			
 		}
 
-		CompilationUnit[] gesamt = new CompilationUnit[zähler];// erstellt ein neues Array in der größe der existierenden Klassen und Tests
+		CompilationUnit[] gesamt = new CompilationUnit[zaehler];// erstellt ein neues Array in der groesse der existierenden Klassen und Tests
 		int i = 0;
 		
-		for(int temp = 0; temp < code.length; temp++){//befüllt gesamt mit Klassen
+		for(int temp = 0; temp < code.length; temp++){//befuellt gesamt mit Klassen
 			if(code[temp] != null){
 				gesamt[i] = code[temp];
 				i++;
 			}
 		}
 		
-		for(int temp = 0; temp < test.length; temp++){//befüllt gesamt mit Tests
+		for(int temp = 0; temp < test.length; temp++){//befuellt gesamt mit Tests
 			if(test[temp] != null){
 				gesamt[i] = test[temp];
 				i++;
