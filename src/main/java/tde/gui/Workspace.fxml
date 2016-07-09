@@ -5,11 +5,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
    <children>
-      <TextField fx:id="filePath" layoutX="44.0" layoutY="113.0" prefHeight="25.0" prefWidth="366.0" />
-      <Button fx:id="search" layoutX="451.0" layoutY="113.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Suche" />
-      <Label layoutX="148.0" layoutY="54.0" prefHeight="13.0" prefWidth="304.0" text="Bitte gebe Sie einen Speicherort für Ihren Workspace an!" />
+      <TextField fx:id="filePath" layoutX="44.0" layoutY="70.0" prefHeight="25.0" prefWidth="366.0" />
+      <Button fx:id="search" layoutX="452.0" layoutY="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Suche" />
+      <Label layoutX="148.0" layoutY="24.0" prefHeight="13.0" prefWidth="304.0" text="Bitte gebe Sie einen Speicherort für Ihren Workspace an!" />
+      <Button fx:id="accept" layoutX="128.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Weiter" onAction="#handleLoadButtonAction"/>
+      <Button fx:id="cancel" layoutX="365.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Abbrechen" />
    </children>
 </Pane>
