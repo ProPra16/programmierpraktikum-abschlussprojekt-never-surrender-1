@@ -10,15 +10,20 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import org.w3c.dom.Attr;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 public class XMLParser {
 
     public static void main(String[] args) {
         ArrayList<String> lol = new ArrayList<String>();
-        String filePath =  "exercises.txt";
+        String filePath =  "test.xml";
         String className = "RomanNumberConverter";
         lol = dataToCode(filePath, className);
-        //System.out.println(lol.toString());
+        System.out.println(lol.toString());
+        //codeToData();
 
     }
     /**
@@ -26,7 +31,7 @@ public class XMLParser {
      * @param
      * @return nüx
      */
-    public void codeToData(String code, String location, String name) {
+    public static void codeToData() {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -40,10 +45,10 @@ public class XMLParser {
                 Element exercise = document.createElement("exercise");
                 exercises.appendChild(exercise);
 
-                Attr attribute = document.createAttribute("name");
-                attribute.setValue("Roemische Zahlen");
+                Attr attributeExercise = document.createAttribute("name");
+                attributeExercise.setValue("Roemische Zahlen");
                 //Toemische Zahlen kann geändert werden zu einem Übergabewert
-                exercise.setAttributeNode(attribute);
+                exercise.setAttributeNode(attributeExercise);
 
                     Element description = document.createElement("description");
                     description.appendChild(document.createTextNode("Konvertiert arabische in roemische Zahlen."));
@@ -51,6 +56,46 @@ public class XMLParser {
 
                     Element classes = document.createElement("classes");
                     exercise.appendChild(classes);
+
+                        Element classe = document.createElement("class");
+                        //classes.appendChild(classe);
+
+                        Attr attributeClasse = document.createAttribute("name");
+                        attributeClasse.setValue("RomanNumberConverter");
+                        //RomanNumberConverter kann geändert werden zu einem Übergabewert
+                        classe.setAttributeNode(attributeClasse);
+                        classe.appendChild(document.createTextNode("public class RomanNumberConverter { \n"  +
+                                "}"));
+                        //Das in den "" kann auch durch die Eingabe geändert werden
+                        classes.appendChild(classe);
+
+                    Element tests = document.createElement("tests");
+                    exercise.appendChild(tests);
+
+                        Element test = document.createElement("test");
+
+                        Attr attributeTest = document.createAttribute("name");
+                        attributeTest.setValue("RomanNumberConverterTest");
+                        //RomanNumberConverterTest kann geändert werden zu einem Übergabewert
+                        test.setAttributeNode(attributeTest);
+                        test.appendChild(document.createTextNode("import static org.junit.Assert.*;\n" +
+                                "import org.junit.Test;\n" +
+                                "public class RomanNumbersTest {\n" +
+                                "@Test\n" +
+                                "public void testSomething() {\n" +
+                                "}\n" +
+                                "}"));
+                        //Das in den "" kann auch durch die Eingabe geändert werden
+                        tests.appendChild(test);
+
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource domSource = new DOMSource(document);
+            StreamResult streamResult = new StreamResult(new File("test.txt"));
+            // Der Path muss noch geändert werden
+            transformer.transform(domSource, streamResult);
+            //Dies alles wird benötigt um ein xml File zu erstellen
 
         }
         catch (Exception e) {
@@ -85,15 +130,15 @@ public class XMLParser {
                     Element element = (Element) node;
                     //weiter aufbröseln um an die einzelnen Einträge eines Elements zu kommen und diese auch ansprechen zu können
                    // System.out.println("Exercise Name : "+ element.getAttribute("name"));
-                    classCodeList.add("Exercise Name : "+ element.getAttribute("name"));
+                    classCodeList.add("Exercise Name : "+ element.getAttribute("name")+"\n");
 
 
                     //System.out.println("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
-                    classCodeList.add("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
+                    classCodeList.add("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent()+"\n");
 
 
                     //System.out.println("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
-                    classCodeList.add("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
+                    classCodeList.add("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent()+"\n");
 
                 }
             }

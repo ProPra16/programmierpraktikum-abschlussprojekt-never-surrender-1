@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><exercises><exercise name="Roemische Zahlen"><description>Konvertiert arabische in roemische Zahlen.</description><classes><class name="RomanNumberConverter">public class RomanNumberConverter { 
+}</class></classes><tests><test name="RomanNumberConverterTest">import static org.junit.Assert.*;
+import org.junit.Test;
+public class RomanNumbersTest {
+@Test
+public void testSomething() {
+}
+}</test></tests></exercise></exercises>
