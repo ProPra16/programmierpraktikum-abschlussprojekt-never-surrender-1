@@ -21,7 +21,7 @@ public abstract class XMLParser {
         ArrayList<String> lol = new ArrayList<String>();
         String filePath =  "test.xml";
         String className = "RomanNumberConverter";
-        lol = dataToCode(filePath, className);
+        lol = dataToCode(filePath);
         System.out.println(lol.get(1));
         //codeToData();
 
