@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 /**
  * Hauptklasse der ganzen Anwendung
- * lÃ¤dt die fxml-Datei fÃ¼r die gui
+ * l?dt die fxml-Datei f?r die gui
  */
 
 public class TestDrivenEnviroment extends Application {
@@ -28,7 +28,7 @@ public class TestDrivenEnviroment extends Application {
 				Parent workspace = FXMLLoader.load(getClass().getResource("/Workspace.fxml"));
 				scene = new Scene(workspace);
 				stage.setScene(scene);
-				stage.setTitle("Workspace eingeben");  			//Wird später gelöscht noch nicht jetzt aber
+				stage.setTitle("Workspace eingeben");  			//Wird sp?ter gel?scht noch nicht jetzt aber
 				stage.show();
 			} catch (IOException e) {
 				e.printStackTrace();
