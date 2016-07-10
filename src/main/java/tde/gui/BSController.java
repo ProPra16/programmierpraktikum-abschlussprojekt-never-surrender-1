@@ -35,7 +35,8 @@ public class BSController{
      */
     private void startTimer(){
         timer = new Timer();
-        timer.schedule(new TaskTimer(controller), Integer.parseInt(BSTextField.getText())*1000);
+        int time = Integer.parseInt(BSTextField.getText())*1000;
+        timer.schedule(new TaskTimer(controller), time, time);
     }
 
     /**
