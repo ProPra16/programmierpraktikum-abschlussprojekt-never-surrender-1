@@ -5,12 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
+import tde.timer.ITask;
 
 /**
  * Controller für die eigentliche Benutzeroberfläche
  */
 
-public class MainWindowController {
+public class MainWindowController implements ITask{
 	@FXML HTMLEditor test;
 	@FXML HTMLEditor code;
 	@FXML VBox headerVBox;
