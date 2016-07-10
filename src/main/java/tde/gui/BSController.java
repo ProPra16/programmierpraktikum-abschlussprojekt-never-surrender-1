@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 /**
  * Controller von Babysteps
  */
-public class BSController {
+public class BSController{
     @FXML
     TextField BSTextField;
     @FXML
@@ -34,7 +34,7 @@ public class BSController {
 
     }
 
-    public void setParentController(MainWindowController controller){
+    void setParentController(MainWindowController controller){
         this.controller = controller;
     }
 }

@@ -3,11 +3,8 @@ package tde.gui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
-
-import java.io.IOException;
 
 /**
  * Controller für die eigentliche Benutzeroberfläche
@@ -25,13 +22,21 @@ public class MainWindowController {
 		headerVBox.getChildren().add(loader.getRoot());
 	}
 	
-	@FXML public void testCode(ActionEvent event) {
+	@FXML protected void testCode(ActionEvent event) {
 		test.setDisable(false);
 		code.setDisable(true);
 	}
 	
-	@FXML public void checkTest(ActionEvent event) {
+	@FXML protected void checkTest(ActionEvent event) {
 		code.setDisable(false);
 		test.setDisable(true);
+	}
+
+	/**
+	 * Geht zum naesten Abschnitt vor. z.B. von Test schreiben zu Code schreiben
+	 * Dabei wird erst geprueft, ob der naeste schritt gemacht werden darf
+	 */
+	public void nextTask(){
+
 	}
 }
