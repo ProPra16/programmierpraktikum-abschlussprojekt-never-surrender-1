@@ -33,9 +33,10 @@
            </MenuBar>
            <HBox alignment="CENTER_LEFT" spacing="10">
                <Label text="Babysteps"/>
-               <CheckBox fx:id="BSCheckBox"/>
+               <CheckBox fx:id="BSCheckBox" onAction="#toggleBabysteps"/>
                <Label text="Zeit pro Abschnitt:"/>
-               <TextField fx:id="BSTextField" disable="true"/>
+               <TextField fx:id="BSTextField" disable="true" text="120" maxWidth="50"/>
+               <Label text="Sekunden"/>
            </HBox>
        </VBox>
    </top>
