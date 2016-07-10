@@ -22,7 +22,7 @@ public class XMLParser {
         String filePath =  "test.xml";
         String className = "RomanNumberConverter";
         lol = dataToCode(filePath, className);
-        System.out.println(lol.toString());
+        System.out.println(lol.get(1));
         //codeToData();
 
     }
@@ -92,7 +92,7 @@ public class XMLParser {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(new File("test.txt"));
+            StreamResult streamResult = new StreamResult(new File("test.xml"));
             // Der Path muss noch geändert werden
             transformer.transform(domSource, streamResult);
             //Dies alles wird benötigt um ein xml File zu erstellen
@@ -130,15 +130,15 @@ public class XMLParser {
                     Element element = (Element) node;
                     //weiter aufbröseln um an die einzelnen Einträge eines Elements zu kommen und diese auch ansprechen zu können
                    // System.out.println("Exercise Name : "+ element.getAttribute("name"));
-                    classCodeList.add("Exercise Name : "+ element.getAttribute("name")+"\n");
+                    classCodeList.add(0, "Exercise Name : "+ element.getAttribute("name")+"\n");
 
 
                     //System.out.println("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
-                    classCodeList.add("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent()+"\n");
+                    classCodeList.add(1, "Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent()+"\n");
 
 
                     //System.out.println("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
-                    classCodeList.add("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent()+"\n");
+                    classCodeList.add(2, "Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent()+"\n");
 
                 }
             }
