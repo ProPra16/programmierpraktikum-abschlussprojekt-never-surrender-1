@@ -9,6 +9,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+import org.w3c.dom.Attr;
 
 public class XMLParser {
 
@@ -26,7 +27,35 @@ public class XMLParser {
      * @return nüx
      */
     public void codeToData(String code, String location, String name) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            //Nun da man Zugriff auf document hat, kann man mit dessen Hilfe die xml Struktur aufbauen
 
+            Element exercises = document.createElement("exercises");
+            document.appendChild(exercises);
+            //Adds the node newChild to the end of the list of children of this node. docs.oracle
+
+                Element exercise = document.createElement("exercise");
+                exercises.appendChild(exercise);
+
+                Attr attribute = document.createAttribute("name");
+                attribute.setValue("Roemische Zahlen");
+                //Toemische Zahlen kann geändert werden zu einem Übergabewert
+                exercise.setAttributeNode(attribute);
+
+                    Element description = document.createElement("description");
+                    description.appendChild(document.createTextNode("Konvertiert arabische in roemische Zahlen."));
+                    exercise.appendChild(description);
+
+                    Element classes = document.createElement("classes");
+                    exercise.appendChild(classes);
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     /**
      * Parst Text von xml aus einer File zu Quellcode
