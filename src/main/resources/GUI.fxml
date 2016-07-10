@@ -4,27 +4,40 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-
 <?import javafx.scene.web.HTMLEditor?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+
+<?import javafx.geometry.Insets?>
 <BorderPane prefHeight="830.0" prefWidth="1577.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tde.gui.MainWindowController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="Datei">
-            <items>
-              <MenuItem fx:id="save" mnemonicParsing="false" text="Speichern" />
-                  <MenuItem fx:id="load" mnemonicParsing="false" text="Laden" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Katalog" />
-        </menus>
-      </MenuBar>
+       <VBox>
+           <MenuBar BorderPane.alignment="CENTER">
+               <menus>
+                   <Menu mnemonicParsing="false" text="Datei">
+                       <items>
+                           <MenuItem fx:id="save" mnemonicParsing="false" text="Speichern" />
+                           <MenuItem fx:id="load" mnemonicParsing="false" text="Laden" />
+                       </items>
+                   </Menu>
+                   <Menu mnemonicParsing="false" text="Katalog" />
+               </menus>
+           </MenuBar>
+           <HBox alignment="CENTER_LEFT" spacing="10">
+               <Label text="Babysteps"/>
+               <CheckBox fx:id="BSCheckBox"/>
+               <Label text="Zeit pro Abschnitt:"/>
+               <TextField fx:id="BSTextField" disable="true"/>
+           </HBox>
+       </VBox>
    </top>
    <center>
       <GridPane BorderPane.alignment="TOP_LEFT">
