@@ -17,6 +17,7 @@ public class MainWindowController implements ITask{
 	@FXML HTMLEditor test;
 	@FXML HTMLEditor code;
 	@FXML VBox headerVBox;
+	private int status = 0;
 
 	//wird nach dem intialisieren der Klasse aufgerufen
 	public void initialize() {
@@ -31,13 +32,11 @@ public class MainWindowController implements ITask{
 	}
 	
 	@FXML protected void testCode(ActionEvent event) {
-		test.setDisable(false);
-		code.setDisable(true);
+		nextTask();
 	}
 	
 	@FXML protected void checkTest(ActionEvent event) {
-		code.setDisable(false);
-		test.setDisable(true);
+		nextTask();
 	}
 
 	/**
@@ -45,6 +44,18 @@ public class MainWindowController implements ITask{
 	 * Dabei wird erst geprueft, ob der naeste schritt gemacht werden darf
 	 */
 	public void nextTask(){
-
+		switch (status){
+			case 0: //test
+				code.setDisable(false);
+				test.setDisable(true);
+				status++;
+			case 1: //code
+				test.setDisable(false);
+				code.setDisable(true);
+				//TODO aendern, dass es entweder in refactor oder test geht
+				status = 1;
+			case 2: //refactor
+			default: //nichts
+		}
 	}
 }

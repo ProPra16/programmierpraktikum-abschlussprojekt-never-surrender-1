@@ -19,6 +19,7 @@ public class BSController{
     private MainWindowController controller;
     private Timer timer;
 
+
     @FXML protected void toggleBabysteps(ActionEvent event){
         if(BSCheckBox.isSelected()){
             BSTextField.setDisable(false);
