@@ -10,6 +10,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 public class XMLParser {
+
+    public static void main(String[] args) {
+        String lol = "Lol";
+        lol = dataToCode(lol);
+    }
     /**
      * Ließt geschriebenen Code und parst zu xml in ein File
      * @param
@@ -43,6 +48,10 @@ public class XMLParser {
                     Element element = (Element) node;
                     //weiter aufbröseln um an die einzelnen Einträge eines Elements zu kommen und diese auch ansprechen zu können
                     System.out.println("Exercise Name : "+ element.getAttribute("name"));
+
+                    System.out.println("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
+
+                    System.out.println("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
                 }
             }
         }
