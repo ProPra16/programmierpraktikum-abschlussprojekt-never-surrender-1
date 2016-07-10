@@ -4,6 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import tde.timer.TaskTimer;
+
+import java.util.Timer;
 
 /**
  * Controller von Babysteps
@@ -14,6 +17,7 @@ public class BSController{
     @FXML
     CheckBox BSCheckBox;
     private MainWindowController controller;
+    private Timer timer;
 
     @FXML protected void toggleBabysteps(ActionEvent event){
         if(BSCheckBox.isSelected()){
@@ -26,12 +30,19 @@ public class BSController{
         }
     }
 
+    /**
+     * startet einen Timer, der nach x Sekunden, die im BSTextField stehen die Methode nextTask in MainWindowController aufruft
+     */
     private void startTimer(){
-
+        timer = new Timer();
+        timer.schedule(new TaskTimer(controller), Integer.parseInt(BSTextField.getText())*1000);
     }
 
+    /**
+     * stoppt die laufende aufgabe in timer
+     */
     private void stopTimer(){
-
+        timer.cancel();
     }
 
     void setParentController(MainWindowController controller){
