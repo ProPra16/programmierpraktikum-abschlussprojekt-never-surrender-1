@@ -16,6 +16,8 @@ public class XMLParser {
         ArrayList<String> lol = new ArrayList<String>();
         String className = "RomanNumberConverter";
         lol = dataToCode(className, className);
+        //System.out.println(lol.toString());
+
     }
     /**
      * Ließt geschriebenen Code und parst zu xml in ein File
@@ -32,6 +34,7 @@ public class XMLParser {
      */
     public static ArrayList<String> dataToCode(String filePath, String className) {
         ArrayList<String> classCodeList = new ArrayList<String>();
+        //Diese ArrayList wird zurückgegeben und beinhaltet alle Classen in folgender Reihenfolge: Name, KlassenCode, Tests dazu
         try {
             //with DOM
             //später Options file über workspace implementieren
@@ -51,15 +54,15 @@ public class XMLParser {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
                     //weiter aufbröseln um an die einzelnen Einträge eines Elements zu kommen und diese auch ansprechen zu können
-                    System.out.println("Exercise Name : "+ element.getAttribute("name"));
+                   // System.out.println("Exercise Name : "+ element.getAttribute("name"));
                     classCodeList.add("Exercise Name : "+ element.getAttribute("name"));
 
 
-                    System.out.println("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
+                    //System.out.println("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
                     classCodeList.add("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
 
 
-                    System.out.println("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
+                    //System.out.println("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
                     classCodeList.add("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
 
                 }
