@@ -13,6 +13,7 @@ public class BSController {
     TextField BSTextField;
     @FXML
     CheckBox BSCheckBox;
+    private MainWindowController controller;
 
     @FXML protected void toggleBabysteps(ActionEvent event){
         if(BSCheckBox.isSelected()){
@@ -31,5 +32,9 @@ public class BSController {
 
     private void stopTimer(){
 
+    }
+
+    public void setParentController(MainWindowController controller){
+        this.controller = controller;
     }
 }

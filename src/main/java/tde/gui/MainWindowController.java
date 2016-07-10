@@ -20,21 +20,17 @@ public class MainWindowController {
 
 	//wird nach dem intialisieren der Klasse aufgerufen
 	public void initialize(){
-		//lädt das Babystepsmodul
-		try {
-			HBox babysteps = FXMLLoader.load(getClass().getResource("/Babysteps.fxml"));
-			headerVBox.getChildren().add(babysteps);
-		} catch (IOException e){
-			e.printStackTrace();
-		}
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Babysteps.fxml")); //laedt das Babystepsmodul
+		((BSController)loader.getController()).setParentController(this); //übergibt sich selbst dem BSController
+		headerVBox.getChildren().add(loader.getRoot());
 	}
 	
-	@FXML protected void testCode(ActionEvent event) {
+	@FXML public void testCode(ActionEvent event) {
 		test.setDisable(false);
 		code.setDisable(true);
 	}
 	
-	@FXML protected void checkTest(ActionEvent event) {
+	@FXML public void checkTest(ActionEvent event) {
 		code.setDisable(false);
 		test.setDisable(true);
 	}
