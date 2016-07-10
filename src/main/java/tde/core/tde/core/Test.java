@@ -14,15 +14,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import vk.core.api.CompilationUnit;
-import vk.core.internal.InternalCompiler;
-import vk.core.internal.InternalResult;
 
 
 
 public class Test {
-	
-	InternalCompiler comp;
-	InternalResult results = new InternalResult();
 	
 	/**
 	 * 
@@ -137,19 +132,5 @@ public class Test {
 		}
 		
 		return gesamt;
-	}
-
-	/**
-	 * 
-	 * @param cUnit bekommt ein CompilationUnit Array, welches es testen soll
-	 * @return gibt die Anzahl der fehlgeschlagenen und ignorierten Tests zurueck 
-	 */
-	public int run(CompilationUnit[] cUnit){
-		comp = new InternalCompiler(cUnit);//erstellt einen neuen InternalCompiler mit dem gegebenen Array
-		int n;
-		
-		comp.compileAndRunTests();
-		n = results.getNumberOfFailedTests();
-		return n + results.getNumberOfIgnoredTests();
 	}
 }
