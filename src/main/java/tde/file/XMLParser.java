@@ -15,7 +15,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-public class XMLParser {
+public abstract class XMLParser {
 
     public static void main(String[] args) {
         ArrayList<String> lol = new ArrayList<String>();
@@ -107,7 +107,7 @@ public class XMLParser {
      * @param filePath Dateipfad
      * @return Die Zeilen als String[]
      */
-    public static ArrayList<String> dataToCode(String filePath, String className) {
+    public static ArrayList<String> dataToCode(String filePath) {
         ArrayList<String> classCodeList = new ArrayList<String>();
         //Diese ArrayList wird zurückgegeben und beinhaltet alle Classen in folgender Reihenfolge: Name, KlassenCode, Tests dazu
         try {
