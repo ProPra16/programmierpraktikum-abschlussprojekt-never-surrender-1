@@ -7,6 +7,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
 import tde.timer.ITask;
 
+import java.io.IOException;
+
 /**
  * Controller für die eigentliche Benutzeroberfläche
  */
@@ -17,10 +19,15 @@ public class MainWindowController implements ITask{
 	@FXML VBox headerVBox;
 
 	//wird nach dem intialisieren der Klasse aufgerufen
-	public void initialize(){
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Babysteps.fxml")); //laedt das Babystepsmodul
-		((BSController)loader.getController()).setParentController(this); //übergibt sich selbst dem BSController
-		headerVBox.getChildren().add(loader.getRoot());
+	public void initialize() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Babysteps.fxml")); //laedt das Babystepsmodul
+			loader.load();
+			((BSController)loader.getController()).setParentController(this); //übergibt sich selbst dem BSController
+			headerVBox.getChildren().add(loader.getRoot());
+		} catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML protected void testCode(ActionEvent event) {

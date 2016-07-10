@@ -17,7 +17,7 @@ public class BSController{
     @FXML
     CheckBox BSCheckBox;
     private MainWindowController controller;
-    private Timer timer = new Timer();
+    private Timer timer;
 
     @FXML protected void toggleBabysteps(ActionEvent event){
         if(BSCheckBox.isSelected()){
@@ -34,6 +34,7 @@ public class BSController{
      * startet einen Timer, der nach x Sekunden, die im BSTextField stehen die Methode nextTask in MainWindowController aufruft
      */
     private void startTimer(){
+        timer = new Timer();
         timer.schedule(new TaskTimer(controller), Integer.parseInt(BSTextField.getText())*1000);
     }
 
