@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
+import java.util.TimerTask;
+
 /**
  * Controller von Babysteps
  */
@@ -14,6 +16,10 @@ public class BSController{
     @FXML
     CheckBox BSCheckBox;
     private MainWindowController controller;
+
+    public BSController(){
+
+    }
 
     @FXML protected void toggleBabysteps(ActionEvent event){
         if(BSCheckBox.isSelected()){
