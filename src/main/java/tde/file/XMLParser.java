@@ -2,6 +2,7 @@ package tde.file;
 
 import java.nio.file.Path;
 import java.io.File;
+import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
@@ -12,8 +13,9 @@ import org.w3c.dom.Element;
 public class XMLParser {
 
     public static void main(String[] args) {
-        String lol = "Lol";
-        lol = dataToCode(lol);
+        ArrayList<String> lol = new ArrayList<String>();
+        String className = "RomanNumberConverter";
+        lol = dataToCode(className, className);
     }
     /**
      * Ließt geschriebenen Code und parst zu xml in ein File
@@ -28,8 +30,10 @@ public class XMLParser {
      * @param filePath Dateipfad
      * @return Die Zeilen als String[]
      */
-    public static String dataToCode(String filePath) {
+    public static ArrayList<String> dataToCode(String filePath, String className) {
+        ArrayList<String> classCodeList = new ArrayList<String>();
         try {
+            //with DOM
             //später Options file über workspace implementieren
             //File file = new File("exercises.txt");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -48,21 +52,28 @@ public class XMLParser {
                     Element element = (Element) node;
                     //weiter aufbröseln um an die einzelnen Einträge eines Elements zu kommen und diese auch ansprechen zu können
                     System.out.println("Exercise Name : "+ element.getAttribute("name"));
+                    classCodeList.add("Exercise Name : "+ element.getAttribute("name"));
+
 
                     System.out.println("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
+                    classCodeList.add("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
+
 
                     System.out.println("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
+                    classCodeList.add("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
+
                 }
             }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        String xmlCode = new String();
+
+       // ArrayList<String> classCode = new ArrayList<String>();
         //wie kann ich readFromFile aus Loader.class ansprechen?
         //xmlCode.readFromFile(filePath);
 
-        String Code = new String();
-        return Code;
+
+        return classCodeList;
     }
 }
