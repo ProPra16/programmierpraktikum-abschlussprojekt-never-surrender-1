@@ -13,7 +13,7 @@ import java.io.IOException;
  * Controller für die eigentliche Benutzeroberfläche
  */
 
-public class MainWindowController implements ITask{
+public class MWController implements ITask{
 	@FXML HTMLEditor test;
 	@FXML HTMLEditor code;
 	@FXML VBox headerVBox;
