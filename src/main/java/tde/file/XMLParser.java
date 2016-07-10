@@ -14,8 +14,9 @@ public class XMLParser {
 
     public static void main(String[] args) {
         ArrayList<String> lol = new ArrayList<String>();
+        String filePath =  "exercises.txt";
         String className = "RomanNumberConverter";
-        lol = dataToCode(className, className);
+        lol = dataToCode(filePath, className);
         //System.out.println(lol.toString());
 
     }
@@ -41,7 +42,7 @@ public class XMLParser {
             //File file = new File("exercises.txt");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse( new File("exercises.txt"));
+            Document document = builder.parse( new File(filePath));
             document.getDocumentElement().normalize();
             NodeList nodeList = document.getElementsByTagName("exercise");
             //nun hat man eine NodeList mit der man die einzelnen Elemente von dieser jeweils über Befehle ansprechen kann
