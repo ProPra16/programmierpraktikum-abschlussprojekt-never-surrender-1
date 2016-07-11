@@ -16,7 +16,7 @@ public class BSController{
     TextField BSTextField;
     @FXML
     CheckBox BSCheckBox;
-    private MainWindowController controller;
+    private MWController controller;
     private Timer timer;
 
 
@@ -47,7 +47,7 @@ public class BSController{
         timer.cancel();
     }
 
-    void setParentController(MainWindowController controller){
+    void setParentController(MWController controller){
         this.controller = controller;
     }
 }
