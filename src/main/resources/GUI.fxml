@@ -12,7 +12,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="830.0" prefWidth="1577.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tde.gui.MainWindowController">
+<BorderPane prefHeight="830.0" prefWidth="1577.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tde.gui.MWController">
    <top>
        <VBox fx:id="headerVBox">
            <MenuBar BorderPane.alignment="CENTER">
