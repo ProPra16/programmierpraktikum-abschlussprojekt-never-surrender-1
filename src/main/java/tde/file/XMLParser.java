@@ -26,21 +26,24 @@ public abstract class XMLParser {
 
     }*/
     /**
-     * Ließt geschriebenen Code und parst zu xml in ein File
+     * Ließt geschriebenen Code und parst zu xml in ein File, kann nun programmcode nehmen und in neuer xml file ablegen, test code werde ich morgen implementieren(dienstag)
      * @param
      * @return nüx
      */
-    public static void codeToData(String project, String name, String code, int isTest) {
-        try {
-            String filePath = new String();
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-            //Nun da man Zugriff auf document hat, kann man mit dessen Hilfe die xml Struktur aufbauen
 
-            Element exercises = document.createElement("exercises");
-            document.appendChild(exercises);
-            //Adds the node newChild to the end of the list of children of this node. docs.oracle
+    public static void codeToData(String project, String name, String code, int isTest) {
+
+        if (isTest == 0) {
+            try {
+                String filePath = new String();
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder = factory.newDocumentBuilder();
+                Document document = builder.newDocument();
+                //Nun da man Zugriff auf document hat, kann man mit dessen Hilfe die xml Struktur aufbauen
+
+                Element exercises = document.createElement("exercises");
+                document.appendChild(exercises);
+                //Adds the node newChild to the end of the list of children of this node. docs.oracle
 
                 /*Element exercise = document.createElement("exercise");
                 exercises.appendChild(exercise);
@@ -57,16 +60,16 @@ public abstract class XMLParser {
                     Element classes = document.createElement("classes");
                     exercise.appendChild(classes);*/
 
-                        Element classe = document.createElement("class");
-                        //classes.appendChild(classe);
+                Element classe = document.createElement("class");
+                //classes.appendChild(classe);
 
-                        Attr attributeClasse = document.createAttribute("name");
-                        attributeClasse.setValue(name);
-                        //RomanNumberConverter kann geändert werden zu einem Übergabewert
-                        classe.setAttributeNode(attributeClasse);
-                        classe.appendChild(document.createTextNode(code));
-                        //Das in den "" kann auch durch die Eingabe geändert werden
-                        exercises.appendChild(classe);
+                Attr attributeClasse = document.createAttribute("name");
+                attributeClasse.setValue(name);
+                //RomanNumberConverter kann geändert werden zu einem Übergabewert
+                classe.setAttributeNode(attributeClasse);
+                classe.appendChild(document.createTextNode(code));
+                //Das in den "" kann auch durch die Eingabe geändert werden
+                exercises.appendChild(classe);
 
                     /*Element tests = document.createElement("tests");
                     exercises.appendChild(tests);
@@ -87,30 +90,34 @@ public abstract class XMLParser {
                         //Das in den "" kann auch durch die Eingabe geändert werden
                         tests.appendChild(test);*/
 
-            DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder optionsBuilder = factory.newDocumentBuilder();
-            Document optionsDocument = builder.parse( new File("resources\\options.xml"));
-            document.getDocumentElement().normalize();
-            NodeList nodeList = document.getElementsByTagName("option");
-            Node node = nodeList.item(0);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element element = (Element) node;
-                filePath= element.getAttribute("filePath");
+                DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
+                Document optionsDocument = optionsBuilder.parse(new File("resources\\options.xml"));
+                optionsDocument.getDocumentElement().normalize();
+                NodeList nodeList = document.getElementsByTagName("option");
+                Node node = nodeList.item(0);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    filePath = element.getAttribute("filePath");
+                }
+
+
+                TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                Transformer transformer = transformerFactory.newTransformer();
+                DOMSource domSource = new DOMSource(document);
+                StreamResult streamResult = new StreamResult(new File(filePath + "\\" + project + "\\" + name + ".xml"));
+                // Der Path muss noch geändert werden
+                transformer.transform(domSource, streamResult);
+                //Dies alles wird benötigt um ein xml File zu erstellen
+
             }
-
-
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(new File(filePath+"\\"+project+"\\"+name+".xml"));
-            // Der Path muss noch geändert werden
-            transformer.transform(domSource, streamResult);
-            //Dies alles wird benötigt um ein xml File zu erstellen
-
+            catch(Exception e){
+                e.printStackTrace();
+            }
         }
-        catch (Exception e) {
-            e.printStackTrace();
+
+        else {
+
         }
     }
     /**
