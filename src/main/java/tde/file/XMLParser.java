@@ -16,7 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 
 public abstract class XMLParser {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         ArrayList<String> lol = new ArrayList<String>();
         String filePath =  "test.xml";
         String className = "RomanNumberConverter";
@@ -24,14 +24,15 @@ public abstract class XMLParser {
         System.out.println(lol.get(1));
         //codeToData();
 
-    }
+    }*/
     /**
      * Ließt geschriebenen Code und parst zu xml in ein File
      * @param
      * @return nüx
      */
-    public static void codeToData() {
+    public static void codeToData(String project, String name, String code, int isTest) {
         try {
+            String filePath = new String();
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
@@ -41,7 +42,7 @@ public abstract class XMLParser {
             document.appendChild(exercises);
             //Adds the node newChild to the end of the list of children of this node. docs.oracle
 
-                Element exercise = document.createElement("exercise");
+                /*Element exercise = document.createElement("exercise");
                 exercises.appendChild(exercise);
 
                 Attr attributeExercise = document.createAttribute("name");
@@ -54,22 +55,21 @@ public abstract class XMLParser {
                     exercise.appendChild(description);
 
                     Element classes = document.createElement("classes");
-                    exercise.appendChild(classes);
+                    exercise.appendChild(classes);*/
 
                         Element classe = document.createElement("class");
                         //classes.appendChild(classe);
 
                         Attr attributeClasse = document.createAttribute("name");
-                        attributeClasse.setValue("RomanNumberConverter");
+                        attributeClasse.setValue(name);
                         //RomanNumberConverter kann geändert werden zu einem Übergabewert
                         classe.setAttributeNode(attributeClasse);
-                        classe.appendChild(document.createTextNode("public class RomanNumberConverter { \n"  +
-                                "}"));
+                        classe.appendChild(document.createTextNode(code));
                         //Das in den "" kann auch durch die Eingabe geändert werden
-                        classes.appendChild(classe);
+                        exercises.appendChild(classe);
 
-                    Element tests = document.createElement("tests");
-                    exercise.appendChild(tests);
+                    /*Element tests = document.createElement("tests");
+                    exercises.appendChild(tests);
 
                         Element test = document.createElement("test");
 
@@ -85,13 +85,25 @@ public abstract class XMLParser {
                                 "}\n" +
                                 "}"));
                         //Das in den "" kann auch durch die Eingabe geändert werden
-                        tests.appendChild(test);
+                        tests.appendChild(test);*/
+
+            DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder optionsBuilder = factory.newDocumentBuilder();
+            Document optionsDocument = builder.parse( new File("resources\\options.xml"));
+            document.getDocumentElement().normalize();
+            NodeList nodeList = document.getElementsByTagName("option");
+            Node node = nodeList.item(0);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                filePath= element.getAttribute("filePath");
+            }
+
 
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(new File("test.xml"));
+            StreamResult streamResult = new StreamResult(new File(filePath+"\\"+project+"\\"+name+".xml"));
             // Der Path muss noch geändert werden
             transformer.transform(domSource, streamResult);
             //Dies alles wird benötigt um ein xml File zu erstellen
