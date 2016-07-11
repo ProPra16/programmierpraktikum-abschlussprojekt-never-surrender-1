@@ -1,6 +1,5 @@
 package tde.file;
 
-import java.nio.file.Path;
 import java.io.File;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilderFactory;

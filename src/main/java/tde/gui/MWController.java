@@ -22,7 +22,9 @@ public class MWController implements ITask{
 
 	private Test tester = new Test();
 
-	//wird nach dem intialisieren der Klasse aufgerufen
+	/**
+	 * wird nach dem intialisieren der Klasse aufgerufen
+	 */
 	public void initialize() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Babysteps.fxml")); //laedt das Babystepsmodul
@@ -49,7 +51,8 @@ public class MWController implements ITask{
 	public void nextTask(){
 		switch (status){
 			case 0: //test
-				int testResult = tester.run(tester.init(""));//Pathname einfuegen
+				//TODO Test in .tde Datei schreiben
+				int testResult = tester.run(tester.init(""));//TODO Pathname einfuegen
 				code.setDisable(false);
 				test.setDisable(true);
 				status++;
