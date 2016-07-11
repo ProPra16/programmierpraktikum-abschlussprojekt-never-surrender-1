@@ -20,17 +20,15 @@ import vk.core.internal.InternalResult;
 
 
 public class Test {
-	
-	InternalCompiler comp;
-	InternalResult results = new InternalResult();
+	private InternalResult results = new InternalResult();
 	
 	/**
-	 * 
-	 * @return gibt ein CompilationUnit Array mit allen mit allen Tests und Classen zurueck
+	 *
+	 * @param workspace Der workspace der Anwendung
+	 * @return gibt ein CompilationUnit Array mit allen Tests und Klassen zurueck
 	 */
-	public static CompilationUnit[] init(){
-		
-		File f = new File("*/workspace");//muss mit dem richtigen Verzeichnis ersetzt werden
+	public static CompilationUnit[] init(String workspace){
+		File f = new File(workspace);
 		File[] files = f.listFiles();
 		
 		int n = files.length;
@@ -145,7 +143,7 @@ public class Test {
 	 * @return gibt die Anzahl der fehlgeschlagenen und ignorierten Tests zurueck 
 	 */
 	public int run(CompilationUnit[] cUnit){
-		comp = new InternalCompiler(cUnit);//erstellt einen neuen InternalCompiler mit dem gegebenen Array
+		InternalCompiler comp = new InternalCompiler(cUnit);//erstellt einen neuen InternalCompiler mit dem gegebenen Array
 		int n;
 		
 		comp.compileAndRunTests();
