@@ -1,18 +1,9 @@
 package tde.core;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
+import tde.file.XMLParser;
 import vk.core.api.CompilationUnit;
 import vk.core.internal.InternalCompiler;
 import vk.core.internal.InternalResult;
@@ -20,119 +11,43 @@ import vk.core.internal.InternalResult;
 
 
 public class Test {
-	private InternalResult results = new InternalResult();
+	
+	InternalCompiler comp;
+	InternalResult results = new InternalResult();
 	
 	/**
-	 *
-	 * @param projectDirectory Der workspace der Anwendung
-	 * @return gibt ein CompilationUnit Array mit allen Tests und Klassen zurueck
-	 */
-	public CompilationUnit[] init(String projectDirectory){
-		File f = new File(projectDirectory);
+	 * 
+	 * Bekommt den Dateipfad vom dem Projeckt uebergeben
+	 * 
+	 * gibt ein CompilationUnit Array der passenden Groeße zurueck
+	 * 
+	*/
+	public static CompilationUnit[] init(String filePath){
+		
+		File f = new File(filePath);
 		File[] files = f.listFiles();
+		ArrayList<String> list;
+		ArrayList<CompilationUnit> ret = new ArrayList<CompilationUnit>(0);//initialisiert eine ArrayList con CompilationUnit
+		CompilationUnit[] gesamt = null;//CompilationUnit Array was am Ende zurueck gegeben werden soll  
 		
 		int n = files.length;
-		String s;
-		int zaehler = 0;
-	
-		CompilationUnit[] code = new CompilationUnit[n];
-		CompilationUnit[] test = new CompilationUnit[n];
 		
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = null;
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-		} catch (ParserConfigurationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		for(int i = 0; i < n; i++){//durchlaeuft alle datein im angegeben Pfad
+		
+			list = XMLParser.dataToCode(files[i].getAbsolutePath());
+			
+			for(int temp = 1; temp < list.size(); temp++){
 
-		Document doc = null;
-		
-		NodeList codelist;
-		NodeList testlist;
-		
-		Node codeNode;
-		Node testNode;
-		
-		Element el;
-		
-		
-		for(int i = 0; i < n; i++){
-			try {
-				doc = dBuilder.parse(files[i]);//lade die xml-Dateien
-			} catch (SAXException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			doc.getDocumentElement().normalize();
-			
-			testlist = doc.getElementsByTagName("code");//sucht nach Stichwoertern
-			codelist = doc.getElementsByTagName("test");
-			
-			for(int temp = 0; temp < codelist.getLength(); temp++){
-
-				codeNode = codelist.item(temp);
-				
-				s = null;
-				el = null;
-				
-				if (codeNode.getNodeType() == Node.ELEMENT_NODE) {
-					
-					el = (Element) codeNode;
-					s = el.getTextContent();//erstellt einen String der alles aus code enthaelt 
-					
+				if(temp == 1){
+					ret.add(new CompilationUnit(list.get(0),list.get(temp), false));
 				}
-
-				if(el.getAttribute("id") != null){// id soll class Name sein
-					code[i] = new CompilationUnit(el.getAttribute("id"), s, false);//wenn die Klasse existiert wird mit ihr eine CompilationUnit erstellt
-					zaehler++;
-				}
-			}
-			
-			for(int temp = 0; temp < testlist.getLength(); temp++){
-
-				testNode = testlist.item(temp);
-				
-				s = null;
-				el = null;
-				
-				if (testNode.getNodeType() == Node.ELEMENT_NODE) {
-
-					el = (Element) testNode;
-					s = el.getTextContent();//erstellt einen String der alles aus test enthaelt 
-					
-				}
-				
-				if(el.getAttribute("id") != null){
-					test[i] = new CompilationUnit(el.getAttribute("id"), s, true);//wenn der Test existiert wird mit ihr eine CompilationUnit erstellt
-					zaehler++;
-				}
-					
-			}
-			
-		}
-
-		CompilationUnit[] gesamt = new CompilationUnit[zaehler];// erstellt ein neues Array in der groesse der existierenden Klassen und Tests
-		int i = 0;
-		
-		for(int temp = 0; temp < code.length; temp++){//befuellt gesamt mit Klassen
-			if(code[temp] != null){
-				gesamt[i] = code[temp];
-				i++;
+				else{
+					ret.add(new CompilationUnit(list.get(0),list.get(temp), true));
+				}	
 			}
 		}
 		
-		for(int temp = 0; temp < test.length; temp++){//befuellt gesamt mit Tests
-			if(test[temp] != null){
-				gesamt[i] = test[temp];
-				i++;
-			}
-		}
+		gesamt = ret.toArray(gesamt);
 		
 		return gesamt;
 	}
@@ -143,7 +58,7 @@ public class Test {
 	 * @return gibt die Anzahl der fehlgeschlagenen und ignorierten Tests zurueck 
 	 */
 	public int run(CompilationUnit[] cUnit){
-		InternalCompiler comp = new InternalCompiler(cUnit);//erstellt einen neuen InternalCompiler mit dem gegebenen Array
+		comp = new InternalCompiler(cUnit);//erstellt einen neuen InternalCompiler mit dem gegebenen Array
 		int n;
 		
 		comp.compileAndRunTests();
