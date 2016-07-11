@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
+import tde.core.Test;
 import tde.timer.ITask;
 
 import java.io.IOException;
@@ -18,6 +19,8 @@ public class MWController implements ITask{
 	@FXML HTMLEditor code;
 	@FXML VBox headerVBox;
 	private int status = 0;
+
+	private Test tester = new Test();
 
 	//wird nach dem intialisieren der Klasse aufgerufen
 	public void initialize() {
@@ -46,15 +49,14 @@ public class MWController implements ITask{
 	public void nextTask(){
 		switch (status){
 			case 0: //test
-
+				int testResult = tester.run(tester.init(""));//Pathname einfuegen
 				code.setDisable(false);
 				test.setDisable(true);
 				status++;
 			case 1: //code
 				test.setDisable(false);
 				code.setDisable(true);
-				//TODO aendern, dass es entweder in refactor oder test geht
-				status = 1;
+				status++;
 			case 2: //refactor
 			default: //nichts
 		}

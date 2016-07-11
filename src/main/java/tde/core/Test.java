@@ -24,11 +24,11 @@ public class Test {
 	
 	/**
 	 *
-	 * @param workspace Der workspace der Anwendung
+	 * @param projectDirectory Der workspace der Anwendung
 	 * @return gibt ein CompilationUnit Array mit allen Tests und Klassen zurueck
 	 */
-	public static CompilationUnit[] init(String workspace){
-		File f = new File(workspace);
+	public CompilationUnit[] init(String projectDirectory){
+		File f = new File(projectDirectory);
 		File[] files = f.listFiles();
 		
 		int n = files.length;
