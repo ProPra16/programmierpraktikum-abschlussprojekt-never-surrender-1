@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
+import tde.core.TDEDataStore;
 import tde.core.Test;
 import tde.timer.ITask;
 
@@ -23,6 +24,7 @@ public class MWController implements ITask{
 	private int status = 0;
 
 	private Test tester = new Test();
+	public TDEDataStore dataStore;
 
 	/**
 	 * wird nach dem intialisieren der Klasse aufgerufen

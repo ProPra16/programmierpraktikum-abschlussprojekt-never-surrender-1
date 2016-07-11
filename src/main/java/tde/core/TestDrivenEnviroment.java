@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import tde.gui.MWController;
 
 /**
  * Hauptklasse der ganzen Anwendung
@@ -39,7 +40,9 @@ public class TestDrivenEnviroment extends Application {
 		}
 
 		try {
-			Parent mainWindow = FXMLLoader.load(getClass().getResource("/GUI.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI.fxml"));
+			Parent mainWindow = loader.load();
+			((MWController)loader.getController()).dataStore = this.dataStore;
 			scene = new Scene(mainWindow);
 			stage.setScene(scene);
 			stage.setTitle("TDE");
