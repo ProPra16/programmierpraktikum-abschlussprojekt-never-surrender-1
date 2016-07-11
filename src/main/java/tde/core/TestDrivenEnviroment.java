@@ -16,6 +16,8 @@ import javafx.stage.Stage;
  */
 
 public class TestDrivenEnviroment extends Application {
+	private TDEDataStore dataStore = new TDEDataStore();
+
 	static void init(String[] args){
 		launch(args);
 	}
@@ -23,7 +25,7 @@ public class TestDrivenEnviroment extends Application {
 	@Override
     public void start(Stage stage) {
 		Scene scene;
-		String path = null;
+
 		//TODO wenn options.tde mit workspace nicht vorhanden
 		if(true){
 			DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -31,7 +33,7 @@ public class TestDrivenEnviroment extends Application {
             directoryChooser.setTitle("Workspace angeben");
             File file = directoryChooser.showDialog(null);
             if(file != null)
-                path = file.getPath();
+                dataStore.path = file.getPath();
             else
 				System.exit(0);
 		}
