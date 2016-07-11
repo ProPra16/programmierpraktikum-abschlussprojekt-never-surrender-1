@@ -1,8 +1,10 @@
 package tde.gui;
 
+import com.sun.jnlp.ApiDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
 import tde.core.Test;
@@ -56,8 +58,8 @@ public class MWController implements ITask{
 				//TODO Test in .tde Datei schreiben
 				failedTests = tester.run(tester.init(""));//TODO Pathname einfuegen
 				if(failedTests  == 0)
-					;
-					//TODO Msg ausgeben, dass ein fehlzuschlagender test geschrieben werden muss, außerdem test löschen
+					showDialog("Fehler", "Alle Tests waren erfolgreich", "Bitte schreiben sie einen Test, der fehlschlägt!", Alert.AlertType.WARNING);
+					//TODO test in der Datei löschen
 				else if(failedTests == 1){
 					code.setDisable(false);
 					test.setDisable(true);
@@ -67,14 +69,28 @@ public class MWController implements ITask{
 				failedTests = tester.run(tester.init(""));//TODO Pathname einfuegen
 				if(failedTests == 0) {
 					test.setDisable(false);
-					code.setDisable(true);
 					status++;
 				}
-				else {
-
-				}
+				else
+					showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);
 			case 2: //refactor
+				failedTests = tester.run(tester.init(""));//TODO Pathname einfuegen
+				if(failedTests == 0) {
+					code.setDisable(true);
+					status = 0;
+				}
+				else
+					showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);
 			default: //nichts
 		}
+	}
+
+	private void showDialog(String title, String header, String content, Alert.AlertType alertType){
+		Alert alert = new Alert(alertType);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.setContentText(content);
+
+		alert.showAndWait();
 	}
 }
