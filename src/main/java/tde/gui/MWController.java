@@ -66,6 +66,7 @@ public class MWController implements ITask{
 					status++;
 				}
 			case 1: //code
+				//TODO Code in .tde Datei schreiben
 				failedTests = tester.run(tester.init(""));//TODO Pathname einfuegen
 				if(failedTests == 0) {
 					test.setDisable(false);
