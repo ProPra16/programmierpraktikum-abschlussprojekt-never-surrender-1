@@ -49,17 +49,30 @@ public class MWController implements ITask{
 	 * Dabei wird erst geprueft, ob der naeste schritt gemacht werden darf
 	 */
 	public void nextTask(){
+		int failedTests;
+
 		switch (status){
 			case 0: //test
 				//TODO Test in .tde Datei schreiben
-				int testResult = tester.run(tester.init(""));//TODO Pathname einfuegen
-				code.setDisable(false);
-				test.setDisable(true);
-				status++;
+				failedTests = tester.run(tester.init(""));//TODO Pathname einfuegen
+				if(failedTests  == 0)
+					;
+					//TODO Msg ausgeben, dass ein fehlzuschlagender test geschrieben werden muss, außerdem test löschen
+				else if(failedTests == 1){
+					code.setDisable(false);
+					test.setDisable(true);
+					status++;
+				}
 			case 1: //code
-				test.setDisable(false);
-				code.setDisable(true);
-				status++;
+				failedTests = tester.run(tester.init(""));//TODO Pathname einfuegen
+				if(failedTests == 0) {
+					test.setDisable(false);
+					code.setDisable(true);
+					status++;
+				}
+				else {
+
+				}
 			case 2: //refactor
 			default: //nichts
 		}
