@@ -46,6 +46,7 @@ public class MWController implements ITask{
 	public void nextTask(){
 		switch (status){
 			case 0: //test
+
 				code.setDisable(false);
 				test.setDisable(true);
 				status++;
