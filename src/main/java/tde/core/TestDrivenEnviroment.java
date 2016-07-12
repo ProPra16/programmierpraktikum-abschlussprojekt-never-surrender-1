@@ -27,7 +27,7 @@ public class TestDrivenEnviroment extends Application {
 	}
 
 	@Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception {
 
 		Scene scene;
 
@@ -48,8 +48,8 @@ public class TestDrivenEnviroment extends Application {
 
 		try {
 			//System.out.println("Bin in before fxml");
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("//GUI.fxml"));
-			System.out.println("Bin in before loader");//hier ist ein fehler!!!!
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI.fxml"));
+			System.out.println("Bin in before loader");//der Fehler liegt in der Klasse Test!!!
 			Parent mainWindow = loader.load();
 			System.out.println("Bin in after loader");
 			((MWController)loader.getController()).dataStore = this.dataStore;

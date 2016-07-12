@@ -13,6 +13,7 @@ import vk.core.internal.InternalResult;
 public class Test {
 	
 	InternalCompiler comp;
+	//hier ist der eigentliche fehler!!!1
 	InternalResult results = new InternalResult();
 	
 	/**

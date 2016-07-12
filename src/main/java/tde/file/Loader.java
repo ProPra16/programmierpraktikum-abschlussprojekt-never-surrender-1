@@ -13,7 +13,7 @@ import java.util.List;
 
 class Loader {
     /**
-     * Ließt Text von einern Datei
+     * Ließt Text von einer Datei
      * @param filePath Dateipfad
      * @return Die Zeilen als String[]
      */
