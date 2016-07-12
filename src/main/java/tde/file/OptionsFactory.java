@@ -47,7 +47,7 @@ public class OptionsFactory {
         }
     }
 
-    public static void loadPath () {
+    public static String loadPath () {
         try {
         	File file = new File("src\\main\\resources\\options.xml");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -55,6 +55,7 @@ public class OptionsFactory {
             Document document = builder.parse(file);
         	document.getDocumentElement().normalize();
         	String path = document.getElementsByTagName("filePath").item(0).getTextContent();
+        	return path;
             } 
         catch (Exception e) {
             	e.printStackTrace();
