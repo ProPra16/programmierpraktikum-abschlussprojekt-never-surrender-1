@@ -67,4 +67,21 @@ public class Test {
 		n = results.getNumberOfFailedTests() + results.getNumberOfIgnoredTests();
 		return n;
 	}
+	
+	/**
+	 * 
+	 * @return gibt alle CompileErrors und TestFailures ueber Errors weiter
+	 */
+	public Errors getErrors(){
+		
+		Errors err = new Errors();
+		
+		err.setTestErrors(results.getTestFailures());
+		
+		for(int i = 0; i < gesamt.length; i++){
+			err.addCompileError(results.getCompilerErrorsForCompilationUnit(gesamt[i]));
+		}
+		
+		return err;
+	}
 }
