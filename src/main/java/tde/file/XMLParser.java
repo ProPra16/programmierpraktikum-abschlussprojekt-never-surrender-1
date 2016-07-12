@@ -86,7 +86,7 @@ public abstract class XMLParser {
                 }
                 //Dies alles wird benötigt um ein xml File zu erstellen
                 else{
-                    path.mkdir();
+                    path.mkdirs();
                     StreamResult streamResult = new StreamResult(path + "\\" + name + ".xml");
 
                     transformer.transform(domSource, streamResult);
@@ -101,7 +101,7 @@ public abstract class XMLParser {
 
         else {
             try {
-                String filePath = new String();
+                String filePathes = new String();
                 DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
                 Document optionsDocument = optionsBuilder.parse(new File("src\\main\\resources\\options.xml"));
@@ -110,10 +110,10 @@ public abstract class XMLParser {
                 Node node = nodeList.item(0);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
-                    filePath = element.getAttribute("filePath");
+                    filePathes = element.getElementsByTagName("filePath").item(0).getTextContent();
                 }
 
-                File inputFile = new File(filePath + "\\" + project + "\\" + name + ".xml");
+                File inputFile = new File(filePathes + "\\" + project + "\\" + name + ".xml");
                 DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder testDocumentBuilder = testDocumentFactory.newDocumentBuilder();
                 Document testDocument = testDocumentBuilder.parse(inputFile);
@@ -126,7 +126,7 @@ public abstract class XMLParser {
                 test.appendChild(testDocument.createTextNode(code));
                 exercise.appendChild(test);
 
-                //eine abfrage ob dieser test schon existiert muss noch!!!
+                //eine abfrage ob dieser test schon existiert muss noch!!! oder nicht?
             }
             catch(Exception e){
                 e.printStackTrace();
@@ -143,8 +143,6 @@ public abstract class XMLParser {
         //Diese ArrayList wird zurückgegeben und beinhaltet alle Classen in folgender Reihenfolge: Name, KlassenCode, Tests dazu
         try {
             //with DOM
-            //später Options file über workspace implementieren
-            //File file = new File("exercises.txt");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse( new File(filePath));
@@ -170,7 +168,7 @@ public abstract class XMLParser {
 
                     //System.out.println("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
                     classCodeList.add(2, "Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent()+"\n");
-
+                    //Hier noch schauen ob noch mehr tests existieren?!
                 }
             }
         }
