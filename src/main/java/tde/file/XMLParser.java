@@ -41,8 +41,8 @@ public abstract class XMLParser {
                 Document document = builder.newDocument();
                 //Nun da man Zugriff auf document hat, kann man mit dessen Hilfe die xml Struktur aufbauen
 
-                Element exercises = document.createElement("exercises");
-                document.appendChild(exercises);
+                Element exercise = document.createElement("exercise");
+                document.appendChild(exercise);
                 //Adds the node newChild to the end of the list of children of this node. docs.oracle
 
                 Element classe = document.createElement("class");
@@ -51,7 +51,7 @@ public abstract class XMLParser {
                 attributeClasse.setValue(name);
                 classe.setAttributeNode(attributeClasse);
                 classe.appendChild(document.createTextNode(code));
-                exercises.appendChild(classe);
+                exercise.appendChild(classe);
 
                 DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
@@ -97,7 +97,9 @@ public abstract class XMLParser {
                 DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder testDocumentBuilder = testDocumentFactory.newDocumentBuilder();
                 Document testDocument = testDocumentBuilder.parse(inputFile);
+                testDocument.getDocumentElement().normalize();
 
+                NodeList testNodeList = testDocument.getElementsByTagName("exercise");
 
             }
             catch(Exception e){

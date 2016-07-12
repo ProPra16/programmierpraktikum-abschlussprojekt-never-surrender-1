@@ -13,12 +13,18 @@ import java.io.File;
 
 public class OptionsFactory {
 
-
+/*
+    public static void main (String[] args){
+        String lol = "lol";
+        createOptions(lol);
+    }
+*/
     /**
      * Generiert die options.xml mit dem filePath eintrag
      * @param workSpace
      * @return nüx
      */
+
     public static void createOptions (String workSpace) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
