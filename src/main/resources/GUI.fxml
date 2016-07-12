@@ -21,8 +21,8 @@
                        <items>
                            <MenuItem fx:id="save" mnemonicParsing="false" text="Speichern" />
                            <MenuItem fx:id="load" mnemonicParsing="false" text="Laden" />
-                           <MenuItem fx:id="newFile" mnemonicParsing="false" text="Neue Datei" />
-                           <MenuItem fx:id="newProject" mnemonicParsing="false" text="Neues Projekt" />
+                           <MenuItem fx:id="newFile" mnemonicParsing="false" text="Neue Datei" onAction="#openNewFile"/>
+                           <MenuItem fx:id="newProject" mnemonicParsing="false" text="Neues Projekt" onAction="#openNewProject"/>
                        </items>
                    </Menu>
                    <Menu mnemonicParsing="false" text="Katalog" />
