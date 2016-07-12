@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import tde.gui.MWController;
@@ -21,6 +22,7 @@ public class TestDrivenEnviroment extends Application {
 	private TDEDataStore dataStore = new TDEDataStore();
 
 	static void init(String[] args){
+
 		launch(args);
 	}
 
@@ -35,21 +37,29 @@ public class TestDrivenEnviroment extends Application {
             directoryChooser.setTitle("Workspace angeben");
             File file = directoryChooser.showDialog(null);
             if(file != null) {
+
 				dataStore.workspace = file.getPath();
+
 				OptionsFactory.createOptions(file.getPath());
+
 			} else
 				System.exit(0);
 		}
 
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI.fxml"));
+			//System.out.println("Bin in before fxml");
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("//GUI.fxml"));
+			System.out.println("Bin in before loader");//hier ist ein fehler!!!!
 			Parent mainWindow = loader.load();
+			System.out.println("Bin in after loader");
 			((MWController)loader.getController()).dataStore = this.dataStore;
+
 			scene = new Scene(mainWindow);
 			stage.setScene(scene);
 			stage.setTitle("TDE");
 			stage.setMaximized(true);
 			stage.show();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

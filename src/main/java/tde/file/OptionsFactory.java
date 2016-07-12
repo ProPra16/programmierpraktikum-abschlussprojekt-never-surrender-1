@@ -14,13 +14,14 @@ import java.io.File;
 
 public class OptionsFactory {
 
-
+/*
     public static void main (String[] args){
         String lol = "lel";
         //createOptions(lol);
         lol = loadPath();
         System.out.println(lol);
     }
+    */
 
     /**
      * Generiert die options.xml mit dem filePath eintrag

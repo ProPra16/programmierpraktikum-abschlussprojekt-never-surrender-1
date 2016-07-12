@@ -33,7 +33,7 @@ public class Test {
 		int n = files.length;
 		
 		for(int i = 0; i < n; i++){//durchlaeuft alle datein im angegeben Pfad
-		
+
 			list = XMLParser.dataToCode(files[i].getAbsolutePath());
 			
 			for(int temp = 1; temp < list.size(); temp++){
