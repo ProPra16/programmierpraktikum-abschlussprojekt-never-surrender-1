@@ -16,15 +16,18 @@ import javax.xml.transform.stream.StreamResult;
 
 public abstract class XMLParser {
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         ArrayList<String> lol = new ArrayList<String>();
-        String filePath =  "test.xml";
+        String project = "project";
+        String name = "RandomNumberGenerator";
+        int isTest = 0;
+        String code =  "lol";
         String className = "RomanNumberConverter";
-        lol = dataToCode(filePath);
-        System.out.println(lol.get(1));
+        codeToData(project, name, code, isTest);
+        //System.out.println(lol.get(1));
         //codeToData();
 
-    }*/
+    }
     /**
      * Ließt geschriebenen Code und parst zu xml in ein File, kann nun programmcode nehmen und in neuer xml file ablegen, test code werde ich morgen implementieren(dienstag)
      * @param
@@ -35,7 +38,8 @@ public abstract class XMLParser {
 
         if (isTest == 0) {
             try {
-                String filePath = new String();
+                String filePathes = new String();
+                filePathes = "filePath";
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
                 Document document = builder.newDocument();
@@ -61,20 +65,22 @@ public abstract class XMLParser {
                 Node node = nodeList.item(0);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
-                    filePath = element.getAttribute("filePath");
+                    filePathes = element.getElementsByTagName("firstname").item(0).getTextContent();
+                    //filePathes = element.getAttribute("filePath");
+                    System.out.println(filePathes);
                 }
                 //Dieser Batzen wird benötigt um sich den filePath aus der options.xml zu besorgen
 
-
+                System.out.println(filePathes);/*
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource domSource = new DOMSource(document);
-                StreamResult streamResult = new StreamResult(new File(filePath + "\\" + project + "\\" + name + ".xml"));
+                StreamResult streamResult = new StreamResult(new File(filePathes + "\\" + project + "\\" + name + ".xml"));
                 transformer.transform(domSource, streamResult);
                 //Dies alles wird benötigt um ein xml File zu erstellen
 
                 //eine abfrage ob diese Programm schon existiert muss noch!!!
-
+*/
             }
             catch(Exception e){
                 e.printStackTrace();
