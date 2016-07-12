@@ -5,13 +5,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
 import tde.core.TDEDataStore;
 import tde.core.Test;
 import tde.timer.ITask;
+import tde.file.OptionsFactory;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Controller für die eigentliche Benutzeroberfläche
@@ -20,11 +24,14 @@ import java.io.IOException;
 public class MWController implements ITask{
 	@FXML HTMLEditor test;
 	@FXML HTMLEditor code;
+	@FXML MenuItem newFile;
+	@FXML MenuItem newProject;
 	@FXML VBox headerVBox;
 	private int status = 0;
 
 	private Test tester = new Test();
 	public TDEDataStore dataStore;
+	static String path;
 
 	/**
 	 * wird nach dem intialisieren der Klasse aufgerufen
@@ -95,5 +102,29 @@ public class MWController implements ITask{
 		alert.setContentText(content);
 
 		alert.showAndWait();
+	}
+	
+	@FXML protected void openNewFile(ActionEvent event) {
+		showMSG("Neue Datei");
+	}
+	
+	@FXML protected void openNewProjekt(ActionEvent event){
+		showMSG("Neues Projekt");
+	}
+	
+	private void showMSG(String titel){
+		TextInputDialog dialog = new TextInputDialog();
+		dialog.setTitle(titel);
+		dialog.setHeaderText(null);
+		dialog.setContentText("Bitte geben sie den Namen ein:");
+		
+		Optional<String> result = dialog.showAndWait();
+		System.out.println(path);
+		if(result.isPresent())
+		OptionsFactory.createOptions(path);
+	}
+	
+	 static void path(String pa) {
+		path = pa;
 	}
 }
