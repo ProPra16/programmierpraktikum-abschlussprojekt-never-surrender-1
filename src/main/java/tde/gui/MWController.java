@@ -63,7 +63,7 @@ public class MWController implements ITask{
 		switch (status){
 			case 0: //test
 				//TODO Test in .tde Datei schreiben
-				failedTests = tester.run(tester.init(""));//TODO Pathname einfuegen
+				failedTests = tester.run(tester.init(dataStore.workspace + "\\" + dataStore.projectName));
 				if(failedTests  == 0)
 					showDialog("Fehler", "Alle Tests waren erfolgreich", "Bitte schreiben sie einen Test, der fehlschlägt!", Alert.AlertType.WARNING);
 					//TODO test in der Datei löschen
@@ -74,7 +74,7 @@ public class MWController implements ITask{
 				}
 			case 1: //code
 				//TODO Code in .tde Datei schreiben
-				failedTests = tester.run(tester.init(""));//TODO Pathname einfuegen
+				failedTests = tester.run(tester.init(dataStore.workspace + "\\" + dataStore.projectName));
 				if(failedTests == 0) {
 					test.setDisable(false);
 					status++;
@@ -82,7 +82,7 @@ public class MWController implements ITask{
 				else
 					showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);
 			case 2: //refactor
-				failedTests = tester.run(tester.init(""));//TODO Pathname einfuegen
+				failedTests = tester.run(tester.init(dataStore.workspace + "\\" + dataStore.projectName));
 				if(failedTests == 0) {
 					code.setDisable(true);
 					status = 0;
