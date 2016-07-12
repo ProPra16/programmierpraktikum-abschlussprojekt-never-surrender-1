@@ -1,18 +1,16 @@
 package tde.gui;
 
-import com.sun.jnlp.ApiDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
 import tde.core.TDEDataStore;
 import tde.core.Test;
 import tde.timer.ITask;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -26,6 +24,8 @@ public class MWController implements ITask{
 	@FXML MenuItem newFile;
 	@FXML MenuItem newProject;
 	@FXML VBox headerVBox;
+	@FXML TreeView<String> testTree;
+	@FXML TreeView<String> codeTree;
 	private int status = 0;
 
 	private Test tester = new Test();
@@ -103,19 +103,27 @@ public class MWController implements ITask{
 	}
 	
 	@FXML protected void openNewFile(ActionEvent event) {
-		showMSG("Neue Datei");
+		String fileName = showMSG("Neue Datei");
 	}
 	
 	@FXML protected void openNewProject(ActionEvent event){
-		showMSG("Neues Projekt");
+		String projectName = showMSG("Neues Projekt");
+		dataStore.projectName = projectName;
+		File dir = new File(dataStore.workspace);
+		TreeItem<String> projectTest = new TreeItem<>(projectName);
+		testTree.setRoot(projectTest);
+		TreeItem<String> projectCode = new TreeItem<>(projectName);
+		codeTree.setRoot(projectCode);
 	}
 	
-	private void showMSG(String titel){
+	private String showMSG(String titel){
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle(titel);
 		dialog.setHeaderText(null);
 		dialog.setContentText("Bitte geben sie den Namen ein:");
 		
 		Optional<String> result = dialog.showAndWait();
+
+		return result.get();
 	}
 }
