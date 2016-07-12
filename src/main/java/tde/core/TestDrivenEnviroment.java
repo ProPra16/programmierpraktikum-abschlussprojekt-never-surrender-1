@@ -49,9 +49,9 @@ public class TestDrivenEnviroment extends Application {
 		try {
 			//System.out.println("Bin in before fxml");
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI.fxml"));
-			System.out.println("Bin in before loader");//der Fehler liegt in der Klasse Test!!!
+			//System.out.println("Bin in before loader");//der Fehler liegt in der Klasse Test!!!
 			Parent mainWindow = loader.load();
-			System.out.println("Bin in after loader");
+			//System.out.println("Bin in after loader");
 			((MWController)loader.getController()).dataStore = this.dataStore;
 
 			scene = new Scene(mainWindow);
