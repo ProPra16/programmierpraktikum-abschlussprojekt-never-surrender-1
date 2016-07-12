@@ -26,6 +26,8 @@
                        </items>
                    </Menu>
                    <Menu mnemonicParsing="false" text="Katalog" />
+                   <Menu mnemonicParsing="false" text="Import" />
+                   <Menu mnemonicParsing="false" text="Export" />
                </menus>
            </MenuBar>
        </VBox>
