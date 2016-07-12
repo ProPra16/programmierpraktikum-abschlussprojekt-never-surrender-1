@@ -55,7 +55,7 @@ public abstract class XMLParser {
 
                 DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
-                Document optionsDocument = optionsBuilder.parse(new File("resources\\options.xml"));
+                Document optionsDocument = optionsBuilder.parse(new File("src\\main\\resources\\options.xml"));
                 optionsDocument.getDocumentElement().normalize();
                 NodeList nodeList = optionsDocument.getElementsByTagName("option");
                 Node node = nodeList.item(0);
@@ -73,6 +73,8 @@ public abstract class XMLParser {
                 transformer.transform(domSource, streamResult);
                 //Dies alles wird benötigt um ein xml File zu erstellen
 
+                //eine abfrage ob diese Programm schon existiert muss noch!!!
+
             }
             catch(Exception e){
                 e.printStackTrace();
@@ -84,7 +86,7 @@ public abstract class XMLParser {
                 String filePath = new String();
                 DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
-                Document optionsDocument = optionsBuilder.parse(new File("resources\\options.xml"));
+                Document optionsDocument = optionsBuilder.parse(new File("src\\main\\resources\\options.xml"));
                 optionsDocument.getDocumentElement().normalize();
                 NodeList nodeList = optionsDocument.getElementsByTagName("option");
                 Node node = nodeList.item(0);
@@ -106,6 +108,7 @@ public abstract class XMLParser {
                 test.appendChild(testDocument.createTextNode(code));
                 exercise.appendChild(test);
 
+                //eine abfrage ob dieser test schon existiert muss noch!!!
             }
             catch(Exception e){
                 e.printStackTrace();
