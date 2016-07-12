@@ -34,6 +34,7 @@ public class TestDrivenEnviroment extends Application {
             File file = directoryChooser.showDialog(null);
             if(file != null)
                 dataStore.workspace = file.getPath();
+            	MWController.path(file.getPath());
             else
 				System.exit(0);
 		}
