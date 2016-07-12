@@ -21,7 +21,6 @@ public class MWController implements ITask{
 	@FXML HTMLEditor test;
 	@FXML HTMLEditor code;
 	@FXML VBox headerVBox;
-	
 	private int status = 0;
 
 	private Test tester = new Test();
