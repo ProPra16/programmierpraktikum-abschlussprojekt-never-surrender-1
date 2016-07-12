@@ -33,7 +33,7 @@ public class OptionsFactory {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(new File("resources\\options.xml"));
+            StreamResult streamResult = new StreamResult(new File("src\\main\\resources\\options.xml"));
             transformer.transform(domSource, streamResult);
             }
         catch(Exception e){

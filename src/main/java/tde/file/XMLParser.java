@@ -97,6 +97,8 @@ public abstract class XMLParser {
                 DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder testDocumentBuilder = testDocumentFactory.newDocumentBuilder();
                 Document testDocument = testDocumentBuilder.parse(inputFile);
+
+
             }
             catch(Exception e){
                 e.printStackTrace();
