@@ -67,20 +67,32 @@ public abstract class XMLParser {
                     Element element = (Element) node;
                     filePathes = element.getElementsByTagName("filePath").item(0).getTextContent();
                     //filePathes = element.getAttribute("filePath");
-                    System.out.println(filePathes);
+                   // System.out.println(filePathes);
                 }
                 //Dieser Batzen wird benötigt um sich den filePath aus der options.xml zu besorgen
 
-                System.out.println(filePathes);/*
+                //System.out.println(filePathes);/*
+
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource domSource = new DOMSource(document);
-                StreamResult streamResult = new StreamResult(new File(filePathes + "\\" + project + "\\" + name + ".xml"));
-                transformer.transform(domSource, streamResult);
-                //Dies alles wird benötigt um ein xml File zu erstellen
+                File path = new File(filePathes + "\\" + project /*+ "\\" + name + ".xml"*/);
+                //System.out.println(path);
 
+                if (path.exists()) {
+                    StreamResult streamResult = new StreamResult(path + "\\" + name + ".xml");
+
+                    transformer.transform(domSource, streamResult);
+                }
+                //Dies alles wird benötigt um ein xml File zu erstellen
+                else{
+                    path.mkdir();
+                    StreamResult streamResult = new StreamResult(path + "\\" + name + ".xml");
+
+                    transformer.transform(domSource, streamResult);
+                }
                 //eine abfrage ob diese Programm schon existiert muss noch!!!
-*/
+
             }
             catch(Exception e){
                 e.printStackTrace();
