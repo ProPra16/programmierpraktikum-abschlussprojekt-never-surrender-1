@@ -65,7 +65,7 @@ public abstract class XMLParser {
                 Node node = nodeList.item(0);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
-                    filePathes = element.getElementsByTagName("firstname").item(0).getTextContent();
+                    filePathes = element.getElementsByTagName("filePath").item(0).getTextContent();
                     //filePathes = element.getAttribute("filePath");
                     System.out.println(filePathes);
                 }
