@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import tde.gui.MWController;
+import tde.file.OptionsFactory;
 
 /**
  * Hauptklasse der ganzen Anwendung
@@ -34,7 +35,8 @@ public class TestDrivenEnviroment extends Application {
             File file = directoryChooser.showDialog(null);
             if(file != null)
                 dataStore.workspace = file.getPath();
-            	MWController.path(file.getPath());
+            	MWController.path(file.getPath());		
+            	OptionsFactory.createOptions(file.getPath());
             else
 				System.exit(0);
 		}

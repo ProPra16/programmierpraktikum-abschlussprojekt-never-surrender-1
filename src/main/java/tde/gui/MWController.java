@@ -12,7 +12,6 @@ import javafx.scene.web.HTMLEditor;
 import tde.core.TDEDataStore;
 import tde.core.Test;
 import tde.timer.ITask;
-import tde.file.OptionsFactory;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -31,7 +30,6 @@ public class MWController implements ITask{
 
 	private Test tester = new Test();
 	public TDEDataStore dataStore;
-	static String path;
 
 	/**
 	 * wird nach dem intialisieren der Klasse aufgerufen
@@ -119,12 +117,5 @@ public class MWController implements ITask{
 		dialog.setContentText("Bitte geben sie den Namen ein:");
 		
 		Optional<String> result = dialog.showAndWait();
-		System.out.println(path);
-		if(result.isPresent())
-		OptionsFactory.createOptions(path);
-	}
-	
-	 static void path(String pa) {
-		path = pa;
 	}
 }
