@@ -2,6 +2,7 @@ package tde.file;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,12 +14,14 @@ import java.io.File;
 
 public class OptionsFactory {
 
-/*
+
     public static void main (String[] args){
-        String lol = "lol";
-        createOptions(lol);
+        String lol = "lel";
+        //createOptions(lol);
+        lol = loadPath();
+        System.out.println(lol);
     }
-*/
+
     /**
      * Generiert die options.xml mit dem filePath eintrag
      * @param workSpace
@@ -56,6 +59,7 @@ public class OptionsFactory {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(file);
         	document.getDocumentElement().normalize();
+            //NodeList nodeList = document.getElementsByTagName("option");
         	path = document.getElementsByTagName("filePath").item(0).getTextContent();
             } 
         catch (Exception e) {
