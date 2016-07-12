@@ -45,68 +45,31 @@ public abstract class XMLParser {
                 document.appendChild(exercises);
                 //Adds the node newChild to the end of the list of children of this node. docs.oracle
 
-                /*Element exercise = document.createElement("exercise");
-                exercises.appendChild(exercise);
-
-                Attr attributeExercise = document.createAttribute("name");
-                attributeExercise.setValue("Roemische Zahlen");
-                //Toemische Zahlen kann geändert werden zu einem Übergabewert
-                exercise.setAttributeNode(attributeExercise);
-
-                    Element description = document.createElement("description");
-                    description.appendChild(document.createTextNode("Konvertiert arabische in roemische Zahlen."));
-                    exercise.appendChild(description);
-
-                    Element classes = document.createElement("classes");
-                    exercise.appendChild(classes);*/
-
                 Element classe = document.createElement("class");
-                //classes.appendChild(classe);
 
                 Attr attributeClasse = document.createAttribute("name");
                 attributeClasse.setValue(name);
-                //RomanNumberConverter kann geändert werden zu einem Übergabewert
                 classe.setAttributeNode(attributeClasse);
                 classe.appendChild(document.createTextNode(code));
-                //Das in den "" kann auch durch die Eingabe geändert werden
                 exercises.appendChild(classe);
-
-                    /*Element tests = document.createElement("tests");
-                    exercises.appendChild(tests);
-
-                        Element test = document.createElement("test");
-
-                        Attr attributeTest = document.createAttribute("name");
-                        attributeTest.setValue("RomanNumberConverterTest");
-                        //RomanNumberConverterTest kann geändert werden zu einem Übergabewert
-                        test.setAttributeNode(attributeTest);
-                        test.appendChild(document.createTextNode("import static org.junit.Assert.*;\n" +
-                                "import org.junit.Test;\n" +
-                                "public class RomanNumbersTest {\n" +
-                                "@Test\n" +
-                                "public void testSomething() {\n" +
-                                "}\n" +
-                                "}"));
-                        //Das in den "" kann auch durch die Eingabe geändert werden
-                        tests.appendChild(test);*/
 
                 DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
                 Document optionsDocument = optionsBuilder.parse(new File("resources\\options.xml"));
                 optionsDocument.getDocumentElement().normalize();
-                NodeList nodeList = document.getElementsByTagName("option");
+                NodeList nodeList = optionsDocument.getElementsByTagName("option");
                 Node node = nodeList.item(0);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
                     filePath = element.getAttribute("filePath");
                 }
+                //Dieser Batzen wird benötigt um sich den filePath aus der options.xml zu besorgen
 
 
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource domSource = new DOMSource(document);
                 StreamResult streamResult = new StreamResult(new File(filePath + "\\" + project + "\\" + name + ".xml"));
-                // Der Path muss noch geändert werden
                 transformer.transform(domSource, streamResult);
                 //Dies alles wird benötigt um ein xml File zu erstellen
 
@@ -117,7 +80,27 @@ public abstract class XMLParser {
         }
 
         else {
+            try {
+                String filePath = new String();
+                DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
+                Document optionsDocument = optionsBuilder.parse(new File("resources\\options.xml"));
+                optionsDocument.getDocumentElement().normalize();
+                NodeList nodeList = optionsDocument.getElementsByTagName("option");
+                Node node = nodeList.item(0);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    filePath = element.getAttribute("filePath");
+                }
 
+                File inputFile = new File(filePath + "\\" + project + "\\" + name + ".xml");
+                DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder testDocumentBuilder = testDocumentFactory.newDocumentBuilder();
+                Document testDocument = testDocumentBuilder.parse(inputFile);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
     /**
