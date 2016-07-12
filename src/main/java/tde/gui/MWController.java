@@ -106,7 +106,7 @@ public class MWController implements ITask{
 		showMSG("Neue Datei");
 	}
 	
-	@FXML protected void openNewProjekt(ActionEvent event){
+	@FXML protected void openNewProject(ActionEvent event){
 		showMSG("Neues Projekt");
 	}
 	
