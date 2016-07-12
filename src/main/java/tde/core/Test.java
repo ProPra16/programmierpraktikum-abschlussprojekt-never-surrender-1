@@ -13,23 +13,24 @@ import vk.core.internal.InternalResult;
 public class Test {
 	
 	InternalCompiler comp;
-	//hier ist der eigentliche fehler!!!1
-	InternalResult results = new InternalResult();
+	InternalResult results;
+	CompilationUnit[] gesamt;
 	
 	/**
 	 * 
 	 * Bekommt den Dateipfad vom dem Projeckt uebergeben
 	 * 
 	 * gibt ein CompilationUnit Array der passenden Groeße zurueck
+	 * @return 
 	 * 
 	*/
-	public static CompilationUnit[] init(String filePath){
+	public void init(String filePath){
 		
 		File f = new File(filePath);
 		File[] files = f.listFiles();
 		ArrayList<String> list;
 		ArrayList<CompilationUnit> ret = new ArrayList<CompilationUnit>(0);//initialisiert eine ArrayList con CompilationUnit
-		CompilationUnit[] gesamt = null;//CompilationUnit Array was am Ende zurueck gegeben werden soll  
+		gesamt = null;//CompilationUnit Array  
 		
 		int n = files.length;
 		
@@ -49,21 +50,21 @@ public class Test {
 		}
 		
 		gesamt = ret.toArray(gesamt);
-		
-		return gesamt;
 	}
 
 	/**
 	 * 
-	 * @param cUnit bekommt ein CompilationUnit Array, welches es testen soll
+	 * 
 	 * @return gibt die Anzahl der fehlgeschlagenen und ignorierten Tests zurueck 
 	 */
-	public int run(CompilationUnit[] cUnit){
-		comp = new InternalCompiler(cUnit);//erstellt einen neuen InternalCompiler mit dem gegebenen Array
+	public int run(){
+		
+		results = new InternalResult();
+		comp = new InternalCompiler(gesamt);//erstellt einen neuen InternalCompiler initialisierten Array
 		int n;
 		
 		comp.compileAndRunTests();
-		n = results.getNumberOfFailedTests();
-		return n + results.getNumberOfIgnoredTests();
+		n = results.getNumberOfFailedTests() + results.getNumberOfIgnoredTests();
+		return n;
 	}
 }
