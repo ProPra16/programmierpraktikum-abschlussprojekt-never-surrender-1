@@ -99,7 +99,12 @@ public abstract class XMLParser {
                 Document testDocument = testDocumentBuilder.parse(inputFile);
                 testDocument.getDocumentElement().normalize();
 
-                NodeList testNodeList = testDocument.getElementsByTagName("exercise");
+                Element exercise = testDocument.getDocumentElement();
+
+                Element test = testDocument.createElement("test");
+
+                test.appendChild(testDocument.createTextNode(code));
+                exercise.appendChild(test);
 
             }
             catch(Exception e){
