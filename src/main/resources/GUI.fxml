@@ -64,24 +64,24 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Line endX="321.0" startX="-100.0" stroke="RED" />
-                  <Line endX="321.0" startX="-100.0" stroke="#03ff06" GridPane.columnIndex="1" />
-                  <Line endX="321.0" startX="-100.0" GridPane.columnIndex="2">
+                   <Line fx:id="redLine" endX="321.0" startX="-100.0" stroke="RED" />
+                  <Line fx:id="greenLine" endX="321.0" startX="-100.0" stroke="#03ff06" GridPane.columnIndex="1" />
+                  <Line fx:id="blackLine" endX="321.0" startX="-100.0" GridPane.columnIndex="2">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Line>
-                  <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" prefHeight="74.0" prefWidth="423.0" text="Teste Testcode" textFill="RED">
+                  <Label fx:id="redText" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" prefHeight="74.0" prefWidth="423.0" text="Teste Testcode" textFill="RED">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="423.0" text="Teste Code" textFill="#00ff0d" GridPane.columnIndex="1">
+                  <Label fx:id="greenText" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="423.0" text="Teste Code" textFill="#00ff0d" GridPane.columnIndex="1">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="423.0" text="Refactor" GridPane.columnIndex="2">
+                  <Label fx:id="blackText" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="423.0" text="Refactor" GridPane.columnIndex="2">
                      <font>
                         <Font size="16.0" />
                      </font>

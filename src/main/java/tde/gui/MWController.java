@@ -5,7 +5,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.web.HTMLEditor;
+import javafx.scene.effect.Bloom;
+import javafx.scene.effect.DropShadow;
 import tde.core.TDEDataStore;
 import tde.core.Test;
 import tde.file.XMLParser;
@@ -27,6 +31,12 @@ public class MWController implements ITask{
 	@FXML VBox headerVBox;
 	@FXML TreeView<String> testTree;
 	@FXML TreeView<String> codeTree;
+	@FXML Line redLine;
+	@FXML Line greenLine;
+	@FXML Line blackLine;
+	@FXML Label redText;
+	@FXML Label greenText;
+	@FXML Label blackText;
 	private int status = 0;
 
 	private Test tester = new Test();
@@ -53,6 +63,13 @@ public class MWController implements ITask{
 	@FXML protected void checkTest(ActionEvent event) {
 		nextTask();
 	}
+	
+	@FXML protected Bloom textGlow() {
+		Bloom bloom = new Bloom();
+		bloom.setThreshold(0.2);
+		
+		return bloom;
+	}
 
 	/**
 	 * Geht zum naesten Abschnitt vor. z.B. von Test schreiben zu Code schreiben
@@ -60,6 +77,9 @@ public class MWController implements ITask{
 	 */
 	public void nextTask(){
 		int failedTests;
+		DropShadow borderGlow = new DropShadow();
+		borderGlow.setWidth(40);
+		borderGlow.setHeight(40);
 
 		switch (status){
 			case 0: //test
@@ -72,6 +92,13 @@ public class MWController implements ITask{
 				else if(failedTests == 1){
 					code.setDisable(false);
 					test.setDisable(true);
+					borderGlow.setColor(Color.RED);
+					redLine.setEffect(borderGlow);
+					redText.setEffect(textGlow());
+					greenLine.setEffect(null);
+					greenText.setEffect(null);
+					blackLine.setEffect(null);
+					blackText.setEffect(null);
 					status++;
 				}
 			case 1: //code
@@ -80,6 +107,13 @@ public class MWController implements ITask{
 				failedTests = tester.run();
 				if(failedTests == 0) {
 					test.setDisable(false);
+					borderGlow.setColor(Color.GREEN);
+					greenLine.setEffect(borderGlow);
+					greenText.setEffect(textGlow());
+					redLine.setEffect(null);
+					redText.setEffect(null);
+					blackLine.setEffect(null);
+					blackText.setEffect(null);
 					status++;
 				}
 				else
@@ -89,6 +123,13 @@ public class MWController implements ITask{
 				failedTests = tester.run();
 				if(failedTests == 0) {
 					code.setDisable(true);
+					borderGlow.setColor(Color.BLACK);
+					blackLine.setEffect(borderGlow);
+					blackText.setEffect(textGlow());
+					redLine.setEffect(null);
+					redText.setEffect(null);
+					greenLine.setEffect(null);
+					greenText.setEffect(null);
 					status = 0;
 				}
 				else
