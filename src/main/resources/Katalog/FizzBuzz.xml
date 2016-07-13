@@ -37,6 +37,6 @@
 	
 	<config>
 	<babysteps value="False" />
-	<timetracking value="True" />
+	<timetracking value="False" />
 	</config>
 </exercise>
