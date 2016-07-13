@@ -14,22 +14,25 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.HTMLEditor?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="830.0" prefWidth="1578.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tde.gui.MWController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="Datei">
-            <items>
-              <MenuItem fx:id="save" mnemonicParsing="false" text="Speichern" />
-              <MenuItem fx:id="load" mnemonicParsing="false" text="Laden" />
-              <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#openNewFile" text="Neue Datei" />
-              <MenuItem fx:id="newProject" mnemonicParsing="false" onAction="#openNewProject" text="Neues Projekt" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Katalog" />
-        </menus>
-      </MenuBar>
+       <VBox fx:id="headerVBox">
+           <MenuBar BorderPane.alignment="CENTER">
+               <menus>
+                   <Menu mnemonicParsing="false" text="Datei">
+                       <items>
+                           <MenuItem fx:id="save" mnemonicParsing="false" text="Speichern" />
+                           <MenuItem fx:id="load" mnemonicParsing="false" text="Laden" />
+                           <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#openNewFile" text="Neue Datei" />
+                           <MenuItem fx:id="newProject" mnemonicParsing="false" onAction="#openNewProject" text="Neues Projekt" />
+                       </items>
+                   </Menu>
+                   <Menu mnemonicParsing="false" text="Katalog" />
+               </menus>
+           </MenuBar>
+       </VBox>
    </top>
    <center>
       <GridPane prefHeight="805.0" prefWidth="1532.0" BorderPane.alignment="TOP_LEFT">
