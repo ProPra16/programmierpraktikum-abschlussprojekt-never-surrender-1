@@ -32,7 +32,7 @@ public class TestDrivenEnviroment extends Application {
 		Scene scene;
 
 		//TODO wenn options.tde mit workspace nicht vorhanden
-		if(!OptionsFactory.loadPath().equals("")){
+		if(OptionsFactory.loadPath().equals("")){
 			DirectoryChooser directoryChooser = new DirectoryChooser();
             directoryChooser.setTitle("Workspace angeben");
             File file = directoryChooser.showDialog(null);
