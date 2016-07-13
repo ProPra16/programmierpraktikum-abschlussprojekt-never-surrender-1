@@ -22,7 +22,7 @@ public abstract class XMLParser {
         String project = "project";
         String name = "RandomNumberGenerator";
         int isTest = 1;
-        String code =  "lal";
+        String code =  "lil";
         String className = "RomanNumberConverter";
         codeToData(project, name, code, isTest);
         //System.out.println(lol.get(1));
@@ -99,22 +99,15 @@ public abstract class XMLParser {
                 DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder testDocumentBuilder = testDocumentFactory.newDocumentBuilder();
                 Document testDocument = testDocumentBuilder.parse(inputFile);
-                //testDocument.getDocumentElement().normalize();
 
-
-               // Node exercise = testDocument.getElementsByTagName("exercise").item(0);
                 NodeList list = testDocument.getElementsByTagName("test");
                 list.item(0).setTextContent(code);
 
 
                 File path = new File(filePathes + "\\" + project /*+ "\\" + name + ".xml"*/);
-                //System.out.println(path);
+
 
                 if (path.exists()) {
-                    StreamResult streamResult = new StreamResult(path + "\\" + name + ".xml");
-
-                    //transformer.transform(domSource, streamResult);
-
 
                     TransformerFactory.newInstance().newTransformer().transform(new DOMSource(testDocument), new StreamResult(new FileOutputStream(inputFile)));
                     //so verändert nun auch die test eingabe vom user in der xml datai
