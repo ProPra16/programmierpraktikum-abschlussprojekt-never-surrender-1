@@ -112,7 +112,8 @@ public class MWController implements ITask{
 	@FXML protected void openNewProject(ActionEvent event){
 		String projectName = showMSG("Neues Projekt");
 		dataStore.projectName = projectName;
-		File dir = new File(dataStore.workspace);
+		File dir = new File(dataStore.workspace + "\\" + projectName);
+		dir.mkdir();
 		TreeItem<String> projectTest = new TreeItem<>(projectName);
 		testTree.setRoot(projectTest);
 		TreeItem<String> projectCode = new TreeItem<>(projectName);
