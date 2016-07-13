@@ -13,6 +13,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.FileOutputStream;
 
 public abstract class XMLParser {
 
@@ -20,8 +21,8 @@ public abstract class XMLParser {
         ArrayList<String> lol = new ArrayList<String>();
         String project = "project";
         String name = "RandomNumberGenerator";
-        int isTest = 0;
-        String code =  "lol";
+        int isTest = 1;
+        String code =  "lal";
         String className = "RomanNumberConverter";
         codeToData(project, name, code, isTest);
         //System.out.println(lol.get(1));
@@ -57,6 +58,10 @@ public abstract class XMLParser {
                 classe.setAttributeNode(attributeClasse);
                 classe.appendChild(document.createTextNode(code));
                 exercise.appendChild(classe);
+
+                Element test = document.createElement("test");
+                test.appendChild(document.createTextNode(" "));
+                exercise.appendChild(test);
 
 
                 //System.out.println(filePathes);/*
@@ -94,16 +99,29 @@ public abstract class XMLParser {
                 DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder testDocumentBuilder = testDocumentFactory.newDocumentBuilder();
                 Document testDocument = testDocumentBuilder.parse(inputFile);
-                testDocument.getDocumentElement().normalize();
+                //testDocument.getDocumentElement().normalize();
 
-                Element exercise = testDocument.getDocumentElement();
 
-                Element test = testDocument.createElement("test");
+               // Node exercise = testDocument.getElementsByTagName("exercise").item(0);
+                NodeList list = testDocument.getElementsByTagName("test");
+                list.item(0).setTextContent(code);
 
-                test.appendChild(testDocument.createTextNode(code));
-                exercise.appendChild(test);
 
-                //eine abfrage ob dieser test schon existiert muss noch!!! oder nicht?
+                File path = new File(filePathes + "\\" + project /*+ "\\" + name + ".xml"*/);
+                //System.out.println(path);
+
+                if (path.exists()) {
+                    StreamResult streamResult = new StreamResult(path + "\\" + name + ".xml");
+
+                    //transformer.transform(domSource, streamResult);
+
+
+                    TransformerFactory.newInstance().newTransformer().transform(new DOMSource(testDocument), new StreamResult(new FileOutputStream(inputFile)));
+                    //so verändert nun auch die test eingabe vom user in der xml datai
+                }
+                else {
+                    System.out.println("Der Pfad oder die Datei existiert nicht");
+                }
             }
             catch(Exception e){
                 e.printStackTrace();
