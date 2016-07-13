@@ -83,7 +83,8 @@ public class MWController implements ITask{
 
 		switch (status){
 			case 0: //test
-				XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "", 1);
+				XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "", 0);
+				XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "test", 1);
 				tester.init(dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName());
 				failedTests = tester.run();
 				if(failedTests  == 0)

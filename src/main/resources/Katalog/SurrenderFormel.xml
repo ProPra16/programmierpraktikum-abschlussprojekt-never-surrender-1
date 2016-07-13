@@ -1,2 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<exercise name="SurrenderFormel">
+	<description> 	Es werden 6 Double Werte übergeben.
+					Der größte Double wert wird dann mit dem kleinsten Double wert, der 2. größte mit dem 2. kleinsten und der 3. größte mit dem 3.kleinsten
+					multipliziert.
+					Von den 3 enstehenden Double werten wird wieder der Größte mit dem kleinsten multipliziert.
+					Der übrig gebliebene Double wert wird dazu addiert.
+					Ergebis wird ausgegeben.
+	
+	</description>
+	
+	<classes>
+		<class name="SurrenderFormel">
+		/*	Es werden 6 DOuble werte übergeben. Der größte Double wert wird dann mit dem kleinsten Double wert, 
+		/*	der 2. größte mit dem 2. kleinsten und der 3. größte mit dem 3.kleinsten multipliziert.
+		/*	Strings die ein D enthalten werden entfernt. Anschließend wird das Array ausgegeben.
+		/*	Von den 3 enstehenden Double werten wird wieder der Größte mit dem kleinsten multipliziert.
+		/*	Der übrig gebliebene Double wert wird dazu addiert und das Ergebniss wird ausgegeben.
+		/*	Bsp. Eingabe: 4.0, 6.9, 2.4, 0.5, 3.0, 8.8.
+		/*	Schritt 1: 8.8 * 0.5 = 4.4 , 6.9 * 2.4 = 16.56 , 4.0 * 3.0 =  12.0
+		/*	Schritt 2: 16.56 * 4.4 + 12.0 = 84.864
+		/* 	Ergebnis: 84.864
+		*/
+	public class SurrenderFormel {
+		
+	}
+	
+		</class>
+	</classes>
+
+	<tests>
+
+	<test name="SurrenderFormelTest">
+	import static org.junit.Assert.*;
+	import org.junit.Test;
+		public class SurrenderFormelTest {
+			@Test
+			public void testSomething() {
+			
+			}
+		}
+	</test>
+	</tests>
+	
+	<config>
+	<babysteps value="False" />
+	<timetracking value="False" />
+	</config>
+</exercise>
+

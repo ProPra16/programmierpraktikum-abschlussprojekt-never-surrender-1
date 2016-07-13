@@ -20,8 +20,7 @@ public class Test {
 	 * 
 	 * Bekommt den Dateipfad vom dem Projeckt uebergeben
 	 * 
-	 * gibt ein CompilationUnit Array der passenden Groeße zurueck
-	 * @return 
+	 * 
 	 * 
 	*/
 	public void init(String filePath){
@@ -30,7 +29,7 @@ public class Test {
 		File[] files = f.listFiles();
 		ArrayList<String> list;
 		ArrayList<CompilationUnit> ret = new ArrayList<CompilationUnit>(0);//initialisiert eine ArrayList con CompilationUnit
-		gesamt = null;//CompilationUnit Array  
+		gesamt = new CompilationUnit[0];//CompilationUnit Array  
 		
 		int n = files.length;
 		

@@ -1,2 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<exercise name="NoD">
+	<description> 	String Array wird übergeben.
+					Alle Strings mit dem Buchstaben D (egal ob Groß oder klein) werden entfernt.
+					Array wird ausgegeben.
+	</description>
+	
+	<classes>
+		<class name="NoD">
+		/*	Es wird ein String Array übergeben. Dieses Array wird nach Strings mit dem Buchstaben D (egal ob Groß oder Klein) abgesucht.
+		/*	Strings die ein D enthalten werden entfernt. Anschließend wird das Array ausgegeben.
+		*/
+	public class NoD {
+		
+	}
+	
+		</class>
+	</classes>
+
+	<tests>
+
+	<test name="NoDTest">
+	import static org.junit.Assert.*;
+	import org.junit.Test;
+		public class NoDTest {
+			@Test
+			public void testSomething() {
+			
+			}
+		}
+	</test>
+	</tests>
+	
+	<config>
+	<babysteps value="False" />
+	<timetracking value="False" />
+	</config>
+</exercise>
+

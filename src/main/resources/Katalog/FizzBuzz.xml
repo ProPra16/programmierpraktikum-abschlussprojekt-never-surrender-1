@@ -14,7 +14,7 @@
 		/*	Alle Zahlen die durch 3 teilbar sind sollen dabei durch Fizz, alle Zahlen die durch 5 Teilbar sind durch Buzz und 
 		/* 	alle Zahlen die durch 3 und 5 Teilbar sind durch FizzBuzz ersetzt werden. 
 		*/
-	public class RomanNumberConverter {
+	public class FizzBuzz {
 		
 	}
 	
@@ -26,7 +26,7 @@
 	<test name="FizzBuzzTest">
 	import static org.junit.Assert.*;
 	import org.junit.Test;
-		public class RomanNumbersTest {
+		public class FizzBuzzTest {
 			@Test
 			public void testSomething() {
 			
