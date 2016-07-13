@@ -64,7 +64,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                   <Line fx:id="redLine" endX="321.0" startX="-100.0" stroke="RED" />
+                  <Line fx:id="redLine" endX="321.0" startX="-100.0" stroke="RED" />
                   <Line fx:id="greenLine" endX="321.0" startX="-100.0" stroke="#03ff06" GridPane.columnIndex="1" />
                   <Line fx:id="blackLine" endX="321.0" startX="-100.0" GridPane.columnIndex="2">
                      <GridPane.margin>
