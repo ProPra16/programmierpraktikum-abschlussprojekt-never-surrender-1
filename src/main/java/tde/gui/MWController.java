@@ -105,8 +105,16 @@ public class MWController implements ITask{
 		alert.showAndWait();
 	}
 	
-	@FXML protected void openNewFile(ActionEvent event) {
+	@FXML protected void openNewFile(ActionEvent event) throws IOException{
 		String fileName = showMSG("Neue Datei");
+		File f = new File(dataStore.workspace + "\\" + dataStore.projectName + "\\" + fileName);
+		f.createNewFile();
+		TreeItem<String> fileTest = new TreeItem<>(fileName);
+		fileTest.setExpanded(true);
+		testTree.getRoot().getChildren().add(fileTest);
+		TreeItem<String> fileCode = new TreeItem<>(fileName);
+		fileCode.setExpanded(true);
+		codeTree.getRoot().getChildren().add(fileCode);
 	}
 	
 	@FXML protected void openNewProject(ActionEvent event){
@@ -115,8 +123,10 @@ public class MWController implements ITask{
 		File dir = new File(dataStore.workspace + "\\" + projectName);
 		dir.mkdir();
 		TreeItem<String> projectTest = new TreeItem<>(projectName);
+		projectTest.setExpanded(true);
 		testTree.setRoot(projectTest);
 		TreeItem<String> projectCode = new TreeItem<>(projectName);
+		projectCode.setExpanded(true);
 		codeTree.setRoot(projectCode);
 	}
 	
