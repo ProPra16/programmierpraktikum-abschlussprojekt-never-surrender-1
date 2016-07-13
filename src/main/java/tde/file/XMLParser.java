@@ -57,19 +57,9 @@ public abstract class XMLParser {
                 classe.appendChild(document.createTextNode(code));
                 exercise.appendChild(classe);
 
-                DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
-                Document optionsDocument = optionsBuilder.parse(new File("src\\main\\resources\\options.xml"));
-                optionsDocument.getDocumentElement().normalize();
-                NodeList nodeList = optionsDocument.getElementsByTagName("option");
-                Node node = nodeList.item(0);
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element = (Element) node;
-                    filePathes = element.getElementsByTagName("filePath").item(0).getTextContent();
-                    //filePathes = element.getAttribute("filePath");
-                   // System.out.println(filePathes);
-                }
-                //Dieser Batzen wird benötigt um sich den filePath aus der options.xml zu besorgen
+                filePathes = getFilePath();
+
+
 
                 //System.out.println(filePathes);/*
 
@@ -102,16 +92,7 @@ public abstract class XMLParser {
         else {
             try {
                 String filePathes = new String();
-                DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
-                Document optionsDocument = optionsBuilder.parse(new File("src\\main\\resources\\options.xml"));
-                optionsDocument.getDocumentElement().normalize();
-                NodeList nodeList = optionsDocument.getElementsByTagName("option");
-                Node node = nodeList.item(0);
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element = (Element) node;
-                    filePathes = element.getElementsByTagName("filePath").item(0).getTextContent();
-                }
+                filePathes = getFilePath();
 
                 File inputFile = new File(filePathes + "\\" + project + "\\" + name + ".xml");
                 DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
@@ -183,4 +164,29 @@ public abstract class XMLParser {
 
         return classCodeList;
     }
+
+    private static String  getFilePath()
+
+    {
+        String filePathes = "";
+        try {
+            DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
+            Document optionsDocument = optionsBuilder.parse(new File("src\\main\\resources\\options.xml"));
+            optionsDocument.getDocumentElement().normalize();
+            NodeList nodeList = optionsDocument.getElementsByTagName("option");
+            Node node = nodeList.item(0);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                filePathes = element.getElementsByTagName("filePath").item(0).getTextContent();
+                return filePathes;
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return filePathes;
+    }
+    //Dieser Batzen wird benötigt um sich den filePath aus der options.xml zu besorgen
+
 }
