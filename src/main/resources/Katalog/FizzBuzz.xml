@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exercise name="FizzBuzz">
+	<description> Integerwert wird übergeben.
+					Es wird jeder wert von 1 bis zu dem Integer ausgegeben.
+					Wenn Integerwert teilbar durch 3: ersetzten durch Fizz.
+					Wenn Integerwert teilbar durch 5: ersetzten durch Buzz.
+					Wenn durch beides Teilbar: ersetzten durch FizzBuzz.
+	</description>
+	
+	<classes>
+		<class name="FizzBuzz">
+		/*	Es wird ein Integerwert n als Kommandozeilen Argument übergeben. Dann soll jede Zahl von 1 bis n ausgegeben werdne.
+		/*	Alle Zahlen die durch 3 teilbar sind sollen dabei durch Fizz, alle Zahlen die durch 5 Teilbar sind durch Buzz und 
+		/* 	alle Zahlen die durch 3 und 5 Teilbar sind durch FizzBuzz ersetzt werden. 
+		*/
+	public class RomanNumberConverter {
+		
+	}
+	
+		</class>
+	</classes>
+
+	<tests>
+
+	<test name="FizzBuzzTest">
+	import static org.junit.Assert.*;
+	import org.junit.Test;
+		public class RomanNumbersTest {
+			@Test
+			public void testSomething() {
+			
+			}
+		}
+	</test>
+	</tests>
+	
+	<config>
+	<babysteps value="False" />
+	<timetracking value="True" />
+	</config>
+</exercise>
