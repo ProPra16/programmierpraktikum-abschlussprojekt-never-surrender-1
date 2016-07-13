@@ -128,6 +128,8 @@ public abstract class XMLParser {
      */
     public static ArrayList<String> dataToCode(String filePath) {
         ArrayList<String> classCodeList = new ArrayList<String>();
+        String filePathes = new String();
+        filePathes = getFilePath();
         //Diese ArrayList wird zurückgegeben und beinhaltet alle Classen in folgender Reihenfolge: Name, KlassenCode, Tests dazu
         try {
             //with DOM
