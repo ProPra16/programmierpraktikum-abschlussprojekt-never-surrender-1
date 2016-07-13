@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
 import tde.core.TDEDataStore;
 import tde.core.Test;
+import tde.file.XMLParser;
 import tde.timer.ITask;
 
 import java.io.File;
@@ -62,8 +63,8 @@ public class MWController implements ITask{
 
 		switch (status){
 			case 0: //test
-				//TODO Test in .tde Datei schreiben
-				tester.init(dataStore.workspace + "\\" + dataStore.projectName);
+				XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "", 1);
+				tester.init(dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName());
 				failedTests = tester.run();
 				if(failedTests  == 0)
 					showDialog("Fehler", "Alle Tests waren erfolgreich", "Bitte schreiben sie einen Test, der fehlschlägt!", Alert.AlertType.WARNING);
@@ -75,7 +76,7 @@ public class MWController implements ITask{
 				}
 			case 1: //code
 				//TODO Code in .tde Datei schreiben
-				tester.init(dataStore.workspace + "\\" + dataStore.projectName);
+				tester.init(dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName());
 				failedTests = tester.run();
 				if(failedTests == 0) {
 					test.setDisable(false);
@@ -84,7 +85,7 @@ public class MWController implements ITask{
 				else
 					showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);
 			case 2: //refactor
-				tester.init(dataStore.workspace + "\\" + dataStore.projectName);
+				tester.init(dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName());
 				failedTests = tester.run();
 				if(failedTests == 0) {
 					code.setDisable(true);
@@ -107,7 +108,8 @@ public class MWController implements ITask{
 	
 	@FXML protected void openNewFile(ActionEvent event) throws IOException{
 		String fileName = showMSG("Neue Datei");
-		File f = new File(dataStore.workspace + "\\" + dataStore.projectName + "\\" + fileName);
+		dataStore.setAktivFile(fileName);
+		File f = new File(dataStore.getAbsolutPath() + ".xml");
 		f.createNewFile();
 		TreeItem<String> fileTest = new TreeItem<>(fileName);
 		fileTest.setExpanded(true);
@@ -119,8 +121,8 @@ public class MWController implements ITask{
 	
 	@FXML protected void openNewProject(ActionEvent event){
 		String projectName = showMSG("Neues Projekt");
-		dataStore.projectName = projectName;
-		File dir = new File(dataStore.workspace + "\\" + projectName);
+		dataStore.setProjectName(projectName);
+		File dir = new File(dataStore.getWorkspace() + System.getProperty("file.separator") + projectName);
 		dir.mkdir();
 		TreeItem<String> projectTest = new TreeItem<>(projectName);
 		projectTest.setExpanded(true);

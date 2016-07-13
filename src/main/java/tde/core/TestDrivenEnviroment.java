@@ -38,7 +38,7 @@ public class TestDrivenEnviroment extends Application {
             directoryChooser.setTitle("Workspace angeben");
             File file = directoryChooser.showDialog(null);
             if(file != null) {
-				dataStore.workspace = file.getPath();
+				dataStore.setWorkspace(file.getPath());
 				OptionsFactory.createOptions(file.getPath());
 			} else
 				System.exit(0);
