@@ -1,2 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<exercise name="KeineDuplikate">
+	<description> 	mehrere Integerwert werden übergeben(Anzahl unbekannt)
+					Integer die öfter als 1 mal vorkommen werden alle entfernt.
+					Restlichen Integer werden ausgegeben.
+
+	</description>
+	
+	<classes>
+		<class name="KeineDuplikate">
+		/*	Es werden mehrere Integerwerte übergeben, wobei die Anzahl unbekannt ist.
+		/*	Alle Integer die öfter als 1mal vorkommen werden entfernt und die Restlichen werden ausgegeben.
+		/* 	Bsp: Eingabe: 2 3 3 6 5 4 2 8 9 1 2 5,  Ausgabe: 6 4 8 9 1 
+		*/
+	public class KeineDuplikate {
+		
+	}
+	
+		</class>
+	</classes>
+
+	<tests>
+
+		<test name="KeineDuplikateTest">
+		import static org.junit.Assert.*;
+		import org.junit.Test;
+			public class KeineDuplikateTest {
+				@Test
+				public void testSomething() {
+				}
+			}
+		</test>
+	</tests>
+	
+	<config>
+	<babysteps value="False" />
+	<timetracking value="False" />
+	</config>
+</exercise>
