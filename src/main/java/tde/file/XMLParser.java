@@ -40,7 +40,7 @@ public abstract class XMLParser {
         if (isTest == 0) {
             try {
 
-                filePathes = "";
+
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
                 Document document = builder.newDocument();
