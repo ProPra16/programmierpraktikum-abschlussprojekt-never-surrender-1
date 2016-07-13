@@ -35,11 +35,12 @@ public abstract class XMLParser {
      */
 
     public static void codeToData(String project, String name, String code, int isTest) {
-
+        String filePathes = new String();
+        filePathes = getFilePath();
         if (isTest == 0) {
             try {
-                String filePathes = new String();
-                filePathes = "filePath";
+
+                filePathes = "";
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
                 Document document = builder.newDocument();
@@ -56,9 +57,6 @@ public abstract class XMLParser {
                 classe.setAttributeNode(attributeClasse);
                 classe.appendChild(document.createTextNode(code));
                 exercise.appendChild(classe);
-
-                filePathes = getFilePath();
-
 
 
                 //System.out.println(filePathes);/*
@@ -91,8 +89,6 @@ public abstract class XMLParser {
 
         else {
             try {
-                String filePathes = new String();
-                filePathes = getFilePath();
 
                 File inputFile = new File(filePathes + "\\" + project + "\\" + name + ".xml");
                 DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
@@ -165,6 +161,7 @@ public abstract class XMLParser {
         return classCodeList;
     }
 
+    //Holt sich den filePath zur workspace aus der options.xml und übergibt diesen als string
     private static String  getFilePath()
 
     {
