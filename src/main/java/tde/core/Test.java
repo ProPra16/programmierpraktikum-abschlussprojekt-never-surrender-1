@@ -29,7 +29,7 @@ public class Test {
 		File[] files = f.listFiles();
 		ArrayList<String> list;
 		ArrayList<CompilationUnit> ret = new ArrayList<CompilationUnit>(0);//initialisiert eine ArrayList con CompilationUnit
-		gesamt = new CompilationUnit[0];//CompilationUnit Array  
+		gesamt = new CompilationUnit[0];//CompilationUnit Array
 
 		String project = f.getName();
 		String name = "";
