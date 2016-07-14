@@ -20,13 +20,13 @@ public abstract class XMLParser {
     public static void main(String[] args) {
         ArrayList<String> lol = new ArrayList<String>();
         String project = "project";
-        String name = "RandomNumberGenerator";
-        int isTest = 1;
-        String code =  "lil";
+        String name = "RandomNumberGeneratorlies";
+        int isTest = 0;
+        String code =  "liel {adad \n}";
         String className = "RomanNumberConverter";
         //codeToData(project, name, code, isTest);
         lol = dataToCode(project, name);
-        System.out.println(lol.get(2));
+        System.out.println(lol.get(1));
         //codeToData();
 
     }
