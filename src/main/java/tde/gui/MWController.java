@@ -200,37 +200,18 @@ public class MWController implements ITask{
 			return "";
 	}
 
-
-	private String showMSGCataloge(String titel) {
-		TextInputDialog dialog = new TextInputDialog();
-		dialog.setTitle(titel);
-		dialog.setHeaderText(null);
-		dialog.setContentText("Bitte geben sie den Namen des Kataloges ein:");
-
-		Optional<String> result = dialog.showAndWait();
-
-		if (result.isPresent())
-			return result.get();
-		else
-			return "";
-	}
-
-	@FXML protected void openCataloge(ActionEvent event){
-		String projectName = "Cataloge";
-		ArrayList<String> list = new ArrayList<String>();
-		list = catalogeToCode(projectName);
-		code.setHtmlText(list.get(1));
-		test.setHtmlText(list.get(2));
-		//So nun die beiden einträge 1 und 2 ausgeben im fenster
-	}
-
+	/**
+	 * öffnet den DezimalUmwandler aus dem Katalog und gibt seinen inhalt auf die beiden fenster aus. die folgenden methoden sind dieselben, nur für die unterschiedlichen elemente des katalogs
+	 * @param event damit ist der mausklick gemeint
+	 * @return nüx
+	 */
 	@FXML protected void openDezimalUmwandler(ActionEvent event){
 		String projectName = "DezimalUmwandler";
 		ArrayList<String> list = new ArrayList<String>();
 		list = catalogeToCode(projectName);
 		code.setHtmlText(list.get(1));
 		test.setHtmlText(list.get(2));
-		//So nun die beiden einträge 1 und 2 ausgeben im fenster
+
 	}
 
 	@FXML protected void openFizzBuzz(ActionEvent event){

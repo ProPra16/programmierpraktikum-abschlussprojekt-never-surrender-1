@@ -16,7 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.FileOutputStream;
 
 public abstract class XMLParser {
-
+/*
     public static void main(String[] args) {
         ArrayList<String> lol = new ArrayList<String>();
         String project = "project";
@@ -28,20 +28,20 @@ public abstract class XMLParser {
         lol = dataToCode(project, name);
         System.out.println(lol.get(1));
         //codeToData();
-
     }
+    */
+    //Dies ist die main methode die man zum testen benutzen kann
+
     /**
-     * Ließt geschriebenen Code und parst zu xml in ein File, kann nun programmcode nehmen und in neuer xml file ablegen, test code werde ich morgen implementieren(dienstag)
-     * @param
+     * Ließt geschriebenen Code und parst zu xml in ein File, kann nun programmcode nehmen und in neuer xml file ablegen, test code ist ebenfalls möglich. muss immer zuerst den Programmcode speichern sonst funktioniert es nicht!
+     * @param project ist der name des project ordners, name ist der name des elements vom project ordner als auch von der klasse an sich, code ist der klassen oder testcode, istest gibt an ob klassencode (0) oder testcode(1) abgespeichert werden soll
      * @return nüx
      */
-
     public static void codeToData(String project, String name, String code, int isTest) {
         String filePathes = new String();
         filePathes = getFilePath();
         if (isTest == 0) {
             try {
-
 
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
@@ -50,7 +50,7 @@ public abstract class XMLParser {
 
                 Element exercise = document.createElement("exercise");
                 document.appendChild(exercise);
-                //Adds the node newChild to the end of the list of children of this node. docs.oracle
+                //appendChild : Adds the node newChild to the end of the list of children of this node. docs.oracle
 
                 Element classe = document.createElement("class");
 
@@ -64,29 +64,22 @@ public abstract class XMLParser {
                 test.appendChild(document.createTextNode(" "));
                 exercise.appendChild(test);
 
-
-                //System.out.println(filePathes);/*
-
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource domSource = new DOMSource(document);
                 File path = new File(filePathes + "\\" + project /*+ "\\" + name + ".xml"*/);
-                //System.out.println(path);
 
                 if (path.exists()) {
                     StreamResult streamResult = new StreamResult(path + "\\" + name + ".xml");
 
                     transformer.transform(domSource, streamResult);
                 }
-                //Dies alles wird benötigt um ein xml File zu erstellen
                 else{
                     path.mkdirs();
                     StreamResult streamResult = new StreamResult(path + "\\" + name + ".xml");
 
                     transformer.transform(domSource, streamResult);
                 }
-                //eine abfrage ob diese Programm schon existiert muss noch!!!
-
             }
             catch(Exception e){
                 e.printStackTrace();
@@ -104,14 +97,12 @@ public abstract class XMLParser {
                 NodeList list = testDocument.getElementsByTagName("test");
                 list.item(0).setTextContent(code);
 
-
                 File path = new File(filePathes + "\\" + project /*+ "\\" + name + ".xml"*/);
-
 
                 if (path.exists()) {
 
                     TransformerFactory.newInstance().newTransformer().transform(new DOMSource(testDocument), new StreamResult(new FileOutputStream(inputFile)));
-                    //so verändert nun auch die test eingabe vom user in der xml datai
+
                 }
                 else {
                     System.out.println("Der Pfad oder die Datei existiert nicht");
@@ -122,23 +113,22 @@ public abstract class XMLParser {
             }
         }
     }
+
     /**
      * Parst Text von xml aus einer File zu Quellcode
-     * @param
-     * @return Die Zeilen als String[]
+     * @param project ist der name des project ordners, name ist der name der klasse
+     * @return Die Zeilen als String in einer ArrayList
      */
     public static ArrayList<String> dataToCode(String project, String name) {
         ArrayList<String> classCodeList = new ArrayList<String>();
+        //Diese ArrayList wird zurückgegeben und beinhaltet alle Classen in folgender Reihenfolge: Name, KlassenCode, Test
         String filePathes = new String();
         filePathes = getFilePath();
         File path = new File(filePathes + "\\" + project /*+ "\\" + name + ".xml"*/);
         if (path.exists()) {
-            //  StreamResult streamResult = new StreamResult(path + "\\" + name + ".xml");
-            //}
 
-            //Diese ArrayList wird zurückgegeben und beinhaltet alle Classen in folgender Reihenfolge: Name, KlassenCode, Tests dazu
             try {
-                //with DOM
+                //with DOM Parser
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
                 Document document = builder.parse(new File(path + "\\" + name + ".xml"));
@@ -154,17 +144,15 @@ public abstract class XMLParser {
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
                         Element element = (Element) node;
                         //weiter aufbröseln um an die einzelnen Einträge eines Elements zu kommen und diese auch ansprechen zu können
-                        // System.out.println("Exercise Name : "+ element.getAttribute("name"));
-                        classCodeList.add(0, "Exercise Name : " + element.getAttribute("name") + "\n");
+
+                        classCodeList.add(0, element.getAttribute("name") + "\n");
 
 
-                        //System.out.println("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
-                        classCodeList.add(1, "Classe : " + element.getElementsByTagName("class").item(0).getTextContent() + "\n");
+                        classCodeList.add(1, element.getElementsByTagName("class").item(0).getTextContent() + "\n");
 
 
-                        //System.out.println("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
-                        classCodeList.add(2, "Test : " + element.getElementsByTagName("test").item(0).getTextContent() + "\n");
-                        //Hier noch schauen ob noch mehr tests existieren?!
+                        classCodeList.add(2, element.getElementsByTagName("test").item(0).getTextContent() + "\n");
+
                     }
                 }
             } catch (Exception e) {
@@ -179,11 +167,15 @@ public abstract class XMLParser {
         return classCodeList;
     }
 
+    /**
+     * Parst Text von xml aus einer File zu Quellcode für die Kataloge
+     * @param name ist der name des jeweiligen katalog elements
+     * @return Die Zeilen als String in einer ArrayList
+     */
     public static ArrayList<String> catalogeToCode(String name) {
         ArrayList<String> classCodeList = new ArrayList<String>();
         String filePathes = new String();
         filePathes = "src\\main\\resources\\Katalog";
-        //Bin mir nicht sicher ob der Path funktioniert
         File path = new File(filePathes);
         if (path.exists()) {
             try {
@@ -207,7 +199,11 @@ public abstract class XMLParser {
         return classCodeList;
     }
 
-    //Holt sich den filePath zur workspace aus der options.xml und übergibt diesen als string
+    /**
+     * Holt sich den filePath zur workspace aus der options.xml und übergibt diesen als string
+     * @param
+     * @return den filepath als string
+     */
     private static String  getFilePath()
 
     {
@@ -230,6 +226,5 @@ public abstract class XMLParser {
         }
         return filePathes;
     }
-    //Dieser Batzen wird benötigt um sich den filePath aus der options.xml zu besorgen
 
 }

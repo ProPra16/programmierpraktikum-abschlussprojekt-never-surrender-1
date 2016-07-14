@@ -22,13 +22,13 @@ public class OptionsFactory {
         System.out.println(lol);
     }
     */
+    //Das ist die main methode zum testen der anderen methoden
 
     /**
      * Generiert die options.xml mit dem filePath eintrag
-     * @param workSpace
+     * @param workSpace ist der filepath eintrag
      * @return nüx
      */
-
     public static void createOptions (String workSpace) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -51,6 +51,11 @@ public class OptionsFactory {
         }
     }
 
+    /**
+     * Liest den path zur workspace aus der options.xml datei heraus und gibt diesen als string wieder
+     * @param
+     * @return string der den pfad zur workspace enthält
+     */
     public static String loadPath () {
         String path = "";
 
