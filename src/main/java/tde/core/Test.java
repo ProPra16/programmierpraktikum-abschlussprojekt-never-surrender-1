@@ -32,13 +32,16 @@ public class Test {
 		gesamt = new CompilationUnit[0];//CompilationUnit Array  
 
 		String project = f.getName();
-		//String name = "";
+		String name = "";
 
 		int n = files.length;
 		
 		for(int i = 0; i < n; i++){//durchlaeuft alle datein im angegeben Pfad
+			
+			name = files[i].getName();
+			name = name.replace(".xml", "");
 
-			list = XMLParser.dataToCode(project, files[i].getName());//files[i].getAbsolutePath());
+			list = XMLParser.dataToCode(project, name);//files[i].getAbsolutePath());
 			
 			for(int temp = 1; temp < list.size(); temp++){
 
