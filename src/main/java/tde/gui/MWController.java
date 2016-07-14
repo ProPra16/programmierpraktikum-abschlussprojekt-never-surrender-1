@@ -30,6 +30,14 @@ public class MWController implements ITask{
 	@FXML HTMLEditor code;
 	@FXML MenuItem newFile;
 	@FXML MenuItem newProject;
+
+	@FXML MenuItem dezimalUmwandler;
+	@FXML MenuItem fizzBuzz;
+	@FXML MenuItem keineDuplikate;
+	@FXML MenuItem noD;
+	@FXML MenuItem noName;
+	@FXML MenuItem surrenderFormel;
+
 	@FXML VBox headerVBox;
 	@FXML TreeView<String> testTree;
 	@FXML TreeView<String> codeTree;
@@ -40,6 +48,7 @@ public class MWController implements ITask{
 	@FXML Label greenText;
 	@FXML Label blackText;
 	@FXML Menu cataloge;
+
 	private int status = 0;
 
 	private Test tester = new Test();
@@ -207,9 +216,65 @@ public class MWController implements ITask{
 	}
 
 	@FXML protected void openCataloge(ActionEvent event){
-		String projectName = showMSGCataloge("Cataloge");
+		String projectName = "Cataloge";
 		ArrayList<String> list = new ArrayList<String>();
 		list = catalogeToCode(projectName);
+		code.setHtmlText(list.get(1));
+		test.setHtmlText(list.get(2));
+		//So nun die beiden einträge 1 und 2 ausgeben im fenster
+	}
+
+	@FXML protected void openDezimalUmwandler(ActionEvent event){
+		String projectName = "DezimalUmwandler";
+		ArrayList<String> list = new ArrayList<String>();
+		list = catalogeToCode(projectName);
+		code.setHtmlText(list.get(1));
+		test.setHtmlText(list.get(2));
+		//So nun die beiden einträge 1 und 2 ausgeben im fenster
+	}
+
+	@FXML protected void openFizzBuzz(ActionEvent event){
+		String projectName = "FizzBuzz";
+		ArrayList<String> list = new ArrayList<String>();
+		list = catalogeToCode(projectName);
+		code.setHtmlText(list.get(1));
+		test.setHtmlText(list.get(2));
+		//So nun die beiden einträge 1 und 2 ausgeben im fenster
+	}
+
+	@FXML protected void openKeineDuplikate(ActionEvent event){
+		String projectName = "KeineDuplikate";
+		ArrayList<String> list = new ArrayList<String>();
+		list = catalogeToCode(projectName);
+		code.setHtmlText(list.get(1));
+		test.setHtmlText(list.get(2));
+		//So nun die beiden einträge 1 und 2 ausgeben im fenster
+	}
+
+	@FXML protected void openNoD(ActionEvent event){
+		String projectName = "NoD";
+		ArrayList<String> list = new ArrayList<String>();
+		list = catalogeToCode(projectName);
+		code.setHtmlText(list.get(1));
+		test.setHtmlText(list.get(2));
+		//So nun die beiden einträge 1 und 2 ausgeben im fenster
+	}
+
+	@FXML protected void openFibonaccifolge(ActionEvent event){
+		String projectName = "Fibonaccifolge";
+		ArrayList<String> list = new ArrayList<String>();
+		list = catalogeToCode(projectName);
+		code.setHtmlText(list.get(1));
+		test.setHtmlText(list.get(2));
+		//So nun die beiden einträge 1 und 2 ausgeben im fenster
+	}
+
+	@FXML protected void openSurrenderFormel(ActionEvent event){
+		String projectName = "Surrenderformel";
+		ArrayList<String> list = new ArrayList<String>();
+		list = catalogeToCode(projectName);
+		code.setHtmlText(list.get(1));
+		test.setHtmlText(list.get(2));
 		//So nun die beiden einträge 1 und 2 ausgeben im fenster
 	}
 }

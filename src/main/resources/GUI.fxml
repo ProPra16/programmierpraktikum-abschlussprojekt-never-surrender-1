@@ -29,7 +29,16 @@
                            <MenuItem fx:id="newProject" mnemonicParsing="false" onAction="#openNewProject" text="Neues Projekt" />
                        </items>
                    </Menu>
-                   <Menu  fx:id="cataloge" mnemonicParsing="false" text="Katalog" />
+                   <Menu mnemonicParsing="false" text="Kataloge">
+                       <items>
+                           <MenuItem fx:id="dezimalUmwandler" mnemonicParsing="false" onAction="#openDezimalUmwandler" text="DezimalUmwandler" />
+                           <MenuItem fx:id="fizzBuzz" mnemonicParsing="false" onAction="#openFizzBuzz" text="FizzBuzz" />
+                           <MenuItem fx:id="keineDuplikate" mnemonicParsing="false" onAction="#openKeineDuplikate" text="KeineDuplikate" />
+                           <MenuItem fx:id="noD" mnemonicParsing="false" onAction="#openNoD" text="NoD" />
+                           <MenuItem fx:id="fibonacciFolge" mnemonicParsing="false" onAction="#openFibonaccifolge" text="FibonacciFolge" />
+                           <MenuItem fx:id="surrenderFormel" mnemonicParsing="false" onAction="#openSurrenderFormel" text="SurrenderFormel" />
+                       </items>
+                   </Menu>
                </menus>
            </MenuBar>
        </VBox>
