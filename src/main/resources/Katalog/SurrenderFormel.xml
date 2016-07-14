@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<exercises>
 <exercise name="SurrenderFormel">
 	<description> 	Es werden 6 Double Werte übergeben.
 					Der größte Double wert wird dann mit dem kleinsten Double wert, der 2. größte mit dem 2. kleinsten und der 3. größte mit dem 3.kleinsten
@@ -48,4 +49,5 @@
 	<timetracking value="False" />
 	</config>
 </exercise>
+</exercises>
 

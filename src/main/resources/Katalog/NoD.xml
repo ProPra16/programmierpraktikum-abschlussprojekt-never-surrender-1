@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<exercises>
 <exercise name="NoD">
 	<description> 	String Array wird übergeben.
 					Alle Strings mit dem Buchstaben D (egal ob Groß oder klein) werden entfernt.
@@ -37,4 +38,4 @@
 	<timetracking value="False" />
 	</config>
 </exercise>
-
+</exercises>

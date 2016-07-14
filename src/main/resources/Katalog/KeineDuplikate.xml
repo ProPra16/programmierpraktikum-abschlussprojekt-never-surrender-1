@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<exercises>
 <exercise name="KeineDuplikate">
 	<description> 	mehrere Integerwert werden übergeben(Anzahl unbekannt)
 					Integer die öfter als 1 mal vorkommen werden alle entfernt.
@@ -38,3 +39,4 @@
 	<timetracking value="False" />
 	</config>
 </exercise>
+</exercises>

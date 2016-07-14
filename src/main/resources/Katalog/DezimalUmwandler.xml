@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<exercises>
 <exercise name="DezimalUmwandler">
 	<description> 	Es wird eine Dezimalzahl übergeben.
 					Wandelt Zahl in Binär, Oktal und Hexadezimal um.
@@ -37,4 +38,4 @@
 	<timetracking value="False" />
 	</config>
 </exercise>
-
+</exercises>

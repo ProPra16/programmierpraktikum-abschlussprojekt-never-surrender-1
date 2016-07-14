@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<exercises>
 <exercise name="FizzBuzz">
 	<description> Integerwert wird übergeben.
 					Es wird jeder wert von 1 bis zu dem Integer ausgegeben.
@@ -40,3 +41,4 @@
 	<timetracking value="False" />
 	</config>
 </exercise>
+</exercises>
