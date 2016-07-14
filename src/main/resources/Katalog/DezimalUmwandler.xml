@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exercise name="DezimalUmwandler">
+	<description> 	Es wird eine Dezimalzahl übergeben.
+					Wandelt Zahl in Binär, Oktal und Hexadezimal um.
+					Gibt alle Zahlen aus.
+	</description>
+	
+	<classes>
+		<class name="DezimalUmwandler">
+		/*	Es wird eine Dezimalzahl übergeben. Diese Zahl wird in eine Binär, Oktal und Hexadezimal
+		/*	Zahl umgewandelt. Die 3 Ergebnisse werdenausgegeben.
+		*/
+	public class DezimalUmwandler {
+		
+	}
+	
+		</class>
+	</classes>
+
+	<tests>
+
+	<test name="DezimalUmwandlerTest">
+	import static org.junit.Assert.*;
+	import org.junit.Test;
+		public class DezimalUmwandlerTest {
+			@Test
+			public void testSomething() {
+			
+			}
+		}
+	</test>
+	</tests>
+	
+	<config>
+	<babysteps value="False" />
+	<timetracking value="False" />
+	</config>
+</exercise>
+
