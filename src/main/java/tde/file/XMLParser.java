@@ -176,11 +176,6 @@ public abstract class XMLParser {
             System.out.println("Der Zielordner wurde nicht gefunden!");
         }
 
-       // ArrayList<String> classCode = new ArrayList<String>();
-        //wie kann ich readFromFile aus Loader.class ansprechen?
-        //xmlCode.readFromFile(filePath);
-
-
         return classCodeList;
     }
 
@@ -208,11 +203,6 @@ public abstract class XMLParser {
         else {
             System.out.println("Der Zielordner wurde nicht gefunden!");
         }
-
-        // ArrayList<String> classCode = new ArrayList<String>();
-        //wie kann ich readFromFile aus Loader.class ansprechen?
-        //xmlCode.readFromFile(filePath);
-
 
         return classCodeList;
     }
