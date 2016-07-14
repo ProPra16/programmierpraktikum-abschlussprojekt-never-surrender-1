@@ -24,8 +24,9 @@ public abstract class XMLParser {
         int isTest = 1;
         String code =  "lil";
         String className = "RomanNumberConverter";
-        codeToData(project, name, code, isTest);
-        //System.out.println(lol.get(1));
+        //codeToData(project, name, code, isTest);
+        lol = dataToCode(project, name);
+        System.out.println(lol.get(2));
         //codeToData();
 
     }
@@ -123,47 +124,56 @@ public abstract class XMLParser {
     }
     /**
      * Parst Text von xml aus einer File zu Quellcode
-     * @param filePath Dateipfad
+     * @param
      * @return Die Zeilen als String[]
      */
-    public static ArrayList<String> dataToCode(String filePath) {
+    public static ArrayList<String> dataToCode(String project, String name) {
         ArrayList<String> classCodeList = new ArrayList<String>();
         String filePathes = new String();
         filePathes = getFilePath();
-        //Diese ArrayList wird zurückgegeben und beinhaltet alle Classen in folgender Reihenfolge: Name, KlassenCode, Tests dazu
-        try {
-            //with DOM
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse( new File(filePath));
-            document.getDocumentElement().normalize();
-            NodeList nodeList = document.getElementsByTagName("exercise");
-            //nun hat man eine NodeList mit der man die einzelnen Elemente von dieser jeweils über Befehle ansprechen kann
-            int nodeListLength = nodeList.getLength();
-            //gibt die Anzahl (n) der einzelnen Nodes in der nodeList(0,1,2,...,n-1) an
-            for (int zaehler = 0; zaehler < nodeListLength; zaehler++) {
-                //Läuft die Liste über die Elemente namens exercise durch
-                Node node = nodeList.item(zaehler);
-                //Der Befehl um die einzelnen exercise(s) anzusprechen
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element = (Element) node;
-                    //weiter aufbröseln um an die einzelnen Einträge eines Elements zu kommen und diese auch ansprechen zu können
-                   // System.out.println("Exercise Name : "+ element.getAttribute("name"));
-                    classCodeList.add(0, "Exercise Name : "+ element.getAttribute("name")+"\n");
+        File path = new File(filePathes + "\\" + project /*+ "\\" + name + ".xml"*/);
+        if (path.exists()) {
+            //  StreamResult streamResult = new StreamResult(path + "\\" + name + ".xml");
+            //}
+
+            //Diese ArrayList wird zurückgegeben und beinhaltet alle Classen in folgender Reihenfolge: Name, KlassenCode, Tests dazu
+            try {
+                //with DOM
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder = factory.newDocumentBuilder();
+                Document document = builder.parse(new File(path + "\\" + name + ".xml"));
+                document.getDocumentElement().normalize();
+                NodeList nodeList = document.getElementsByTagName("exercise");
+                //nun hat man eine NodeList mit der man die einzelnen Elemente von dieser jeweils über Befehle ansprechen kann
+                int nodeListLength = nodeList.getLength();
+                //gibt die Anzahl (n) der einzelnen Nodes in der nodeList(0,1,2,...,n-1) an
+                for (int zaehler = 0; zaehler < nodeListLength; zaehler++) {
+                    //Läuft die Liste über die Elemente namens exercise durch
+                    Node node = nodeList.item(zaehler);
+                    //Der Befehl um die einzelnen exercise(s) anzusprechen
+                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+                        Element element = (Element) node;
+                        //weiter aufbröseln um an die einzelnen Einträge eines Elements zu kommen und diese auch ansprechen zu können
+                        // System.out.println("Exercise Name : "+ element.getAttribute("name"));
+                        classCodeList.add(0, "Exercise Name : " + element.getAttribute("name") + "\n");
 
 
-                    //System.out.println("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
-                    classCodeList.add(1, "Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent()+"\n");
+                        //System.out.println("Classes : "+ element.getElementsByTagName("classes").item(0).getTextContent());
+                        classCodeList.add(1, "Classe : " + element.getElementsByTagName("class").item(0).getTextContent() + "\n");
 
 
-                    //System.out.println("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
-                    classCodeList.add(2, "Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent()+"\n");
-                    //Hier noch schauen ob noch mehr tests existieren?!
+                        //System.out.println("Tests : "+ element.getElementsByTagName("tests").item(0).getTextContent());
+                        classCodeList.add(2, "Test : " + element.getElementsByTagName("test").item(0).getTextContent() + "\n");
+                        //Hier noch schauen ob noch mehr tests existieren?!
+                    }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+            return classCodeList;
         }
-        catch (Exception e) {
-            e.printStackTrace();
+        else {
+            System.out.println("Der Zielordner wurde nicht gefunden!");
         }
 
        // ArrayList<String> classCode = new ArrayList<String>();

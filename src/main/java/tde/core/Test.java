@@ -30,12 +30,15 @@ public class Test {
 		ArrayList<String> list;
 		ArrayList<CompilationUnit> ret = new ArrayList<CompilationUnit>(0);//initialisiert eine ArrayList con CompilationUnit
 		gesamt = new CompilationUnit[0];//CompilationUnit Array  
-		
+
+		String k = "";
+		String j = "";
+
 		int n = files.length;
 		
 		for(int i = 0; i < n; i++){//durchlaeuft alle datein im angegeben Pfad
 
-			list = XMLParser.dataToCode(files[i].getAbsolutePath());
+			list = XMLParser.dataToCode(k, j);//files[i].getAbsolutePath());
 			
 			for(int temp = 1; temp < list.size(); temp++){
 
