@@ -14,10 +14,12 @@ import tde.core.TDEDataStore;
 import tde.core.Test;
 import tde.file.XMLParser;
 import tde.timer.ITask;
-
+import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
+
+import static tde.file.XMLParser.catalogeToCode;
 
 /**
  * Controller für die eigentliche Benutzeroberfläche
@@ -37,6 +39,7 @@ public class MWController implements ITask{
 	@FXML Label redText;
 	@FXML Label greenText;
 	@FXML Label blackText;
+	@FXML Menu cataloge;
 	private int status = 0;
 
 	private Test tester = new Test();
@@ -186,5 +189,27 @@ public class MWController implements ITask{
 			return result.get();
 		else
 			return "";
+	}
+
+
+	private String showMSGCataloge(String titel) {
+		TextInputDialog dialog = new TextInputDialog();
+		dialog.setTitle(titel);
+		dialog.setHeaderText(null);
+		dialog.setContentText("Bitte geben sie den Namen des Kataloges ein:");
+
+		Optional<String> result = dialog.showAndWait();
+
+		if (result.isPresent())
+			return result.get();
+		else
+			return "";
+	}
+
+	@FXML protected void openCataloge(ActionEvent event){
+		String projectName = showMSGCataloge("Cataloge");
+		ArrayList<String> list = new ArrayList<String>();
+		list = catalogeToCode(projectName);
+		//So nun die beiden einträge 1 und 2 ausgeben im fenster
 	}
 }

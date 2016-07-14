@@ -184,6 +184,39 @@ public abstract class XMLParser {
         return classCodeList;
     }
 
+    public static ArrayList<String> catalogeToCode(String name) {
+        ArrayList<String> classCodeList = new ArrayList<String>();
+        String filePathes = new String();
+        filePathes = "src\\main\\resources\\Katalog";
+        //Bin mir nicht sicher ob der Path funktioniert
+        File path = new File(filePathes);
+        if (path.exists()) {
+            try {
+                //with DOM
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder = factory.newDocumentBuilder();
+                Document document = builder.parse(new File(path + "\\" + name + ".xml"));
+                document.getDocumentElement().normalize();
+                classCodeList.add(0,""  + "\n");
+                classCodeList.add(1, document.getElementsByTagName("class").item(0).getTextContent() + "\n");
+                classCodeList.add(2, document.getElementsByTagName("test").item(0).getTextContent() + "\n");
+                 } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return classCodeList;
+        }
+        else {
+            System.out.println("Der Zielordner wurde nicht gefunden!");
+        }
+
+        // ArrayList<String> classCode = new ArrayList<String>();
+        //wie kann ich readFromFile aus Loader.class ansprechen?
+        //xmlCode.readFromFile(filePath);
+
+
+        return classCodeList;
+    }
+
     //Holt sich den filePath zur workspace aus der options.xml und übergibt diesen als string
     private static String  getFilePath()
 

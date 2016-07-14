@@ -29,7 +29,7 @@
                            <MenuItem fx:id="newProject" mnemonicParsing="false" onAction="#openNewProject" text="Neues Projekt" />
                        </items>
                    </Menu>
-                   <Menu mnemonicParsing="false" text="Katalog" />
+                   <Menu  fx:id="cataloge" mnemonicParsing="false" text="Katalog" />
                </menus>
            </MenuBar>
        </VBox>
