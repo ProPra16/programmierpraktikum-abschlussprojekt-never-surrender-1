@@ -41,20 +41,22 @@ public class Test {
 			name = files[i].getName();
 			name = name.replace(".xml", "");
 
-			list = XMLParser.dataToCode(project, name);//files[i].getAbsolutePath());
+			list = XMLParser.dataToCode(project, name);
 			
 			for(int temp = 1; temp < list.size(); temp++){
 
 				if(temp == 1){
-					ret.add(new CompilationUnit(list.get(0),list.get(temp), false));
+					ret.add(new CompilationUnit(list.get(0).replace("Exercise Name :",""),list.get(temp).replace("Classe : ", ""), false));
 				}
 				else{
-					ret.add(new CompilationUnit(list.get(0),list.get(temp), true));
-				}	
+					ret.add(new CompilationUnit(list.get(0).replace("Exercise Name :",""),list.get(temp).replace("Test : ", ""), true));
+				}
 			}
+
 		}
 		
 		gesamt = ret.toArray(gesamt);
+
 	}
 
 	/**
@@ -65,7 +67,10 @@ public class Test {
 	public int run(){
 		
 		results = new InternalResult();
+
+
 		comp = new InternalCompiler(gesamt);//erstellt einen neuen InternalCompiler initialisierten Array
+
 		int n;
 		
 		comp.compileAndRunTests();
