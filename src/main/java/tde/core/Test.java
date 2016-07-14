@@ -31,14 +31,14 @@ public class Test {
 		ArrayList<CompilationUnit> ret = new ArrayList<CompilationUnit>(0);//initialisiert eine ArrayList con CompilationUnit
 		gesamt = new CompilationUnit[0];//CompilationUnit Array  
 
-		String k = "";
-		String j = "";
+		String project = f.getName();
+		//String name = "";
 
 		int n = files.length;
 		
 		for(int i = 0; i < n; i++){//durchlaeuft alle datein im angegeben Pfad
 
-			list = XMLParser.dataToCode(k, j);//files[i].getAbsolutePath());
+			list = XMLParser.dataToCode(project, files[i].getName());//files[i].getAbsolutePath());
 			
 			for(int temp = 1; temp < list.size(); temp++){
 
