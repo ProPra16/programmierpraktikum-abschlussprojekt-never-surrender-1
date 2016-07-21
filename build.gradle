@@ -9,3 +9,9 @@ dependencies {
     //compile group: 'de.hhu.stups', name: 'virtual-kata-lib', version: '1.0.1'
     compile "de.hhu.stups:virtual-kata-lib:1.0.1"
 }
+
+jar {
+    manifest {
+        attributes "Main-Class": "tde.core.Main"
+    }
+}
