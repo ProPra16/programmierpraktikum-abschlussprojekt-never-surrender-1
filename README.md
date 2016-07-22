@@ -12,3 +12,4 @@ Ausführen des Programms
 6. In der Menubar auf Datei und Neues Projekt drücken um einen Ordner zu erstellen
 7. Und dann auf Neue Datei klicken um eine neue beschreibare Datei zu erstellen
 8. Nun hat man alles um loslegen zu können
+
