@@ -98,7 +98,7 @@ public class MWController implements ITask{
 				XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "", 0);
 				XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "test", 1);
 				tester.init(dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName());
-				failedTests = tester.run();
+				/*failedTests = tester.run();
 				if(failedTests  == 0)
 					showDialog("Fehler", "Alle Tests waren erfolgreich", "Bitte schreiben sie einen Test, der fehlschlägt!", Alert.AlertType.WARNING);
 					//TODO test in der Datei löschen
@@ -113,7 +113,8 @@ public class MWController implements ITask{
 					blackLine.setEffect(null);
 					blackText.setEffect(null);
 					status++;
-				}
+				}*/
+				break;
 			case 1: //code
 				//TODO Code in .tde Datei schreiben
 				tester.init(dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName());
@@ -131,6 +132,7 @@ public class MWController implements ITask{
 				}
 				else
 					showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);
+				break;
 			case 2: //refactor
 				tester.init(dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName());
 				failedTests = tester.run();
@@ -147,7 +149,9 @@ public class MWController implements ITask{
 				}
 				else
 					showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);
+				break;
 			default: //nichts
+				break;
 		}
 	}
 
