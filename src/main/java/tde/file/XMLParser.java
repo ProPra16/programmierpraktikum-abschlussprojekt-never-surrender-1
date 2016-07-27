@@ -1,6 +1,8 @@
 package tde.file;
 
 import java.io.File;
+import java.lang.*;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -16,7 +18,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.FileOutputStream;
 
 public abstract class XMLParser {
-/*
+
     public static void main(String[] args) {
         ArrayList<String> lol = new ArrayList<String>();
         String project = "project";
@@ -29,7 +31,7 @@ public abstract class XMLParser {
         System.out.println(lol.get(1));
         //codeToData();
     }
-    */
+
     //Dies ist die main methode die man zum testen benutzen kann
 
     /**
@@ -123,7 +125,9 @@ public abstract class XMLParser {
         ArrayList<String> classCodeList = new ArrayList<String>();
         //Diese ArrayList wird zurückgegeben und beinhaltet alle Classen in folgender Reihenfolge: Name, KlassenCode, Test
         String filePathes = new String();
+        //System.out.println("ich bin hier");
         filePathes = getFilePath();
+        //System.out.println("nicht hier");
         File path = new File(filePathes + "\\" + project /*+ "\\" + name + ".xml"*/);
         if (path.exists()) {
 
@@ -175,7 +179,7 @@ public abstract class XMLParser {
     public static ArrayList<String> catalogeToCode(String name) {
         ArrayList<String> classCodeList = new ArrayList<String>();
         String filePathes = new String();
-        filePathes.getClass().getResource("/Katalog");
+        filePathes = new File("").getAbsolutePath() + "\\src\\main\\resources\\Katalog";
         File path = new File(filePathes);
         if (path.exists()) {
             try {
@@ -211,8 +215,13 @@ public abstract class XMLParser {
         try {
             DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
-            String string = new String();
-            string.getClass().getResource("/options.xml");
+            //System.getProperty("java.class.path");
+            String string = new File("").getAbsolutePath() + "\\src\\main\\resources\\options.xml";
+           // string.toString().getClass().getResource("/options.xml");
+            //System.out.println(string);
+           // string.getClass().getResource("/options.xml");
+
+          //  System.out.println(string+"lol");
             Document optionsDocument = optionsBuilder.parse(string);
             optionsDocument.getDocumentElement().normalize();
             NodeList nodeList = optionsDocument.getElementsByTagName("option");
@@ -220,6 +229,7 @@ public abstract class XMLParser {
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
                 filePathes = element.getElementsByTagName("filePath").item(0).getTextContent();
+                //System.out.println(filePathes);
                 return filePathes;
             }
         }
