@@ -175,7 +175,7 @@ public abstract class XMLParser {
     public static ArrayList<String> catalogeToCode(String name) {
         ArrayList<String> classCodeList = new ArrayList<String>();
         String filePathes = new String();
-        filePathes = "src\\main\\resources\\Katalog";
+        filePathes.getClass().getResource("/Katalog");
         File path = new File(filePathes);
         if (path.exists()) {
             try {
@@ -211,7 +211,9 @@ public abstract class XMLParser {
         try {
             DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
-            Document optionsDocument = optionsBuilder.parse(new File("src\\main\\resources\\options.xml"));
+            String string = new String();
+            string.getClass().getResource("/options.xml");
+            Document optionsDocument = optionsBuilder.parse(string);
             optionsDocument.getDocumentElement().normalize();
             NodeList nodeList = optionsDocument.getElementsByTagName("option");
             Node node = nodeList.item(0);
