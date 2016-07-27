@@ -5,16 +5,20 @@ import java.util.ArrayList;
 
 import tde.file.XMLParser;
 import vk.core.api.CompilationUnit;
-import vk.core.internal.InternalCompiler;
+import vk.core.api.CompilerFactory;
+//import vk.core.api.CompilerFactory;
+import vk.core.api.JavaStringCompiler;
+//import vk.core.internal.InternalCompiler;
 import vk.core.internal.InternalResult;
 
 
 
 public class Test {
 	
-	InternalCompiler comp;
+	JavaStringCompiler comp;
 	InternalResult results;
 	CompilationUnit[] gesamt;
+	//ArrayList<CompilationUnit> ret = new ArrayList<CompilationUnit>(0);
 	
 	/**
 	 * 
@@ -69,7 +73,7 @@ public class Test {
 		results = new InternalResult();
 
 
-		comp = new InternalCompiler(gesamt);//erstellt einen neuen InternalCompiler initialisierten Array
+		comp = CompilerFactory.getCompiler(gesamt);//erstellt einen neuen InternalCompiler initialisierten Array
 
 		int n;
 		
