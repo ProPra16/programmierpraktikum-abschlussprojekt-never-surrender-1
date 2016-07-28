@@ -1,6 +1,7 @@
 package tde.core;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import tde.file.XMLParser;
@@ -27,31 +28,35 @@ public class Test {
 	 * 
 	 * 
 	*/
-	public void init(TDEDataStore dataStore){
+	public void init(TDEDataStore dataStore) {
 		String filePath = dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName();
 
 		File f = new File(filePath);
 		File[] files = f.listFiles();
 		ArrayList<String> list;
 		ArrayList<CompilationUnit> ret = new ArrayList<>();//initialisiert eine ArrayList con CompilationUnit
-		gesamt = new CompilationUnit[0];//CompilationUnit Array
 
-		for (File file : files) {//durchlaeuft alle datein im angegeben Pfad
-			dataStore.setAktivFile(file);
-			list = XMLParser.dataToCode(dataStore);
+		if (files != null) {
+			for (File file : files) {//durchlaeuft alle datein im angegeben Pfad
+                dataStore.setAktivFile(file);
+                list = XMLParser.dataToCode(dataStore);
 
-			for (int temp = 1; temp < list.size(); temp++) {
+                for (int temp = 1; temp < list.size(); temp++) {
+					String type = temp == 1?
+							"Classe" : "Test";
 
-				if (temp == 1) {
-					ret.add(new CompilationUnit(list.get(0).replace("Exercise Name :", ""), list.get(temp).replace("Classe : ", ""), false));
-				} else {
-					ret.add(new CompilationUnit(list.get(0).replace("Exercise Name :", ""), list.get(temp).replace("Test : ", ""), true));
-				}
-			}
+					ret.add(new CompilationUnit(
+									list.get(0).replace("Exercise Name :", ""),
+									list.get(temp).replace(type + " : ", ""),
+									temp == 1
+					));
+                }
 
+            }
+			if(!ret.isEmpty()) gesamt = ret.toArray(new CompilationUnit[ret.size()]);
 		}
+		else System.err.println(String.format("No Files in: %s!", f.getPath()));
 
-		if(!ret.isEmpty()) gesamt = ret.toArray(gesamt);
 
 	}
 
