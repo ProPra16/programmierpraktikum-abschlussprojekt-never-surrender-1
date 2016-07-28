@@ -14,6 +14,9 @@ import tde.core.TDEDataStore;
 import tde.core.Test;
 import tde.file.XMLParser;
 import tde.timer.ITask;
+
+import java.net.URISyntaxException;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
@@ -26,8 +29,8 @@ import static tde.file.XMLParser.catalogeToCode;
  */
 
 public class MWController implements ITask{
-	@FXML HTMLEditor test;
-	@FXML HTMLEditor code;
+	@FXML TextArea test;
+	@FXML TextArea code;
 	@FXML MenuItem newFile;
 	@FXML MenuItem newProject;
 
@@ -95,9 +98,9 @@ public class MWController implements ITask{
 
 		switch (status){
 			case 0: //test
-				XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "", 0);
-				XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "test", 1);
-				tester.init(dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName());
+				XMLParser.codeToData(dataStore, test.get, 0);
+				//XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "test", 1);
+				tester.init(dataStore);
 				/*failedTests = tester.run();
 				if(failedTests  == 0)
 					showDialog("Fehler", "Alle Tests waren erfolgreich", "Bitte schreiben sie einen Test, der fehlschlägt!", Alert.AlertType.WARNING);
@@ -117,7 +120,7 @@ public class MWController implements ITask{
 				break;
 			case 1: //code
 				//TODO Code in .tde Datei schreiben
-				tester.init(dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName());
+				tester.init(dataStore);
 				failedTests = tester.run();
 				if(failedTests == 0) {
 					test.setDisable(false);
@@ -134,7 +137,7 @@ public class MWController implements ITask{
 					showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);
 				break;
 			case 2: //refactor
-				tester.init(dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName());
+				tester.init(dataStore);
 				failedTests = tester.run();
 				if(failedTests == 0) {
 					code.setDisable(true);
@@ -166,8 +169,8 @@ public class MWController implements ITask{
 	
 	@FXML protected void openNewFile(ActionEvent event) throws IOException{
 		String fileName = showMSG("Neue Datei");
-		dataStore.setAktivFile(fileName);
-		File f = new File(dataStore.getAbsolutPath() + ".xml");
+		File f = new File(dataStore.getProjectFolder(), fileName);
+		dataStore.setAktivFile(f);
 		f.createNewFile();
 		TreeItem<String> fileTest = new TreeItem<>(fileName);
 		fileTest.setExpanded(true);
@@ -210,20 +213,33 @@ public class MWController implements ITask{
 	 * @return nüx
 	 */
 	@FXML protected void openDezimalUmwandler(ActionEvent event){
-		String projectName = "DezimalUmwandler";
-		ArrayList<String> list = new ArrayList<String>();
-		list = catalogeToCode(projectName);
-		code.setHtmlText(list.get(1));
-		test.setHtmlText(list.get(2));
+		do_it("DezimalUmwandler");
 
 	}
 
+	private void do_it(String name){
+		ArrayList<String> list = catalogeToCode(name);
+		code.setText(list.get(1));
+		test.setText(list.get(2));
+		File projectFolder = new File(dataStore.getWorkspace(), name);
+		dataStore.setProjectName(name);
+		dataStore.setProjectFolder(projectFolder);
+		dataStore.setAktivFile(new File(projectFolder, name + ".xml"));
+		dataStore.getProjectFolder().mkdirs();
+		try {
+			Files.copy(
+                    Paths.get(getClass().getResource(String.format("/Katalog/%s.xml", name)).toURI()),
+                    dataStore.getAbsoluteActiveFilePath(),
+					StandardCopyOption.REPLACE_EXISTING
+            );
+
+		} catch (IOException | URISyntaxException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@FXML protected void openFizzBuzz(ActionEvent event){
-		String projectName = "FizzBuzz";
-		ArrayList<String> list = new ArrayList<String>();
-		list = catalogeToCode(projectName);
-		code.setHtmlText(list.get(1));
-		test.setHtmlText(list.get(2));
+		do_it("FizzBuzz");
 		//So nun die beiden einträge 1 und 2 ausgeben im fenster
 	}
 
@@ -231,8 +247,8 @@ public class MWController implements ITask{
 		String projectName = "KeineDuplikate";
 		ArrayList<String> list = new ArrayList<String>();
 		list = catalogeToCode(projectName);
-		code.setHtmlText(list.get(1));
-		test.setHtmlText(list.get(2));
+		code.setText(list.get(1));
+		test.setText(list.get(2));
 		//So nun die beiden einträge 1 und 2 ausgeben im fenster
 	}
 
@@ -240,8 +256,8 @@ public class MWController implements ITask{
 		String projectName = "NoD";
 		ArrayList<String> list = new ArrayList<String>();
 		list = catalogeToCode(projectName);
-		code.setHtmlText(list.get(1));
-		test.setHtmlText(list.get(2));
+		code.setText(list.get(1));
+		test.setText(list.get(2));
 		//So nun die beiden einträge 1 und 2 ausgeben im fenster
 	}
 
@@ -249,8 +265,8 @@ public class MWController implements ITask{
 		String projectName = "Fibonaccifolge";
 		ArrayList<String> list = new ArrayList<String>();
 		list = catalogeToCode(projectName);
-		code.setHtmlText(list.get(1));
-		test.setHtmlText(list.get(2));
+		code.setText(list.get(1));
+		test.setText(list.get(2));
 		//So nun die beiden einträge 1 und 2 ausgeben im fenster
 	}
 
@@ -258,8 +274,8 @@ public class MWController implements ITask{
 		String projectName = "Surrenderformel";
 		ArrayList<String> list = new ArrayList<String>();
 		list = catalogeToCode(projectName);
-		code.setHtmlText(list.get(1));
-		test.setHtmlText(list.get(2));
+		code.setText(list.get(1));
+		test.setText(list.get(2));
 		//So nun die beiden einträge 1 und 2 ausgeben im fenster
 	}
 }

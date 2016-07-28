@@ -11,6 +11,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import org.w3c.dom.Attr;
+import tde.core.TDEDataStore;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -21,7 +22,7 @@ import java.io.FileOutputStream;
 
 public abstract class XMLParser {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         ArrayList<String> lol = new ArrayList<String>();
         String project = "project";
         String name = "RandomNumberGeneratorlies";
@@ -32,17 +33,16 @@ public abstract class XMLParser {
         lol = dataToCode(project, name);
         System.out.println(lol.get(1));
         //codeToData();
-    }
+    }*/
 
     //Dies ist die main methode die man zum testen benutzen kann
 
     /**
      * Ließt geschriebenen Code und parst zu xml in ein File, kann nun programmcode nehmen und in neuer xml file ablegen, test code ist ebenfalls möglich. muss immer zuerst den Programmcode speichern sonst funktioniert es nicht!
-     * @param project ist der name des project ordners, name ist der name des elements vom project ordner als auch von der klasse an sich, code ist der klassen oder testcode, istest gibt an ob klassencode (0) oder testcode(1) abgespeichert werden soll
-     * @return nüx
+     * @param dataStore //TODO: Bessere Docu.  ist der name des project ordners, name ist der name des elements vom project ordner als auch von der klasse an sich, code ist der klassen oder testcode, istest gibt an ob klassencode (0) oder testcode(1) abgespeichert werden soll
      */
-    public static void codeToData(String project, String name, String code, int isTest) {
-        String filePathes = new String();
+    public static void codeToData(TDEDataStore dataStore, String code, int isTest) {
+        String filePathes;
         filePathes = getFilePath();
         if (isTest == 0) {
             try {
@@ -59,7 +59,7 @@ public abstract class XMLParser {
                 Element classe = document.createElement("class");
 
                 Attr attributeClasse = document.createAttribute("name");
-                attributeClasse.setValue(name);
+                attributeClasse.setValue(dataStore.getAktivFile().getName().replace(".xml", ""));
                 classe.setAttributeNode(attributeClasse);
                 classe.appendChild(document.createTextNode(code));
                 exercise.appendChild(classe);
@@ -71,19 +71,13 @@ public abstract class XMLParser {
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource domSource = new DOMSource(document);
-                File path = new File(filePathes + "\\" + project /*+ "\\" + name + ".xml"*/);
+                File path = new File(String.valueOf(dataStore.getAbsoluteActiveFilePath()));
 
-                if (path.exists()) {
-                    StreamResult streamResult = new StreamResult(path + "\\" + name + ".xml");
+                if(!path.exists()) path.mkdirs();
 
-                    transformer.transform(domSource, streamResult);
-                }
-                else{
-                    path.mkdirs();
-                    StreamResult streamResult = new StreamResult(path + "\\" + name + ".xml");
+                StreamResult streamResult = new StreamResult(String.valueOf(dataStore.getAbsoluteActiveFilePath()));
 
-                    transformer.transform(domSource, streamResult);
-                }
+                transformer.transform(domSource, streamResult);
             }
             catch(Exception e){
                 e.printStackTrace();
@@ -93,7 +87,7 @@ public abstract class XMLParser {
         else {
             try {
 
-                File inputFile = new File(filePathes + "\\" + project + "\\" + name + ".xml");
+                File inputFile = new File(dataStore.getFilePathAsString());
                 DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder testDocumentBuilder = testDocumentFactory.newDocumentBuilder();
                 Document testDocument = testDocumentBuilder.parse(inputFile);
@@ -101,7 +95,7 @@ public abstract class XMLParser {
                 NodeList list = testDocument.getElementsByTagName("test");
                 list.item(0).setTextContent(code);
 
-                File path = new File(filePathes + "\\" + project /*+ "\\" + name + ".xml"*/);
+                File path = new File(dataStore.getFilePathAsString());
 
                 if (path.exists()) {
 
@@ -159,7 +153,7 @@ public abstract class XMLParser {
 				
 				
 				DOMSource domSource = new DOMSource(document);
-				File fileOutput = new File(filePathes + "\\" + project + "\\" + name + ".xml");
+				File fileOutput = new File(filePathes + "/" + project + "/" + name + ".xml");
 				
 				StreamResult streamResult = new StreamResult(fileOutput);
 				TransformerFactory tf = TransformerFactory.newInstance();
@@ -177,24 +171,24 @@ public abstract class XMLParser {
     
     /**
      * Parst Text von xml aus einer File zu Quellcode
-     * @param project ist der name des project ordners, name ist der name der klasse
+     * @param //TODO: DOCU! project ist der name des project ordners, name ist der name der klasse
      * @return Die Zeilen als String in einer ArrayList
      */
-    public static ArrayList<String> dataToCode(String project, String name) {
+    public static ArrayList<String> dataToCode(TDEDataStore dataStore) {
         ArrayList<String> classCodeList = new ArrayList<String>();
         //Diese ArrayList wird zurückgegeben und beinhaltet alle Classen in folgender Reihenfolge: Name, KlassenCode, Test
         String filePathes = new String();
         //System.out.println("ich bin hier");
         filePathes = getFilePath();
         //System.out.println("nicht hier");
-        File path = new File(filePathes + "\\" + project /*+ "\\" + name + ".xml"*/);
+        File path = new File(dataStore.getFilePathAsString());
         if (path.exists()) {
 
             try {
                 //with DOM Parser
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
-                Document document = builder.parse(new File(path + "\\" + name + ".xml"));
+                Document document = builder.parse(new File(dataStore.getFilePathAsString()));
                 document.getDocumentElement().normalize();
                 NodeList nodeList = document.getElementsByTagName("exercise");
                 //nun hat man eine NodeList mit der man die einzelnen Elemente von dieser jeweils über Befehle ansprechen kann
@@ -238,14 +232,14 @@ public abstract class XMLParser {
     public static ArrayList<String> catalogeToCode(String name) {
         ArrayList<String> classCodeList = new ArrayList<String>();
         String filePathes = new String();
-        filePathes = new File("").getAbsolutePath() + "\\src\\main\\resources\\Katalog";
+        filePathes = new File("").getAbsolutePath() + "/src/main/resources/Katalog";
         File path = new File(filePathes);
         if (path.exists()) {
             try {
                 //with DOM
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
-                Document document = builder.parse(new File(path + "\\" + name + ".xml"));
+                Document document = builder.parse(new File(path + "/" + name + ".xml"));
                 document.getDocumentElement().normalize();
                 classCodeList.add(0,""  + "\n");
                 classCodeList.add(1, document.getElementsByTagName("class").item(0).getTextContent() + "\n");
@@ -275,7 +269,7 @@ public abstract class XMLParser {
             DocumentBuilderFactory optionsFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder optionsBuilder = optionsFactory.newDocumentBuilder();
             //System.getProperty("java.class.path");
-            String string = new File("").getAbsolutePath() + "\\src\\main\\resources\\options.xml";
+            String string = new File("").getAbsolutePath() + "/src/main/resources/options.xml";
            // string.toString().getClass().getResource("/options.xml");
             //System.out.println(string);
            // string.getClass().getResource("/options.xml");

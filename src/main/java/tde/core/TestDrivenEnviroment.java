@@ -2,6 +2,7 @@ package tde.core;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Paths;
 
 import javafx.application.Application;
@@ -38,7 +39,7 @@ public class TestDrivenEnviroment extends Application {
             directoryChooser.setTitle("Workspace angeben");
             File file = directoryChooser.showDialog(null);
             if(file != null) {
-				dataStore.setWorkspace(file.getPath());
+				dataStore.setWorkspace(file);
 				OptionsFactory.createOptions(file.getPath());
 			} else
 				System.exit(0);
@@ -46,7 +47,8 @@ public class TestDrivenEnviroment extends Application {
 
 		try {
 			//System.out.println("Bin in before fxml");
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI.fxml"));
+			URL url = getClass().getResource("/GUI.fxml");
+			FXMLLoader loader = new FXMLLoader(url);
 			//System.out.println("Bin in before loader");
 			Parent mainWindow = loader.load();
 			//System.out.println("Bin in after loader");
@@ -55,7 +57,7 @@ public class TestDrivenEnviroment extends Application {
 			scene = new Scene(mainWindow);
 			stage.setScene(scene);
 			stage.setTitle("TDE");
-			stage.setMaximized(true);
+			//stage.setMaximized(true);
 			stage.show();
 
 		} catch (IOException e) {

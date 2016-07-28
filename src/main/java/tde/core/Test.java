@@ -27,39 +27,31 @@ public class Test {
 	 * 
 	 * 
 	*/
-	public void init(String filePath){
-		
+	public void init(TDEDataStore dataStore){
+		String filePath = dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName();
+
 		File f = new File(filePath);
 		File[] files = f.listFiles();
 		ArrayList<String> list;
-		ArrayList<CompilationUnit> ret = new ArrayList<CompilationUnit>(0);//initialisiert eine ArrayList con CompilationUnit
+		ArrayList<CompilationUnit> ret = new ArrayList<>();//initialisiert eine ArrayList con CompilationUnit
 		gesamt = new CompilationUnit[0];//CompilationUnit Array
 
-		String project = f.getName();
-		String name = "";
+		for (File file : files) {//durchlaeuft alle datein im angegeben Pfad
+			dataStore.setAktivFile(file);
+			list = XMLParser.dataToCode(dataStore);
 
-		int n = files.length;
-		
-		for(int i = 0; i < n; i++){//durchlaeuft alle datein im angegeben Pfad
-			
-			name = files[i].getName();
-			name = name.replace(".xml", "");
+			for (int temp = 1; temp < list.size(); temp++) {
 
-			list = XMLParser.dataToCode(project, name);
-			
-			for(int temp = 1; temp < list.size(); temp++){
-
-				if(temp == 1){
-					ret.add(new CompilationUnit(list.get(0).replace("Exercise Name :",""),list.get(temp).replace("Classe : ", ""), false));
-				}
-				else{
-					ret.add(new CompilationUnit(list.get(0).replace("Exercise Name :",""),list.get(temp).replace("Test : ", ""), true));
+				if (temp == 1) {
+					ret.add(new CompilationUnit(list.get(0).replace("Exercise Name :", ""), list.get(temp).replace("Classe : ", ""), false));
+				} else {
+					ret.add(new CompilationUnit(list.get(0).replace("Exercise Name :", ""), list.get(temp).replace("Test : ", ""), true));
 				}
 			}
 
 		}
-		
-		gesamt = ret.toArray(gesamt);
+
+		if(!ret.isEmpty()) gesamt = ret.toArray(gesamt);
 
 	}
 
@@ -91,9 +83,9 @@ public class Test {
 		Errors err = new Errors();
 		
 		err.setTestErrors(results.getTestFailures());
-		
-		for(int i = 0; i < gesamt.length; i++){
-			err.addCompileError(results.getCompilerErrorsForCompilationUnit(gesamt[i]));
+
+		for (CompilationUnit aGesamt : gesamt) {
+			err.addCompileError(results.getCompilerErrorsForCompilationUnit(aGesamt));
 		}
 		
 		return err;
