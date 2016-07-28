@@ -108,12 +108,12 @@ public class MWController implements ITask{
 			case 0: //test
 				XMLParser.codeToData(dataStore, test.getText(), 0);
 				//XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "test", 1);
-				tester.init(dataStore);
+				//tester.init(dataStore);
 				/*failedTests = tester.run();
 				if(failedTests  == 0)
 					showDialog("Fehler", "Alle Tests waren erfolgreich", "Bitte schreiben sie einen Test, der fehlschlägt!", Alert.AlertType.WARNING);
 					//TODO test in der Datei löschen
-				else if(failedTests == 1){
+				else if(failedTests == 1){*/
 					code.setDisable(false);
 					test.setDisable(true);
 					borderGlow.setColor(Color.RED);
@@ -124,13 +124,13 @@ public class MWController implements ITask{
 					blackLine.setEffect(null);
 					blackText.setEffect(null);
 					status++;
-				}*/
+				//}
 				break;
 			case 1: //code
 				//TODO Code in .tde Datei schreiben
-				tester.init(dataStore);
-				failedTests = tester.run();
-				if(failedTests == 0) {
+				//tester.init(dataStore);
+				//failedTests = tester.run();
+				//if(failedTests == 0) {
 					test.setDisable(false);
 					borderGlow.setColor(Color.GREEN);
 					greenLine.setEffect(borderGlow);
@@ -140,14 +140,14 @@ public class MWController implements ITask{
 					blackLine.setEffect(null);
 					blackText.setEffect(null);
 					status++;
-				}
+				/*}
 				else
-					showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);
+					showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);*/
 				break;
 			case 2: //refactor
-				tester.init(dataStore);
-				failedTests = tester.run();
-				if(failedTests == 0) {
+				//tester.init(dataStore);
+				//failedTests = tester.run();
+				//if(failedTests == 0) {
 					code.setDisable(true);
 					borderGlow.setColor(Color.BLACK);
 					blackLine.setEffect(borderGlow);
@@ -157,9 +157,9 @@ public class MWController implements ITask{
 					greenLine.setEffect(null);
 					greenText.setEffect(null);
 					status = 0;
-				}
-				else
-					showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);
+				//}
+				//else
+				//	showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);
 				break;
 			default: //nichts
 				break;
@@ -193,6 +193,7 @@ public class MWController implements ITask{
 		dataStore.setProjectName(projectName);
 		File dir = new File(dataStore.getWorkspace() + System.getProperty("file.separator") + projectName);
 		dir.mkdir();
+		dataStore.setProjectFolder(dir);
 		TreeItem<String> projectTest = new TreeItem<>(projectName);
 		projectTest.setExpanded(true);
 		testTree.setRoot(projectTest);
