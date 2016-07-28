@@ -117,11 +117,11 @@ public class MWController implements ITask{
 				else if(failedTests == 1){*/
 					code.setDisable(false);
 					test.setDisable(true);
-					borderGlow.setColor(Color.RED);
-					redLine.setEffect(borderGlow);
-					redText.setEffect(textGlow());
-					greenLine.setEffect(null);
-					greenText.setEffect(null);
+					borderGlow.setColor(Color.GREEN);
+					greenLine.setEffect(borderGlow);
+					greenText.setEffect(textGlow());
+					redLine.setEffect(null);
+					redText.setEffect(null);
 					blackLine.setEffect(null);
 					blackText.setEffect(null);
 					status++;
@@ -134,13 +134,13 @@ public class MWController implements ITask{
 				//failedTests = tester.run();
 				//if(failedTests == 0) {
 					test.setDisable(false);
-					borderGlow.setColor(Color.GREEN);
-					greenLine.setEffect(borderGlow);
-					greenText.setEffect(textGlow());
+					borderGlow.setColor(Color.BLACK);
+					blackLine.setEffect(borderGlow);
+					blackText.setEffect(textGlow());
 					redLine.setEffect(null);
 					redText.setEffect(null);
-					blackLine.setEffect(null);
-					blackText.setEffect(null);
+					greenLine.setEffect(null);
+					greenText.setEffect(null);
 					status++;
 				/*}
 				else
@@ -153,13 +153,13 @@ public class MWController implements ITask{
 				//failedTests = tester.run();
 				//if(failedTests == 0) {
 					code.setDisable(true);
-					borderGlow.setColor(Color.BLACK);
-					blackLine.setEffect(borderGlow);
-					blackText.setEffect(textGlow());
-					redLine.setEffect(null);
-					redText.setEffect(null);
+					borderGlow.setColor(Color.RED);
+					redLine.setEffect(borderGlow);
+					redText.setEffect(textGlow());
 					greenLine.setEffect(null);
 					greenText.setEffect(null);
+					blackLine.setEffect(null);
+					blackText.setEffect(null);
 					status = 0;
 				//}
 				//else
