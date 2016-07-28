@@ -50,7 +50,6 @@ public abstract class XMLParser {
 	        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
 	        Document document = builder.newDocument();
-	      //Nun da man Zugriff auf document hat, kann man mit dessen Hilfe die xml Struktur aufbauen
 	        
 	        Element exercise = document.createElement("exercise");
 	        document.appendChild(exercise);
@@ -64,7 +63,7 @@ public abstract class XMLParser {
 	        exercise.appendChild(classe);
 	        
 	        if (!isTest) {
-
+	        	System.out.println("class");
                 Attr attributeClasse = document.createAttribute("name");
                 attributeClasse.setValue(dataStore.getAktivFile().getName().replace(".xml", ""));
                 classe.setAttributeNode(attributeClasse);
@@ -82,6 +81,8 @@ public abstract class XMLParser {
             }
 
 	        else {
+	        	System.out.println("test");
+	        	System.out.println(code);
 	
 	            File inputFile = new File(dataStore.getFilePathAsString());
 	            DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
