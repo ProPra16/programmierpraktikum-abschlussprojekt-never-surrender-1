@@ -45,29 +45,29 @@ public abstract class XMLParser {
     public static void codeToData(TDEDataStore dataStore, String code, boolean isTest) {
         String filePathes;
         filePathes = getFilePath();
-        if (!isTest) {
-            try {
-
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder builder = factory.newDocumentBuilder();
-                Document document = builder.newDocument();
-                //Nun da man Zugriff auf document hat, kann man mit dessen Hilfe die xml Struktur aufbauen
-
-                Element exercise = document.createElement("exercise");
-                document.appendChild(exercise);
-                //appendChild : Adds the node newChild to the end of the list of children of this node. docs.oracle
-
-                Element classe = document.createElement("class");
+        
+        try {
+	        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder builder = factory.newDocumentBuilder();
+	        Document document = builder.newDocument();
+	      //Nun da man Zugriff auf document hat, kann man mit dessen Hilfe die xml Struktur aufbauen
+	        
+	        Element exercise = document.createElement("exercise");
+	        document.appendChild(exercise);
+	        
+	        Element test = document.createElement("test");
+	        test.appendChild(document.createTextNode(" "));
+	        exercise.appendChild(test);
+	        
+	        Element classe = document.createElement("class");
+	        classe.appendChild(document.createTextNode(code));
+	        exercise.appendChild(classe);
+	        
+	        if (!isTest) {
 
                 Attr attributeClasse = document.createAttribute("name");
                 attributeClasse.setValue(dataStore.getAktivFile().getName().replace(".xml", ""));
                 classe.setAttributeNode(attributeClasse);
-                classe.appendChild(document.createTextNode(code));
-                exercise.appendChild(classe);
-
-                Element test = document.createElement("test");
-                test.appendChild(document.createTextNode(" "));
-                exercise.appendChild(test);
 
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
@@ -80,37 +80,32 @@ public abstract class XMLParser {
 
                 transformer.transform(domSource, streamResult);
             }
-            catch(Exception e){
-                e.printStackTrace();
-            }
+
+	        else {
+	
+	            File inputFile = new File(dataStore.getFilePathAsString());
+	            DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
+	            DocumentBuilder testDocumentBuilder = testDocumentFactory.newDocumentBuilder();
+	            Document testDocument = testDocumentBuilder.parse(inputFile);
+	
+	            NodeList list = testDocument.getElementsByTagName("test");
+	            list.item(0).setTextContent(code);
+	
+	            File path = new File(dataStore.getFilePathAsString());
+	
+	            if (path.exists()) {
+	
+	                TransformerFactory.newInstance().newTransformer().transform(new DOMSource(testDocument), new StreamResult(new FileOutputStream(inputFile)));
+	
+	            }
+	            else {
+	                System.out.println("Der Pfad oder die Datei existiert nicht");
+	            }
+	        }
         }
-
-        else {
-            try {
-
-                File inputFile = new File(dataStore.getFilePathAsString());
-                DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder testDocumentBuilder = testDocumentFactory.newDocumentBuilder();
-                Document testDocument = testDocumentBuilder.parse(inputFile);
-
-                NodeList list = testDocument.getElementsByTagName("test");
-                list.item(0).setTextContent(code);
-
-                File path = new File(dataStore.getFilePathAsString());
-
-                if (path.exists()) {
-
-                    TransformerFactory.newInstance().newTransformer().transform(new DOMSource(testDocument), new StreamResult(new FileOutputStream(inputFile)));
-
-                }
-                else {
-                    System.out.println("Der Pfad oder die Datei existiert nicht");
-                }
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-        }
+	    catch(Exception e){
+	        e.printStackTrace();
+	    }
     }
     
     /*public static void codeToData(String project, String name, String code, boolean isTest, String ctName) {  
