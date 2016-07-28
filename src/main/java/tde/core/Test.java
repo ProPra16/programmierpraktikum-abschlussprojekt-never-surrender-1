@@ -1,15 +1,12 @@
 package tde.core;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import tde.file.XMLParser;
 import vk.core.api.CompilationUnit;
 import vk.core.api.CompilerFactory;
-//import vk.core.api.CompilerFactory;
 import vk.core.api.JavaStringCompiler;
-//import vk.core.internal.InternalCompiler;
 import vk.core.internal.InternalResult;
 
 

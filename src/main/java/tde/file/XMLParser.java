@@ -3,6 +3,7 @@ package tde.file;
 import java.io.File;
 import java.lang.*;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -41,10 +42,10 @@ public abstract class XMLParser {
      * Ließt geschriebenen Code und parst zu xml in ein File, kann nun programmcode nehmen und in neuer xml file ablegen, test code ist ebenfalls möglich. muss immer zuerst den Programmcode speichern sonst funktioniert es nicht!
      * @param dataStore //TODO: Bessere Docu.  ist der name des project ordners, name ist der name des elements vom project ordner als auch von der klasse an sich, code ist der klassen oder testcode, istest gibt an ob klassencode (0) oder testcode(1) abgespeichert werden soll
      */
-    public static void codeToData(TDEDataStore dataStore, String code, int isTest) {
+    public static void codeToData(TDEDataStore dataStore, String code, boolean isTest) {
         String filePathes;
         filePathes = getFilePath();
-        if (isTest == 0) {
+        if (!isTest) {
             try {
 
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -71,11 +72,11 @@ public abstract class XMLParser {
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource domSource = new DOMSource(document);
-                File path = new File(String.valueOf(dataStore.getAbsoluteActiveFilePath()));
+                File path = new File(dataStore.getFilePathAsString());
 
-                if(!path.exists()) path.mkdirs();
+                //if(!path.exists()) Files.createFile(path.toPath());
 
-                StreamResult streamResult = new StreamResult(String.valueOf(dataStore.getAbsoluteActiveFilePath()));
+                StreamResult streamResult = new StreamResult(dataStore.getFilePathAsString());
 
                 transformer.transform(domSource, streamResult);
             }

@@ -106,7 +106,7 @@ public class MWController implements ITask{
 
 		switch (status){
 			case 0: //test
-				XMLParser.codeToData(dataStore, test.getText(), 0);
+				XMLParser.codeToData(dataStore, test.getText(), false);
 				//XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "test", 1);
 				tester.init(dataStore);
 				/*failedTests = tester.run();
@@ -192,7 +192,7 @@ public class MWController implements ITask{
 		String projectName = showMSG("Neues Projekt");
 		dataStore.setProjectName(projectName);
 		File dir = new File(dataStore.getWorkspace() + System.getProperty("file.separator") + projectName);
-		dir.mkdir();
+		//dir.mkdir();
 		TreeItem<String> projectTest = new TreeItem<>(projectName);
 		projectTest.setExpanded(true);
 		testTree.setRoot(projectTest);
