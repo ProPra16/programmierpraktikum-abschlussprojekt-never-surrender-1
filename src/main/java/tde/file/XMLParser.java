@@ -11,6 +11,8 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import org.w3c.dom.Attr;
+
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -115,7 +117,64 @@ public abstract class XMLParser {
             }
         }
     }
+    
+    /*public static void codeToData(String project, String name, String code, boolean isTest, String ctName) {  
+        String filePathes = new String();
+        filePathes = getFilePath();
+        
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            
+                
+			Element execise = document.createElement("execise");
+            document.appendChild(execise);
+                
+            if(!isTest) {   
+                Element eclass = document.createElement("class");
+                eclass.setAttribute("name", ctName);
+				execise.appendChild(eclass);
+				
+				Element ccode = document.createElement("code");
+				ccode.setTextContent(code);
+				eclass.appendChild(ccode);
+			}
+			else{
+				
+				Element test = document.createElement("test");
+                test.setAttribute("name", ctName);
+				execise.appendChild(test);
+				
+				Element tcode = document.createElement("code");
+				tcode.setTextContent(code);
+				test.appendChild(tcode);
+			}
+				
+				
+				
+				
+				
+				
+				
+				
+				DOMSource domSource = new DOMSource(document);
+				File fileOutput = new File(filePathes + "\\" + project + "\\" + name + ".xml");
+				
+				StreamResult streamResult = new StreamResult(fileOutput);
+				TransformerFactory tf = TransformerFactory.newInstance();
 
+				Transformer serializer = tf.newTransformer();
+				serializer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+				serializer.setOutputProperty(OutputKeys.INDENT, "yes");
+				serializer.transform(domSource, streamResult);
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+
+    }*/
+    
     /**
      * Parst Text von xml aus einer File zu Quellcode
      * @param project ist der name des project ordners, name ist der name der klasse
