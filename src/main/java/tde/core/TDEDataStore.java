@@ -10,8 +10,6 @@ public class TDEDataStore {
     private File projectFolder;
     private File activFile;
 
-    private String absolutPath;
-
     public static final String separator = System.getProperty("file.separator");
 
     public void setWorkspace(File workspace){
