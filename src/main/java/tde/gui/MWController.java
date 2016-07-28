@@ -95,6 +95,14 @@ public class MWController implements ITask{
 		DropShadow borderGlow = new DropShadow();
 		borderGlow.setWidth(40);
 		borderGlow.setHeight(40);
+		
+		borderGlow.setColor(Color.RED);
+		redLine.setEffect(borderGlow);
+		redText.setEffect(textGlow());
+		greenLine.setEffect(null);
+		greenText.setEffect(null);
+		blackLine.setEffect(null);
+		blackText.setEffect(null);
 
 		switch (status){
 			case 0: //test
