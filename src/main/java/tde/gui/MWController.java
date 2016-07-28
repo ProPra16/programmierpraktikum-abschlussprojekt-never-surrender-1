@@ -98,7 +98,7 @@ public class MWController implements ITask{
 
 		switch (status){
 			case 0: //test
-				XMLParser.codeToData(dataStore, test.get, 0);
+				XMLParser.codeToData(dataStore, test.getText(), 0);
 				//XMLParser.codeToData(dataStore.getProjectName(), dataStore.getAktivFile(), "test", 1);
 				tester.init(dataStore);
 				/*failedTests = tester.run();
