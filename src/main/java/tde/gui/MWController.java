@@ -113,7 +113,7 @@ public class MWController implements ITask{
 				if(failedTests  == 0)
 					showDialog("Fehler", "Alle Tests waren erfolgreich", "Bitte schreiben sie einen Test, der fehlschlägt!", Alert.AlertType.WARNING);
 					//TODO test in der Datei löschen
-				else if(failedTests == 1){*/
+				else if(failedTests == 1){
 					code.setDisable(false);
 					test.setDisable(true);
 					borderGlow.setColor(Color.RED);
@@ -124,7 +124,7 @@ public class MWController implements ITask{
 					blackLine.setEffect(null);
 					blackText.setEffect(null);
 					status++;
-				}
+				}*/
 				break;
 			case 1: //code
 				//TODO Code in .tde Datei schreiben
