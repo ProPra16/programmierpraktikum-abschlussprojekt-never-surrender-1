@@ -221,17 +221,18 @@ public class MWController implements ITask{
 	 * @return nüx
 	 */
 	@FXML protected void openDezimalUmwandler(ActionEvent event){
-		do_it("DezimalUmwandler");
+		catalogueLoader("DezimalUmwandler");
 
 	}
 
-	private void do_it(String name){
+	private void catalogueLoader(String name){
 		ArrayList<String> list = catalogeToCode(name);
 		code.setText(list.get(1));
 		test.setText(list.get(2));
 		File projectFolder = new File(dataStore.getWorkspace(), name);
 		dataStore.setProjectName(name);
 		dataStore.setProjectFolder(projectFolder);
+
 		dataStore.setAktivFile(new File(projectFolder, name + ".xml"));
 		dataStore.getProjectFolder().mkdirs();
 		try {
@@ -247,43 +248,23 @@ public class MWController implements ITask{
 	}
 
 	@FXML protected void openFizzBuzz(ActionEvent event){
-		do_it("FizzBuzz");
+		catalogueLoader("FizzBuzz");
 		//So nun die beiden einträge 1 und 2 ausgeben im fenster
 	}
 
 	@FXML protected void openKeineDuplikate(ActionEvent event){
-		String projectName = "KeineDuplikate";
-		ArrayList<String> list = new ArrayList<String>();
-		list = catalogeToCode(projectName);
-		code.setText(list.get(1));
-		test.setText(list.get(2));
-		//So nun die beiden einträge 1 und 2 ausgeben im fenster
+		catalogueLoader("KeineDuplikate");
 	}
 
 	@FXML protected void openNoD(ActionEvent event){
-		String projectName = "NoD";
-		ArrayList<String> list = new ArrayList<String>();
-		list = catalogeToCode(projectName);
-		code.setText(list.get(1));
-		test.setText(list.get(2));
-		//So nun die beiden einträge 1 und 2 ausgeben im fenster
+		catalogueLoader("NoD");
 	}
 
 	@FXML protected void openFibonaccifolge(ActionEvent event){
-		String projectName = "Fibonaccifolge";
-		ArrayList<String> list = new ArrayList<String>();
-		list = catalogeToCode(projectName);
-		code.setText(list.get(1));
-		test.setText(list.get(2));
-		//So nun die beiden einträge 1 und 2 ausgeben im fenster
+		catalogueLoader("Fibonaccifolge");
 	}
 
 	@FXML protected void openSurrenderFormel(ActionEvent event){
-		String projectName = "Surrenderformel";
-		ArrayList<String> list = new ArrayList<String>();
-		list = catalogeToCode(projectName);
-		code.setText(list.get(1));
-		test.setText(list.get(2));
-		//So nun die beiden einträge 1 und 2 ausgeben im fenster
+		catalogueLoader("Surrenderformel");
 	}
 }
