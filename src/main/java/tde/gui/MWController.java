@@ -106,8 +106,7 @@ public class MWController implements ITask{
 
 		switch (status){
 			case 0: //test
-				XMLParser.codeToData(dataStore, code.getText(), false);
-				XMLParser.codeToData(dataStore, test.getText(), true);
+				XMLParser.codeToData(dataStore, code.getText(), test.getText());
 				//tester.init(dataStore);
 				/*failedTests = tester.run();
 				if(failedTests  == 0)
@@ -127,8 +126,8 @@ public class MWController implements ITask{
 				//}
 				break;
 			case 1: //code
-				XMLParser.codeToData(dataStore, code.getText(), false);
-				XMLParser.codeToData(dataStore, test.getText(), true);
+				XMLParser.codeToData(dataStore, code.getText(), test.getText());
+
 				//TODO Code in .tde Datei schreiben
 				//tester.init(dataStore);
 				//failedTests = tester.run();
@@ -147,8 +146,7 @@ public class MWController implements ITask{
 					showDialog("Fehler", failedTests + " sind fehlgeschlagen", "Bitte korriegieren sie ihren Code!", Alert.AlertType.WARNING);*/
 				break;
 			case 2: //refactor
-				XMLParser.codeToData(dataStore, code.getText(), false);
-				XMLParser.codeToData(dataStore, test.getText(), true);
+				XMLParser.codeToData(dataStore, code.getText(), test.getText());
 				//tester.init(dataStore);
 				//failedTests = tester.run();
 				//if(failedTests == 0) {

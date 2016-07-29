@@ -42,7 +42,7 @@ public abstract class XMLParser {
      * Ließt geschriebenen Code und parst zu xml in ein File, kann nun programmcode nehmen und in neuer xml file ablegen, test code ist ebenfalls möglich. muss immer zuerst den Programmcode speichern sonst funktioniert es nicht!
      * @param dataStore //TODO: Bessere Docu.  ist der name des project ordners, name ist der name des elements vom project ordner als auch von der klasse an sich, code ist der klassen oder testcode, istest gibt an ob klassencode (0) oder testcode(1) abgespeichert werden soll
      */
-    public static void codeToData(TDEDataStore dataStore, String code, boolean isTest) {
+    public static void codeToData(TDEDataStore dataStore, String code1, /*boolean isTest*/ String code2) {
         String filePathes;
         filePathes = getFilePath();
         
@@ -59,49 +59,38 @@ public abstract class XMLParser {
 	        exercise.appendChild(test);
 	        
 	        Element classe = document.createElement("class");
-	        classe.appendChild(document.createTextNode(code));
+	        classe.appendChild(document.createTextNode(" "));
 	        exercise.appendChild(classe);
-	        
-	        if (!isTest) {
-	        	System.out.println("class");
-                Attr attributeClasse = document.createAttribute("name");
-                attributeClasse.setValue(dataStore.getAktivFile().getName().replace(".xml", ""));
-                classe.setAttributeNode(attributeClasse);
+	        	
+	    	String[] zwischen = code1.split("class ");
+	    	String[] end = zwischen[1].split(" ");
+	    	System.out.println(end[0]);
 
-                TransformerFactory transformerFactory = TransformerFactory.newInstance();
-                Transformer transformer = transformerFactory.newTransformer();
-                DOMSource domSource = new DOMSource(document);
-                File path = new File(dataStore.getFilePathAsString());
+            classe.setAttribute("name", end[0]);
 
-                //if(!path.exists()) Files.createFile(path.toPath());
+            File inputFile = new File(dataStore.getFilePathAsString());
+                
+	        NodeList list1 = document.getElementsByTagName("class");
+	        list1.item(0).setTextContent(code1);
+	
+	        File path = new File(dataStore.getFilePathAsString());
+	        	
+	    	zwischen = code2.split("class ");
+	    	end = zwischen[1].split(" ");
+	    	System.out.println(end[0]);
 
-                StreamResult streamResult = new StreamResult(dataStore.getFilePathAsString());
-
-                transformer.transform(domSource, streamResult);
-            }
-
+            test.setAttribute("name", end[0]);
+	
+	        NodeList list2 = document.getElementsByTagName("test");
+	        list2.item(0).setTextContent(code2);
+	
+	        if (path.exists()) {
+	
+	           TransformerFactory.newInstance().newTransformer().transform(new DOMSource(document), new StreamResult(new FileOutputStream(inputFile)));
+	
+	        }
 	        else {
-	        	System.out.println("test");
-	        	System.out.println(code);
-	
-	            File inputFile = new File(dataStore.getFilePathAsString());
-	            DocumentBuilderFactory testDocumentFactory = DocumentBuilderFactory.newInstance();
-	            DocumentBuilder testDocumentBuilder = testDocumentFactory.newDocumentBuilder();
-	            Document testDocument = testDocumentBuilder.parse(inputFile);
-	
-	            NodeList list = testDocument.getElementsByTagName("test");
-	            list.item(0).setTextContent(code);
-	
-	            File path = new File(dataStore.getFilePathAsString());
-	
-	            if (path.exists()) {
-	
-	                TransformerFactory.newInstance().newTransformer().transform(new DOMSource(testDocument), new StreamResult(new FileOutputStream(inputFile)));
-	
-	            }
-	            else {
-	                System.out.println("Der Pfad oder die Datei existiert nicht");
-	            }
+	            System.out.println("Der Pfad oder die Datei existiert nicht");
 	        }
         }
 	    catch(Exception e){
