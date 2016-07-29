@@ -68,8 +68,9 @@ public class Test {
 
 	}*/
 	
-	public void init(String filePath){
+	public void init(TDEDataStore dataStore){
 		
+		String filePath = dataStore.getWorkspace() + TDEDataStore.separator + dataStore.getProjectName();
 		File f = new File(filePath);//muss mit dem richtigen Verzeichnis ersetzt werden
 		File[] files = f.listFiles();
 		
@@ -79,9 +80,6 @@ public class Test {
 		
 		CompilationUnit[] classCode = new CompilationUnit[n];
 		CompilationUnit[] test = new CompilationUnit[n];
-		
-		String[] classCodeName = new String[n];
-		String[] testName = new String[n];
 		
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = null;
